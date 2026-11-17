@@ -82,7 +82,14 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 .star{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#111;color:var(--mu);font-size:22px;line-height:1}
 .star.on{background:var(--yl);border-color:var(--yl);color:#111}
 .rn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--or);color:#111;display:grid;place-items:center;font-size:13px}
-.rb{height:36px;min-width:36px;padding:0 8px}.rb:disabled{opacity:.3}
+.si>span{min-width:0;overflow-wrap:anywhere;line-height:1.3}
+.si img,.si>span:first-child{flex:none}
+.rl{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+.rbs{display:flex;gap:6px;flex:none;margin-left:auto}
+.rb{width:38px;height:38px;min-width:0;padding:0;display:grid;place-items:center;font-size:16px}
+.rb:disabled{opacity:.25}
+.rb.x{color:#ff8a8a}
+@media(max-width:520px){.rl{grid-template-columns:1fr}.rb{width:36px;height:36px}}
 /* modal */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.7);display:grid;place-items:center;z-index:50;padding:20px}
 .md{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;max-width:360px;width:100%}
@@ -282,8 +289,8 @@ function renderRec() {
   const cats = (window.CATEGORIES || []).filter((c) => !c.hidden);
   $("list").innerHTML = `<div class="stop"><p style="color:var(--mu);font-size:14px">${t("recHint")}</p>
    <h3>${t("recNow")} (${rec.length})</h3>
-   ${rec.length ? `<div class="sl">${rec.map((id, i) => { const m = by[id]; return `<div class="si"><b class="rn">${i + 1}</b>${pic(m)}<span>${esc(m.name)}</span>
-     <button class="ib rb" data-recmove="${id}" data-d="-1" ${i ? "" : "disabled"} title="${t("recUp")}">↑</button><button class="ib rb" data-recmove="${id}" data-d="1" ${i < rec.length - 1 ? "" : "disabled"} title="${t("recDown")}">↓</button><button class="ib rb" data-rec="${id}" title="${t("recDel")}">✕</button></div>`; }).join("")}</div>` : `<p class="warn" style="margin:0">${t("recEmpty")}</p>`}
+   ${rec.length ? `<div class="sl rl">${rec.map((id, i) => { const m = by[id]; return `<div class="si"><b class="rn">${i + 1}</b>${pic(m)}<span>${esc(m.name)}</span>
+     <div class="rbs"><button class="ib rb" data-recmove="${id}" data-d="-1" ${i ? "" : "disabled"} title="${t("recUp")}">↑</button><button class="ib rb" data-recmove="${id}" data-d="1" ${i < rec.length - 1 ? "" : "disabled"} title="${t("recDown")}">↓</button><button class="ib rb x" data-rec="${id}" title="${t("recDel")}">✕</button></div></div>`; }).join("")}</div>` : `<p class="warn" style="margin:0">${t("recEmpty")}</p>`}
    <p style="margin:10px 0"><button class="ib" data-recreset="1">${t("recReset")}</button></p>
    <h3>${t("recAll")}</h3>
    ${cats.map((c) => `<h3 style="margin-top:6px">${c.icon} ${c[L] || c.ro}</h3><div class="sl">${MENU.filter((m) => m.cat === c.id).map((m) => { const on = rec.includes(m.id);

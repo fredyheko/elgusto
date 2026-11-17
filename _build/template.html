@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}" data-base="{{B}}">
+<head>
+{{HEAD}}
+</head>
+<body data-v="1">
+<div class="closed" id="closedBar"></div>
+<header>
+  <a class="brand" href="{{HOME}}" aria-label="L'Gusto"><img class="blogo" src="{{B}}img/logo.webp" alt="L'Gusto express food" width="640" height="265"></a>
+  <div class="hr">
+    <nav class="lang" aria-label="Limba / Язык"><a id="l-ro" href="{{RO_HREF}}" hreflang="ro" lang="ro">RO</a><a id="l-ru" href="{{RU_HREF}}" hreflang="ru" lang="ru">RU</a></nav>
+    <a class="call" id="callBtn" href="tel:+37360465059" aria-label="{{CALL_LABEL}}">📞</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1 data-i="h1"></h1>
+    <p data-i="lead"></p>
+    <div class="badges"><div data-i="b1"></div><div data-i="b2"></div><div data-i="b3"></div></div>
+    <button class="cta" onclick="go(CATS[0].id)" data-i="see"></button><a class="cta ghost" href="#contacte" data-i="contacts"></a>
+  </div>
+  <div class="collage" id="collage"></div>
+</section>
+<div class="tickwrap" aria-hidden="true"><div class="ticker"><div class="tk" id="ticker"></div></div></div>
+
+<div class="block">
+  <h2 data-i="rec"></h2>
+  <div class="pop" id="pop"></div>
+</div>
+
+<div class="search"><input id="q" type="search" oninput="filter()" aria-label="search"></div>
+
+<nav class="tabs" id="tabs"></nav>
+<main id="menu"></main><div class="empty" id="empty" data-i="empty"></div>
+
+<div class="block">
+  <h2 data-i="how"></h2>
+  <div class="steps">
+    <div><b data-i="s1t"></b><p data-i="s1p"></p></div>
+    <div><b data-i="s2t"></b><p data-i="s2p"></p></div>
+    <div><b data-i="s3t"></b><p data-i="s3p"></p></div>
+  </div>
+  <h2 id="contacte" data-i="info"></h2>
+  <div class="info">
+    <div id="i1"></div>
+    <div id="i2"></div>
+    <div id="i3"></div>
+  </div>
+  <div class="note" data-i="alg"></div>
+</div>
+<footer><div class="soc" id="soc"></div><span id="foot"></span>
+  <div class="credit">Site: <a href="#" rel="nofollow">Nodo</a></div></footer>
+
+<div class="addon" id="addon"></div>
+<button class="lastord" id="lastord"></button>
+<button class="cartbtn" id="cartbtn" onclick="openCart()"></button>
+
+<div class="ov" id="ov" onclick="if(event.target===this)closeAll()">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<!--NOSCRIPT-->
+<script src="{{B}}js/config.js"></script>
+<script type="module">
+import * as S from "{{BSTORE}}js/store.js";
+const BASE = document.documentElement.dataset.base || "";
+const PAGE_L = document.documentElement.lang === "ru" ? "ru" : "ro";
+const R = window.RESTAURANT, ALLCATS = window.CATEGORIES, MENU = window.MENU, D = R.delivery, AD = window.ADDONS || { sauces: [], kebabExtras: [], offer: {} };
+const CATS = ALLCATS.filter((c) => !c.hidden);
+window.CATS = CATS;
+const BY = Object.fromEntries(MENU.map((m) => [m.id, m]));
+const tel = "+373" + R.phone.replace(/\D/g, "").replace(/^0/, "");
+const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
+
+const T = {
+ro:{h1:'Burgeri, kebab și aripioare fierbinți',
+ lead:`Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
+ search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
+ s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
+ s3t:'Confirmăm rapid',s3p:'Operatorul primește comanda imediat și vă sună pentru confirmare.',info:'Informații',
+ i1:`<b>📍 Adresa</b>${R.address.ro}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(precomandă și livrare)</span>`,
+ i2:`<b>🕒 Program</b>Zilnic, ${H}`,
+ i3:`<b>🛵 Livrare</b>În ${R.city.ro} — gratuit pentru comenzi de la ${D.city.freeFrom} lei, pentru comenzi mai mici — ${D.city.feeBelow == null ? "cu plată (costul îl confirmă operatorul)" : D.city.feeBelow + " lei"}.<br>În alte localități — de la ${D.other.feeFrom} lei, costul exact îl confirmă operatorul.`,
+ alg:'<b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii.',
+ add:'+ Adaugă',added:'✓ Adăugat',na:'Indisponibil',cart:'Coșul',yours:'Comanda ta',subtotal:'Preparate',total:'Total',deliv:'🛵 Livrare',pick:'🏃 Ridicare',
+ zone:'Unde livrăm?',zCity:`${R.city.ro} (oraș)`,zOther:'Altă localitate',
+ needMore:(x)=>`Mai adăugați ${x} lei și livrarea în ${R.city.ro} va fi gratuită. Pentru comenzi sub ${D.city.freeFrom} lei livrarea este ${D.city.feeBelow == null ? "cu plată — costul exact îl confirmă operatorul la telefon" : D.city.feeBelow + " lei"}.`,
+ freeOk:'Livrare gratuită 🎉',otherFee:`Livrare în altă localitate: de la ${D.other.feeFrom} lei. Costul exact vi-l spune operatorul la telefon.`,
+ cur:'lei',feeLbl:'Livrare',byOp:'se confirmă la telefon',from:'de la',free:'gratuit',pickAddr:`Ridicare: ${R.address.ro}`,
+ name:'Nume',nameP:'Numele dvs.',phone:'Telefon',addr:'Adresa de livrare',addrP:'Localitatea, strada, nr., apartament',addrPC:'Strada, nr., apartament',
+ com:'Comentariu (opțional)',comP:'Ex.: fără susan, sună la sosire',errA:'Completați numele, telefonul și adresa.',errB:'Completați numele și telefonul.',
+ errPh:'Verificați numărul de telefon (ex.: 069 123 456).',errNet:'Nu s-a putut trimite comanda. Verificați internetul sau sunați-ne: ',
+ send:'Trimite comanda',sending:'Se trimite…',closedNow:`Acum nu primim comenzi online. Program: zilnic ${H}. Precomenzi: `,paused:'Momentan nu primim comenzi online. Sunați-ne: ',
+ thanks:'Mulțumim',got:(n)=>`Comanda #${n} a fost trimisă.`,callSoon:'Operatorul vă sună în câteva minute pentru confirmare.',
+ st:{new:'Comandă trimisă',accepted:'Acceptată',cooking:'Se pregătește',delivery:'În drum spre dvs.',pickupReady:'Gata — vă așteptăm',done:'Livrată. Poftă bună!',doneP:'Ridicată. Poftă bună!'},
+ cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
+ cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
+ru:{h1:'Горячие бургеры, кебабы и крылышки',
+ lead:`Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
+ search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
+ s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',
+ s3t:'Быстро подтвердим',s3p:'Оператор сразу получает заказ и перезванивает для подтверждения.',info:'Информация',
+ i1:`<b>📍 Адрес</b>${R.address.ru}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(предзаказ и доставка)</span>`,
+ i2:`<b>🕒 Часы работы</b>Ежедневно, ${H}`,
+ i3:`<b>🛵 Доставка</b>По городу ${R.city.ru} — бесплатно при заказе от ${D.city.freeFrom} лей, на меньшую сумму — ${D.city.feeBelow == null ? "платно (стоимость подтвердит оператор)" : D.city.feeBelow + " лей"}.<br>В другие сёла — от ${D.other.feeFrom} лей, точную стоимость подтвердит оператор.`,
+ alg:'<b>Проверьте аллергены перед заказом!</b> Блюда могут содержать: глютен, яйца, молоко (лактозу), рыбу, ракообразных, моллюсков, сою, кунжут, горчицу, сельдерей, орехи, арахис, сульфиты. Сообщите оператору об аллергии.',
+ add:'+ В корзину',added:'✓ Добавлено',na:'Нет в наличии',cart:'Корзина',yours:'Ваш заказ',subtotal:'Блюда',total:'Итого',deliv:'🛵 Доставка',pick:'🏃 Самовывоз',
+ zone:'Куда доставить?',zCity:`${R.city.ru} (город)`,zOther:'Другое село',
+ needMore:(x)=>`Добавьте ещё ${x} лей — и доставка по городу будет бесплатной. Для заказов до ${D.city.freeFrom} лей доставка ${D.city.feeBelow == null ? "платная — точную стоимость назовёт оператор по телефону" : "стоит " + D.city.feeBelow + " лей"}.`,
+ freeOk:'Бесплатная доставка 🎉',otherFee:`Доставка в другое село: от ${D.other.feeFrom} лей. Точную стоимость назовёт оператор по телефону.`,
+ cur:'лей',feeLbl:'Доставка',byOp:'уточнит оператор',from:'от',free:'бесплатно',pickAddr:`Самовывоз: ${R.address.ru}`,
+ name:'Имя',nameP:'Ваше имя',phone:'Телефон',addr:'Адрес доставки',addrP:'Село, улица, дом, квартира',addrPC:'Улица, дом, квартира',
+ com:'Комментарий (необязательно)',comP:'Напр.: без кунжута, позвонить по приезде',errA:'Заполните имя, телефон и адрес.',errB:'Заполните имя и телефон.',
+ errPh:'Проверьте номер телефона (напр.: 069 123 456).',errNet:'Не удалось отправить заказ. Проверьте интернет или позвоните нам: ',
+ send:'Отправить заказ',sending:'Отправляем…',closedNow:`Сейчас заказы онлайн не принимаются. Часы работы: ежедневно ${H}. Предзаказ: `,paused:'Сейчас заказы онлайн не принимаются. Позвоните нам: ',
+ thanks:'Спасибо',got:(n)=>`Заказ #${n} отправлен.`,callSoon:'Оператор перезвонит в течение нескольких минут для подтверждения.',
+ st:{new:'Заказ отправлен',accepted:'Принят',cooking:'Готовится',delivery:'Едет к вам',pickupReady:'Готов — ждём вас',done:'Доставлен. Приятного аппетита!',doneP:'Выдан. Приятного аппетита!'},
+ cancelled:`Заказ отменён. Подробности по телефону: `,close:'Закрыть',newOrder:'Новый заказ',lastO:(n,s)=>`🧾 Заказ #${n}: ${s} ›`,
+ cats:{},questions:'Вопросы? Звоните: ',adT:(n)=>`Добавить соус к «${n}»?`,adTK:(n)=>`Что добавить к «${n}»?`,adSauces:'Соусы',adExtras:'Добавки в кебаб',adDone:'Готово',adNo:'Без соуса',adCart:'Соусы к заказу',adIn:'в корзине'}};
+ALLCATS.forEach((c) => { T.ro.cats[c.id] = c.ro; T.ru.cats[c.id] = c.ru; });
+
+let cart = {}, mode = "delivery", zone = "city", L = PAGE_L, settings = { open: true, stop: [] }, sending = false;
+try { cart = JSON.parse(localStorage.getItem("lg-cart") || "{}"); Object.keys(cart).forEach((k) => { if (!BY[k]) delete cart[k]; }); } catch (e) { cart = {}; }
+const t = (k) => T[L][k];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const saveCart = () => { try { localStorage.setItem("lg-cart", JSON.stringify(cart)); } catch (e) {} };
+const avail = (id) => !(settings.stop || []).includes(id);
+
+/* ---------- время работы (по Кишинёву) ---------- */
+function isOpenNow() {
+  const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Chisinau", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+  const wd = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }[p.find((x) => x.type === "weekday").value];
+  const mins = +p.find((x) => x.type === "hour").value % 24 * 60 + +p.find((x) => x.type === "minute").value;
+  const h = R.hours[wd]; if (!h) return false;
+  const [o, c] = h.map((s) => { const [a, b] = s.split(":"); return +a * 60 + +b; });
+  return mins >= o && mins < c;
+}
+const canOrder = () => settings.open && isOpenNow();
+function updClosed() {
+  const b = $("closedBar"), ok = canOrder();
+  b.classList.toggle("show", !ok);
+  if (!ok) b.innerHTML = `${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:#fff;font-weight:800">${R.phone}</a>`;
+  setTimeout(fixSticky, 0);
+}
+
+/* ---------- язык ---------- */
+window.setLang = function (l) {
+  if (l !== PAGE_L) { keepDraft(); location.href = l === "ru" ? BASE + "ru/" : (BASE || "./"); return; }
+  L = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i]").forEach((el) => (el.innerHTML = t(el.dataset.i)));
+  ["i1", "i2", "i3"].forEach((k) => ($(k).innerHTML = t(k)));
+  $("q").placeholder = t("search");
+  $("l-ro").classList.toggle("on", l === "ro"); $("l-ru").classList.toggle("on", l === "ru");
+  $("foot").innerHTML = `<b>L'Gusto express food</b><br>${R.address[l]}<br><a href="tel:${tel}">${R.phone}</a>`;
+  render(); extras(); filter(); upd(); updClosed(); updLast(); fillTicker();
+  if ($("ov").classList.contains("show")) { if (trackId) openTrack(trackId); else if (count()) openCart(); }
+};
+
+/* ---------- меню ---------- */
+function cardHtml(m, hit) {
+  const ok = avail(m.id), ing = L === "ru" ? m.ru : m.ro;
+  return `<div class="card${ok ? "" : " na"}">${ok ? "" : `<span class="na-tag">${t("na")}</span>`}
+  <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(m.name)}" width="480" height="360" loading="lazy" decoding="async">` : `<span class="pe">${(ALLCATS.find((c) => c.id === m.cat) || {}).icon || "🍽️"}</span>`}</div>
+  <div class="body"><h3>${esc(m.name)}</h3><div class="ing">${esc(ing)}</div>
+  <div class="row"><span class="gr">${m.g ? m.g + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
+  <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
+}
+function render() {
+  $("tabs").innerHTML = CATS.map((c, i) => `<button class="tab${i ? "" : " on"}" onclick="go('${c.id}')">${c.icon} ${t("cats")[c.id]}</button>`).join("");
+  $("menu").innerHTML = CATS.map((c) => `<section class="sec" id="s-${c.id}"><h2>${t("cats")[c.id]}</h2><div class="grid">${MENU.filter((m) => m.cat === c.id).map((m) => cardHtml(m, 0)).join("")}</div></section>`).join("");
+}
+function extras() {
+  const withImg = MENU.filter((m) => m.img);
+  const pick = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-asiatic"].map((id) => BY[id]).filter(Boolean);
+  const col = pick.length === 3 ? pick : withImg.slice(0, 3);
+  $("collage").innerHTML = `<img src="${BASE}${col[0].img}" alt="${esc(col[0].name)}" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="${esc(col[0].name)}: ${col[0].price} ${t("cur")}"><b>${col[0].price}</b><span>${t("cur")}</span></div>`;
+  const recIds = ["double-cheeseburger-lgusto", "kebab-lgusto", "big-double-cheeseburger", "aripi-crispy", "creveti-tempura", "salata-creveti-tempura"].filter((id) => BY[id]);
+  $("pop").innerHTML = (recIds.length ? recIds.map((id) => BY[id]) : withImg.slice(0, 6)).map((m) => cardHtml(m, 1)).join("");
+}
+window.filter = function () {
+  const v = $("q").value.trim().toLowerCase(); let any = 0;
+  document.querySelectorAll("#menu .sec").forEach((sec) => { let n = 0; sec.querySelectorAll(".card").forEach((c) => { const ok = !v || c.textContent.toLowerCase().includes(v); c.style.display = ok ? "" : "none"; if (ok) n++; }); sec.style.display = n ? "" : "none"; if (n) any = 1; });
+  $("empty").style.display = any ? "none" : "block";
+};
+const hdrH = () => document.querySelector("header").offsetHeight + ($("closedBar").classList.contains("show") && scrollY < 5 ? 0 : 0);
+function fixSticky() { $("tabs").style.top = document.querySelector("header").offsetHeight + "px"; }
+window.go = function (id) { const el = $("s-" + id); if (!el) return; scrollTo({ top: el.getBoundingClientRect().top + scrollY - hdrH() - $("tabs").offsetHeight - 8, behavior: "smooth" }); };
+let tick = 0;
+addEventListener("scroll", () => { if (tick) return; tick = 1; requestAnimationFrame(() => { tick = 0;
+  const lim = hdrH() + $("tabs").offsetHeight + 20; let cur = CATS[0].id;
+  CATS.forEach((c) => { const el = $("s-" + c.id); if (el && el.getBoundingClientRect().top <= lim) cur = c.id; });
+  document.querySelectorAll(".tab").forEach((b, i) => { const on = CATS[i].id === cur; if (on && !b.classList.contains("on")) { b.classList.add("on"); $("tabs").scrollTo({ left: b.offsetLeft - $("tabs").clientWidth / 2 + b.offsetWidth / 2, behavior: "smooth" }); } else if (!on) b.classList.remove("on"); }); }); }, { passive: true });
+addEventListener("resize", fixSticky);
+
+/* ---------- корзина ---------- */
+function flyToCart(b) {
+  try {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const card = b.closest(".card"), img = card && card.querySelector(".pic img"); if (!img) return;
+    const r = img.getBoundingClientRect(), cb = $("cartbtn"); const shown = cb.style.display === "block";
+    const tr = shown ? cb.getBoundingClientRect() : { left: innerWidth / 2 - 30, top: innerHeight - 70, width: 60, height: 40 };
+    const c = img.cloneNode(); c.className = "flyer";
+    Object.assign(c.style, { left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px" });
+    document.body.appendChild(c);
+    const dx = tr.left + tr.width / 2 - (r.left + r.width / 2), dy = tr.top + tr.height / 2 - (r.top + r.height / 2);
+    c.animate([{ transform: "translate(0,0) scale(1) rotate(0)", opacity: 1 },
+      { transform: `translate(${dx * .5}px,${dy * .5 - 80}px) scale(.7) rotate(-12deg)`, opacity: 1, offset: .55 },
+      { transform: `translate(${dx}px,${dy}px) scale(.15) rotate(10deg)`, opacity: .2 }],
+      { duration: 650, easing: "cubic-bezier(.5,0,.6,1)" }).onfinish = () => { c.remove(); cb.classList.remove("bump"); void cb.offsetWidth; cb.classList.add("bump"); };
+  } catch (e) {}
+}
+window.add = function (k, b) {
+  if (!avail(k)) return;
+  flyToCart(b);
+  cart[k] = (cart[k] || 0) + 1; saveCart();
+  const r = b.classList.contains("qbtn"); b.textContent = r ? "✓" : t("added"); b.classList.add("done");
+  if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {}
+  setTimeout(() => { b.textContent = r ? "+" : t("add"); b.classList.remove("done"); }, 900); upd();
+  offerAddons(k);
+};
+window.chg = function (k, d) { cart[k] += d; if (cart[k] <= 0) delete cart[k]; saveCart(); upd(); if (count()) openCart(); else closeAll(); };
+const sub = () => Object.entries(cart).reduce((s, [k, q]) => s + BY[k].price * q, 0);
+const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
+function fee() { if (mode !== "delivery") return 0; if (zone === "other") return D.other.feeFrom; return sub() >= D.city.freeFrom ? 0 : (D.city.feeBelow || 0); }
+const feeOpen = () => mode === "delivery" && (zone === "other" || (sub() < D.city.freeFrom && D.city.feeBelow == null));
+function upd() { const c = count(); $("cartbtn").style.display = c ? "block" : "none"; $("cartbtn").textContent = `${t("cart")} (${c}): ${sub()} ${t("cur")}`; updLast(); }
+/* ---------- соусы и добавки ---------- */
+const cap = (x) => x ? x[0].toUpperCase() + x.slice(1) : x;
+function dname(m) {
+  if (L === "ru" && m.cat === "sosuri") return cap(m.ru);
+  return m.name;
+}
+function shortName(m) { return cap(dname(m).replace(/^(Adaos kebab: |Добавка в кебаб: )/, "")); }
+const offered = new Set();
+const XICON = { "adaos-pui": "🍗", "adaos-porc-vita": "🥩", "adaos-cascaval": "🧀", "adaos-sos": "🥫" };
+function chipHtml(id) {
+  const m = BY[id]; if (!m || !avail(id)) return "";
+  const q = cart[id] || 0;
+  return `<div class="chip${q ? " in" : ""}">${m.img ? `<img src="${BASE}${m.img}" alt="" width="52" height="40">` : `<span class="ce">${XICON[id] || "➕"}</span>`}
+   <div class="cn"><b>${esc(shortName(m))}</b><span>${m.price} ${t("cur")}</span></div>
+   ${q ? `<div class="cq"><button onclick="adChg('${id}',-1)" aria-label="−">−</button><b>${q}</b><button onclick="adChg('${id}',1)" aria-label="+">+</button></div>`
+       : `<button class="cadd" onclick="adChg('${id}',1)" aria-label="${t("add")}">+</button>`}</div>`;
+}
+function groupsFor(cat) { return ((AD.offer || {})[cat] || []).filter((g) => (AD[g] || []).some((id) => BY[id] && avail(id))); }
+let adFor = null;
+function drawAddon() {
+  const m = BY[adFor]; const gs = groupsFor(m.cat);
+  $("addon").innerHTML = `<div class="adbox" role="dialog" aria-modal="true" aria-labelledby="adh">
+    <h3 id="adh">${esc(t(gs.includes("kebabExtras") ? "adTK" : "adT")(dname(m)))}</h3>
+    ${gs.map((g) => `<p class="adg">${g === "sauces" ? t("adSauces") : t("adExtras")}</p><div class="chips">${AD[g].map(chipHtml).join("")}</div>`).join("")}
+    <div class="adact"><button class="adno" onclick="closeAddon()">${t("adNo")}</button><button class="big" onclick="closeAddon()">${t("adDone")}</button></div></div>`;
+}
+function offerAddons(k) {
+  const m = BY[k]; if (!m || offered.has(k) || !groupsFor(m.cat).length) return;
+  offered.add(k); adFor = k;
+  setTimeout(() => { drawAddon(); $("addon").classList.add("show"); }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 450);
+}
+window.closeAddon = () => $("addon").classList.remove("show");
+window.adChg = function (id, d) {
+  cart[id] = (cart[id] || 0) + d; if (cart[id] <= 0) delete cart[id]; saveCart(); upd();
+  if ($("addon").classList.contains("show")) drawAddon();
+  if ($("ov").classList.contains("show") && !trackId) openCart();
+};
+$("addon").addEventListener("click", (e) => { if (e.target.id === "addon") closeAddon(); });
+addEventListener("keydown", (e) => { if (e.key === "Escape") closeAddon(); });
+function cartSauces() {
+  const need = Object.keys(cart).some((k) => BY[k] && groupsFor(BY[k].cat).includes("sauces"));
+  if (!need) return "";
+  return `<p class="adg">${t("adCart")}</p><div class="chips row">${AD.sauces.map(chipHtml).join("")}</div>`;
+}
+function lines() {
+  return Object.entries(cart).map(([k, q]) => { const m = BY[k]; return `<div class="ci">${m.img ? `<img src="${BASE}${m.img}" alt="" width="58" height="44" style="width:58px;height:44px;object-fit:contain">` : ""}<div class="n">${esc(dname(m))}${avail(k) ? "" : ` <span style="color:#ff8080">· ${t("na")}</span>`}<small>${m.price} ${t("cur")}${m.g ? " · " + m.g + " " + (L === "ru" ? "г" : "g") : ""}</small></div>
+  <div class="q"><button onclick="chg('${k}',-1)">−</button><b>${q}</b><button onclick="chg('${k}',1)">+</button></div></div>`; }).join("");
+}
+let draft = { n: "", p: "", a: "", c: "" };
+function keepDraft() { ["fn", "fp", "fa", "fc"].forEach((id, i) => { const el = $(id); if (el) draft["npac"[i]] = el.value; }); }
+window.openCart = function () {
+  keepDraft(); trackId = null;
+  const s = sub(), f = fee(), needMore = mode === "delivery" && zone === "city" && s < D.city.freeFrom;
+  const unavailable = Object.keys(cart).some((k) => !avail(k));
+  let hint = "";
+  if (mode === "delivery" && zone === "city") hint = needMore ? `<div class="hint">${t("needMore")(D.city.freeFrom - s)}</div>` : `<div class="hint ok">${t("freeOk")}</div>`;
+  if (mode === "delivery" && zone === "other") hint = `<div class="hint">${t("otherFee")}</div>`;
+  if (mode === "pickup") hint = `<div class="hint ok">📍 ${t("pickAddr")}</div>`;
+  const totalTxt = feeOpen() ? `${t("from")} ${s + f} ${t("cur")}` : `${s + f} ${t("cur")}`;
+  const block = !canOrder() || unavailable || sending;
+  $("sheet").innerHTML = `<h2>${t("yours")} <button class="x" onclick="closeAll()">×</button></h2>${lines()}${cartSauces()}
+  <div class="sumrow"><span>${t("subtotal")}</span><span>${s} ${t("cur")}</span></div>
+  ${mode === "delivery" ? `<div class="sumrow"><span>${t("feeLbl")}</span><span>${feeOpen() ? (f ? t("from") + " " + f + " " + t("cur") : t("byOp")) : (f ? f + " " + t("cur") : t("free"))}</span></div>` : ""}
+  <div class="tot"><span>${t("total")}</span><span>${totalTxt}</span></div>
+  <div class="seg"><button id="m1" class="${mode === "delivery" ? "on" : ""}" onclick="setMode('delivery')">${t("deliv")}</button><button id="m2" class="${mode === "pickup" ? "on" : ""}" onclick="setMode('pickup')">${t("pick")}</button></div>
+  ${mode === "delivery" ? `<label>${t("zone")}</label><div class="seg"><button class="${zone === "city" ? "on" : ""}" onclick="setZone('city')">${t("zCity")}</button><button class="${zone === "other" ? "on" : ""}" onclick="setZone('other')">${t("zOther")}</button></div>` : ""}
+  ${hint}
+  <label>${t("name")}</label><input id="fn" autocomplete="name" maxlength="60" placeholder="${t("nameP")}" value="${esc(draft.n)}">
+  <label>${t("phone")}</label><input id="fp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0xx xxx xxx" value="${esc(draft.p)}">
+  ${mode === "delivery" ? `<label>${t("addr")}</label><input id="fa" autocomplete="street-address" maxlength="200" placeholder="${zone === "city" ? t("addrPC") : t("addrP")}" value="${esc(draft.a)}">` : ""}
+  <label>${t("com")}</label><textarea id="fc" rows="2" maxlength="300" placeholder="${t("comP")}">${esc(draft.c)}</textarea>
+  ${!canOrder() ? `<div class="hint">${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : ""}
+  <div class="err" id="err"></div>
+  <button class="big" id="sendBtn" onclick="send()" ${block ? "disabled" : ""}>${sending ? t("sending") : `${t("send")} · ${totalTxt}`}</button>
+  <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>`;
+  $("ov").classList.add("show"); document.body.classList.add("lock");
+};
+window.setMode = (m) => { mode = m; openCart(); };
+window.setZone = (z) => { zone = z; openCart(); };
+window.closeAll = function () { keepDraft(); trackId = null; $("ov").classList.remove("show"); document.body.classList.remove("lock"); };
+const phoneOk = (p) => { const d = p.replace(/\D/g, ""); return /^0[2-9]\d{7}$/.test(d) || /^373[2-9]\d{7}$/.test(d) || (d.length >= 8 && d.length <= 15 && p.trim().startsWith("+")); };
+window.send = async function () {
+  if (sending) return;
+  const n = $("fn").value.trim(), p = $("fp").value.trim(), a = mode === "delivery" ? $("fa").value.trim() : "", c = $("fc").value.trim(), er = $("err");
+  if (!n || !p || (mode === "delivery" && !a)) { er.textContent = mode === "delivery" ? t("errA") : t("errB"); er.style.display = "block"; return; }
+  if (!phoneOk(p)) { er.textContent = t("errPh"); er.style.display = "block"; return; }
+  keepDraft(); sending = true; $("sendBtn").disabled = true; $("sendBtn").textContent = t("sending");
+  const items = Object.entries(cart).map(([k, q]) => ({ id: k, n: BY[k].name, q, p: BY[k].price }));
+  const s = sub(), f = fee();
+  try {
+    const r = await Promise.race([
+      S.createOrder({ items, subtotal: s, deliveryFee: f, total: s + f, mode: mode === "delivery" ? "delivery" : "pickup", zone: mode === "delivery" ? zone : "", name: n, phone: p, addr: a, comment: c, lang: L }),
+      new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 15000)),
+    ]);
+    cart = {}; saveCart(); sending = false; upd();
+    lastId = r.id; try { localStorage.setItem("lg-last", JSON.stringify({ id: r.id, num: r.num, mode, at: Date.now() })); } catch (e) {}
+    try { localStorage.setItem("lg-me", JSON.stringify({ n, p, a })); } catch (e) {}
+    openTrack(r.id, r.num);
+  } catch (e) {
+    sending = false; $("sendBtn").disabled = false; $("sendBtn").textContent = t("send");
+    er.innerHTML = `${t("errNet")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a>`; er.style.display = "block";
+  }
+};
+
+/* ---------- статус заказа ---------- */
+let trackId = null, trackOff = null, lastId = null, lastOrder = null;
+function steps(o) {
+  const pick = o.mode === "pickup";
+  const seq = pick ? ["new", "accepted", "cooking", "done"] : ["new", "accepted", "cooking", "delivery", "done"];
+  const label = (s) => s === "done" ? (pick ? t("st").doneP : t("st").done) : s === "cooking" && pick && o.status === "cooking" ? t("st").cooking : t("st")[s];
+  const icons = { new: "📨", accepted: "✓", cooking: "🍳", delivery: "🛵", done: "🎉" };
+  const idx = seq.indexOf(o.status);
+  return `<div class="track">${seq.map((s, i) => `<div class="st ${i <= idx ? "on" : ""} ${i === idx && s !== "done" ? "cur" : ""}"><i>${icons[s]}</i><b>${label(s)}</b></div>`).join("")}</div>`;
+}
+window.openTrack = function (id, num) {
+  if (!id) return;
+  trackId = id; if (trackOff) trackOff();
+  const draw = (o) => {
+    if (trackId !== id) return;
+    lastOrder = o; updLast();
+    if (!o) { $("sheet").innerHTML = `<div class="ok"><div class="em">✅</div><h3>${t("thanks")}!</h3><p>${t("got")(num || "")}</p><p class="mini">${t("callSoon")}</p><button class="big" onclick="closeAll()">${t("close")}</button></div>`; return; }
+    $("sheet").innerHTML = `<div class="ok"><div class="em">${o.status === "cancelled" ? "⚠️" : "✅"}</div><h3>${t("thanks")}, ${esc(o.name)}!</h3><p>${t("got")(o.num)}</p>
+    ${o.status === "cancelled" ? `<div class="cancelled">${t("cancelled")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : steps(o)}
+    ${o.status === "new" ? `<p class="mini">${t("callSoon")}</p>` : ""}
+    <div class="mini" style="text-align:left">${(o.items || []).map((i) => `${i.q} × ${esc(i.n)}`).join("<br>")}<br><b style="color:var(--ink)">${t("total")}: ${o.zone === "other" ? t("from") + " " : ""}${o.total} ${t("cur")}${o.zone === "city" && o.subtotal < D.city.freeFrom && D.city.feeBelow == null ? " + " + t("feeLbl").toLowerCase() : ""}</b></div>
+    <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>
+    <button class="big" onclick="closeAll()">${t("close")}</button></div>`;
+  };
+  trackOff = S.watchOrder(id, draw);
+  $("ov").classList.add("show"); document.body.classList.add("lock");
+};
+function updLast() {
+  const b = $("lastord"), o = lastOrder;
+  const show = o && !["done", "cancelled"].includes(o.status) && !$("ov").classList.contains("show");
+  b.classList.toggle("show", !!show);
+  b.style.bottom = count() ? "" : "calc(14px + env(safe-area-inset-bottom))";
+  if (show) b.textContent = t("lastO")(o.num, o.status === "done" ? "" : (o.mode === "pickup" && o.status === "cooking" ? t("st").cooking : t("st")[o.status]));
+}
+// восстановить последний заказ (до 12 часов)
+try {
+  const l = JSON.parse(localStorage.getItem("lg-last") || "null");
+  if (l && Date.now() - l.at < 12 * 3600e3) { lastId = l.id; S.watchOrder(l.id, (o) => { lastOrder = o; updLast(); }); }
+  const me = JSON.parse(localStorage.getItem("lg-me") || "null"); if (me) draft = { n: me.n || "", p: me.p || "", a: me.a || "", c: "" };
+} catch (e) {}
+
+/* ---------- motion: бегущая строка ---------- */
+function fillTicker() {
+  const names = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-crispy", "crispy-burger", "fries", "salata-creveti-tempura", "chicken-nuggets", "big-double-cheeseburger"].map((id) => BY[id]).filter(Boolean);
+  const one = names.map((m) => `<span class="ti">${m.img ? `<img src="${BASE}${m.img}" alt="" width="46" height="34">` : ""}${esc(m.name)}<b>${m.price} ${t("cur")}</b></span>`).join("");
+  $("ticker").innerHTML = one + one;
+}
+/* ---------- старт ---------- */
+$("callBtn").href = "tel:" + tel;
+$("lastord").onclick = () => openTrack(lastId);
+const soc = [["instagram", "Instagram"], ["facebook", "Facebook"], ["tiktok", "TikTok"]].filter(([k]) => R[k]);
+$("soc").innerHTML = soc.map(([k, n]) => `<a href="${esc(R[k])}" target="_blank" rel="noopener"><span>${n}</span></a>`).join("");
+S.watchSettings((s) => { settings = s; render(); extras(); filter(); updClosed(); if ($("ov").classList.contains("show") && !trackId && count()) openCart(); });
+setInterval(updClosed, 60000);
+setLang(L); fixSticky();
+if ("serviceWorker" in navigator) navigator.serviceWorker.register(BASE + "sw.js").catch(() => {});
+</script>
+</body>
+</html>

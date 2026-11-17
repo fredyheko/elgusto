@@ -1,300 +1,549 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ro" data-base=""><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0e0e0e">
-<meta name="robots" content="noindex">
-<title>L'Gusto — Operator</title>
+<meta name="theme-color" content="#1F1E1D">
+<title>L'Gusto Edineț — burgeri, kebab, livrare gratuită</title>
+<meta name="description" content="Burgeri, kebab, aripioare și salate în Edineț. Comandă online: livrare gratuită de la 400 lei, zilnic 08:00–21:00. Ridicare personală. Tel. 060 46 50 59.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://elgusto.onrender.com/">
+<link rel="alternate" hreflang="ro" href="https://elgusto.onrender.com/">
+<link rel="alternate" hreflang="ru" href="https://elgusto.onrender.com/ru/">
+<link rel="alternate" hreflang="x-default" href="https://elgusto.onrender.com/">
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="L'Gusto express food">
+<meta property="og:title" content="L'Gusto Edineț — burgeri, kebab, livrare gratuită">
+<meta property="og:description" content="Burgeri, kebab, aripioare și salate în Edineț. Comandă online: livrare gratuită de la 400 lei, zilnic 08:00–21:00. Ridicare personală. Tel. 060 46 50 59.">
+<meta property="og:url" content="https://elgusto.onrender.com/">
+<meta property="og:image" content="https://elgusto.onrender.com/img/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="L'Gusto express food">
+<meta property="og:locale" content="ro_MD"><meta property="og:locale:alternate" content="ru_MD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="L'Gusto Edineț — burgeri, kebab, livrare gratuită">
+<meta name="twitter:description" content="Burgeri, kebab, aripioare și salate în Edineț. Comandă online: livrare gratuită de la 400 lei, zilnic 08:00–21:00. Ridicare personală. Tel. 060 46 50 59.">
+<meta name="twitter:image" content="https://elgusto.onrender.com/img/og.jpg">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="../icons/icon-192.png">
-<link rel="apple-touch-icon" href="../icons/icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0e0e0e;--card:#181818;--line:#2a2a2a;--or:#ff6a1a;--tx:#f3f3f3;--mu:#9a9a9a;--gr:#2e9e4f;--rd:#e5484d;--bl:#3b82f6;--yl:#f5b400}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--tx);font-family:Montserrat,system-ui,sans-serif;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
-button{font-family:inherit;cursor:pointer}
-.hide{display:none!important}
-/* login */
-#login{min-height:100vh;display:grid;place-items:center;padding:20px}
-.lbox{width:100%;max-width:360px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;text-align:center}
-.lbox img{height:64px;margin-bottom:8px}
-.lbox h1{font-size:18px;margin-bottom:18px;color:var(--mu);font-weight:600}
-.lbox input{width:100%;background:#111;border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--tx);font:16px Montserrat;margin-bottom:10px}
-.btn{border:0;border-radius:12px;padding:14px 16px;font-weight:800;font-size:15px;color:#111;background:var(--or)}
-.btn.w{width:100%}
-.lerr{color:var(--rd);font-size:13px;min-height:18px;margin:4px 0 8px}
-.test{font-size:12px;color:var(--yl);margin-top:12px}
-/* top */
-header{position:sticky;top:0;z-index:10;background:rgba(14,14,14,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 14px calc(10px) ;padding-top:calc(10px + env(safe-area-inset-top))}
-.top{display:flex;align-items:center;gap:10px}
-.top img{height:38px}
-.sp{flex:1}
-.ib{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:12px;height:42px;min-width:42px;padding:0 12px;font-weight:700;font-size:14px}
-.open{display:flex;align-items:center;gap:8px;border-radius:12px;padding:0 12px;height:42px;font-weight:800;font-size:13px;border:0;color:#fff}
-.open.on{background:var(--gr)}.open.off{background:var(--rd)}
-.stats{display:flex;gap:8px;margin-top:10px}
-.stats div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px}
-.stats b{display:block;font-size:18px}.stats span{font-size:11px;color:var(--mu)}
-.tabs{display:flex;gap:6px;margin-top:10px;overflow-x:auto}
-.tab{flex:1;white-space:nowrap;background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px 8px;font-weight:700;font-size:14px}
-.tab.on{background:var(--or);border-color:var(--or);color:#111}
-.cnt{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:#111;color:var(--tx);font-size:12px;margin-left:6px;padding:0 6px}
-.tab.on .cnt{background:#111;color:var(--or)}
-.warn{margin-top:10px;background:#3a2a00;border:1px solid var(--yl);color:var(--yl);border-radius:12px;padding:10px 12px;font-size:13px;font-weight:600;display:flex;gap:10px;align-items:center}
-.warn button{margin-left:auto}
-/* list */
-main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;align-items:start}
-.empty{grid-column:1/-1;text-align:center;color:var(--mu);padding:60px 20px;font-size:15px}
-.o{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;position:relative}
-.o.new{border-color:var(--or);box-shadow:0 0 0 1px var(--or),0 0 24px rgba(255,106,26,.25);animation:pulse 1.4s infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 1px var(--or),0 0 6px rgba(255,106,26,.1)}}
-.oh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.num{font-size:22px;font-weight:800}
-.badge{font-size:11px;font-weight:800;padding:4px 8px;border-radius:8px;text-transform:uppercase;letter-spacing:.3px}
-.b-new{background:var(--or);color:#111}.b-accepted{background:var(--bl);color:#fff}.b-cooking{background:var(--yl);color:#111}
-.b-delivery{background:#8b5cf6;color:#fff}.b-done{background:var(--gr);color:#fff}.b-cancelled{background:#444;color:#ddd}
-.time{margin-left:auto;text-align:right;font-size:12px;color:var(--mu)}.time b{display:block;color:var(--tx);font-size:14px}
-.cl{font-size:14px;line-height:1.6;border-top:1px solid var(--line);padding-top:10px}
-.cl a{color:var(--or);font-weight:700;text-decoration:none}
-.mode{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;background:#222;margin-bottom:4px}
-.its{margin:10px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:8px 0}
-.it{display:flex;gap:8px;font-size:14px;padding:3px 0}.it .q{font-weight:800;color:var(--or);min-width:28px}.it .p{margin-left:auto;color:var(--mu)}
-.com{background:#2a2100;color:var(--yl);border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
-.tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;margin:6px 0 2px}
-.sub{font-size:12px;color:var(--mu);display:flex;justify-content:space-between}
-.act{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.act .btn{flex:1;min-width:120px;padding:14px 10px}
-.btn.g{background:var(--gr);color:#fff}.btn.b{background:var(--bl);color:#fff}.btn.y{background:var(--yl)}.btn.v{background:#8b5cf6;color:#fff}
-.btn.x{background:transparent;border:1px solid var(--line);color:var(--mu);flex:0 0 auto;min-width:0}
-/* stop list */
-.stop{grid-column:1/-1}
-.stop h3{font-size:15px;color:var(--mu);margin:14px 0 8px}
-.sl{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
-.si{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px}
-.si img{width:46px;height:36px;object-fit:cover;border-radius:8px}
-.si span{flex:1;font-size:14px;font-weight:600}
-.si.off span{color:var(--mu);text-decoration:line-through}
-.sw{width:50px;height:30px;border-radius:15px;background:var(--gr);border:0;position:relative;flex:none}
-.sw:after{content:"";position:absolute;top:3px;left:23px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.15s}
-.sw.off{background:#444}.sw.off:after{left:3px}
-/* modal */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.7);display:grid;place-items:center;z-index:50;padding:20px}
-.md{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;max-width:360px;width:100%}
-.md h3{margin-bottom:8px}.md p{color:var(--mu);font-size:14px;margin-bottom:16px}
-.md .act .btn{min-width:0}
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#222;border:1px solid var(--line);padding:12px 18px;border-radius:12px;font-size:14px;z-index:60}
-@media(max-width:520px){main{grid-template-columns:1fr;padding:10px}.stats b{font-size:16px}.top img{height:32px}.ib{padding:0 10px}}
-</style>
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="img/logo.webp" as="image" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&amp;family=Unbounded:wght@700;800;900&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&amp;family=Unbounded:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Restaurant", "FastFoodRestaurant"], "@id": "https://elgusto.onrender.com/#restaurant", "name": "L'Gusto", "alternateName": "L'Gusto express food", "url": "https://elgusto.onrender.com/", "inLanguage": "ro", "image": "https://elgusto.onrender.com/img/og.jpg", "logo": "https://elgusto.onrender.com/icons/icon-512.png", "telephone": "+37360465059", "priceRange": "40–125 MDL", "currenciesAccepted": "MDL", "servesCuisine": ["Burgers", "Kebab", "Fast food"], "acceptsReservations": false, "address": {"@type": "PostalAddress", "streetAddress": "str. Gagarin 39", "addressLocality": "Edineț", "addressRegion": "Edineț", "addressCountry": "MD"}, "areaServed": {"@type": "City", "name": "Edineț"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "08:00", "closes": "21:00"}], "hasMenu": {"@type": "Menu", "name": "Meniu L'Gusto", "inLanguage": "ro", "hasMenuSection": [{"@type": "MenuSection", "name": "Kebab și lavaș", "hasMenuItem": [{"@type": "MenuItem", "name": "Kebab pui", "offers": {"@type": "Offer", "price": 75, "priceCurrency": "MDL"}, "description": "carne de pui, cartofi pai, salată, lavaș, roșii, sos de usturoi, castraveți murați, sos tzatziki", "image": "https://elgusto.onrender.com/img/kebab-pui.webp"}, {"@type": "MenuItem", "name": "Kebab „L'Gusto”", "offers": {"@type": "Offer", "price": 85, "priceCurrency": "MDL"}, "description": "lavaș, pârjoală din carne de vită/porc, cartofi pai, roșii, castraveți murați, sos de usturoi, ceapă roșie, sos tzatziki, sos B.B.Q.", "image": "https://elgusto.onrender.com/img/kebab-lgusto.webp"}, {"@type": "MenuItem", "name": "Lavaș cu cașcaval", "offers": {"@type": "Offer", "price": 55, "priceCurrency": "MDL"}, "description": "cașcaval mozzarella, sos cu usturoi, verdeață, lavaș, roșii", "image": "https://elgusto.onrender.com/img/lavas-cascaval.webp"}]}, {"@type": "MenuSection", "name": "Aripioare", "hasMenuItem": [{"@type": "MenuItem", "name": "Aripi de pui crispy 🌶️", "offers": {"@type": "Offer", "price": 79, "priceCurrency": "MDL"}, "description": "aripi de pui, sos cu usturoi, pesmeți, clear", "image": "https://elgusto.onrender.com/img/aripi-crispy.webp"}, {"@type": "MenuItem", "name": "Aripi fries", "offers": {"@type": "Offer", "price": 79, "priceCurrency": "MDL"}, "description": "aripi de pui, sos cu usturoi, ulei, sare", "image": "https://elgusto.onrender.com/img/aripi-fries.webp"}, {"@type": "MenuItem", "name": "Aripi asiatic 🌶️🌶️", "offers": {"@type": "Offer", "price": 79, "priceCurrency": "MDL"}, "description": "aripi de pui, sos asiatic, sos picant, susan, ulei", "image": "https://elgusto.onrender.com/img/aripi-asiatic.webp"}, {"@type": "MenuItem", "name": "Aripi B.B.Q.", "offers": {"@type": "Offer", "price": 79, "priceCurrency": "MDL"}, "description": "aripi de pui, sos B.B.Q., ulei", "image": "https://elgusto.onrender.com/img/aripi-bbq.webp"}]}, {"@type": "MenuSection", "name": "Burgeri", "hasMenuItem": [{"@type": "MenuItem", "name": "Cheeseburger classic", "offers": {"@type": "Offer", "price": 75, "priceCurrency": "MDL"}, "description": "pârjoală vită/porc, cașcaval cheddar, castraveți murați, chiflă, salată iceberg, sos cheddar, ceapă roșie, sos burger, roșii", "image": "https://elgusto.onrender.com/img/cheeseburger-classic.webp"}, {"@type": "MenuItem", "name": "Chicken cheeseburger", "offers": {"@type": "Offer", "price": 70, "priceCurrency": "MDL"}, "description": "pârjoală de pui, sos burger, cașcaval cheddar, chiflă, castraveți murați, salată iceberg, sos cheddar, ceapă roșie, roșii", "image": "https://elgusto.onrender.com/img/chicken-cheeseburger.webp"}, {"@type": "MenuItem", "name": "Big double cheeseburger", "offers": {"@type": "Offer", "price": 100, "priceCurrency": "MDL"}, "description": "ceapă caramelizată, pârjoale porc/vită, cașcaval cheddar, salată iceberg, bacon, chiflă, castraveți murați, sos cheddar, sos burger, ceapă roșie, roșii", "image": "https://elgusto.onrender.com/img/big-double-cheeseburger.webp"}, {"@type": "MenuItem", "name": "Double cheeseburger L'Gusto", "offers": {"@type": "Offer", "price": 115, "priceCurrency": "MDL"}, "description": "cașcaval cheddar, pârjoală de vită, pârjoală de pui, ceapă roșie, castraveți murați, chiflă, ou de prepeliță, salată iceberg, sos cheddar, sos burger, roșii", "image": "https://elgusto.onrender.com/img/double-cheeseburger-lgusto.webp"}, {"@type": "MenuItem", "name": "Burger classic", "offers": {"@type": "Offer", "price": 70, "priceCurrency": "MDL"}, "description": "pârjoală de vită/porc, castraveți murați, chiflă, salată iceberg, ceapă roșie, sos burger, roșii", "image": "https://elgusto.onrender.com/img/burger-classic.webp"}, {"@type": "MenuItem", "name": "Crispy burger", "offers": {"@type": "Offer", "price": 75, "priceCurrency": "MDL"}, "description": "pârjoală de pui, sos burger, pesmeți, chiflă, clear, castraveți murați, salată iceberg, lola verde, roșii", "image": "https://elgusto.onrender.com/img/crispy-burger.webp"}]}, {"@type": "MenuSection", "name": "Gustări", "hasMenuItem": [{"@type": "MenuItem", "name": "Creveți tempura", "offers": {"@type": "Offer", "price": 100, "priceCurrency": "MDL"}, "description": "creveți, pesmeți, clear, sos cu usturoi", "image": "https://elgusto.onrender.com/img/creveti-tempura.webp"}, {"@type": "MenuItem", "name": "Chicken nuggets", "offers": {"@type": "Offer", "price": 60, "priceCurrency": "MDL"}, "description": "file de pui, pesmeți, clear, sos de usturoi", "image": "https://elgusto.onrender.com/img/chicken-nuggets.webp"}, {"@type": "MenuItem", "name": "Inele de calamar", "offers": {"@type": "Offer", "price": 75, "priceCurrency": "MDL"}, "description": "inele de calamari, pesmeți, clear, sos de usturoi", "image": "https://elgusto.onrender.com/img/inele-calamar.webp"}, {"@type": "MenuItem", "name": "Cartofi wedges", "offers": {"@type": "Offer", "price": 40, "priceCurrency": "MDL"}, "description": "cartofi de casă, sare, ulei, sos de usturoi", "image": "https://elgusto.onrender.com/img/cartofi-wedges.webp"}, {"@type": "MenuItem", "name": "Fries", "offers": {"@type": "Offer", "price": 40, "priceCurrency": "MDL"}, "description": "cartofi 8 mm, sare, ulei, sos de usturoi", "image": "https://elgusto.onrender.com/img/fries.webp"}, {"@type": "MenuItem", "name": "Potato balls", "offers": {"@type": "Offer", "price": 40, "priceCurrency": "MDL"}, "description": "cartofi bile, sare, ulei, sos de usturoi", "image": "https://elgusto.onrender.com/img/potato-balls.webp"}]}, {"@type": "MenuSection", "name": "Salate", "hasMenuItem": [{"@type": "MenuItem", "name": "Salată cu creveți", "offers": {"@type": "Offer", "price": 120, "priceCurrency": "MDL"}, "description": "creveți, salată iceberg, lola, roșii cherry, parmezan, sos caesar", "image": "https://elgusto.onrender.com/img/salata-creveti.webp"}, {"@type": "MenuItem", "name": "Salată cu pui", "offers": {"@type": "Offer", "price": 100, "priceCurrency": "MDL"}, "description": "file de pui copt, salată iceberg, lola, roșii cherry, ou de prepeliță, parmezan, sos caesar", "image": "https://elgusto.onrender.com/img/salata-pui.webp"}, {"@type": "MenuItem", "name": "Salată grecească", "offers": {"@type": "Offer", "price": 65, "priceCurrency": "MDL"}, "description": "roșii cherry, ceapă roșie, ardei dulce, castraveți, măsline, brânză feta, ulei de măsline, suc de lămâie, oregano, sare", "image": "https://elgusto.onrender.com/img/salata-greceasca.webp"}, {"@type": "MenuItem", "name": "Salată cu somon", "offers": {"@type": "Offer", "price": 120, "priceCurrency": "MDL"}, "description": "somon afumat, ouă de prepeliță, roșii cherry, mix de salată, salată iceberg, avocado, parmezan, sos caesar", "image": "https://elgusto.onrender.com/img/salata-somon.webp"}, {"@type": "MenuItem", "name": "Salată cu avocado", "offers": {"@type": "Offer", "price": 75, "priceCurrency": "MDL"}, "description": "avocado, ou de prepeliță, mix de salată, roșii cherry, parmezan, muștar, lămâie, ulei", "image": "https://elgusto.onrender.com/img/salata-avocado.webp"}, {"@type": "MenuItem", "name": "Salată cu creveți tempura", "offers": {"@type": "Offer", "price": 125, "priceCurrency": "MDL"}, "description": "creveți tempura, avocado, icre tobiko roșii, roșii cherry, lola verde, iceberg, susan, sos spicy, sos unagi, lămâie", "image": "https://elgusto.onrender.com/img/salata-creveti-tempura.webp"}]}, {"@type": "MenuSection", "name": "Sosuri și adaosuri", "hasMenuItem": [{"@type": "MenuItem", "name": "Sos de usturoi", "offers": {"@type": "Offer", "price": 8, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/sos-usturoi.webp"}, {"@type": "MenuItem", "name": "Ketchup", "offers": {"@type": "Offer", "price": 8, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/ketchup.webp"}, {"@type": "MenuItem", "name": "Sos L'Gusto", "offers": {"@type": "Offer", "price": 12, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/sos-lgusto.webp"}, {"@type": "MenuItem", "name": "Sos asiatic", "offers": {"@type": "Offer", "price": 12, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/sos-asiatic.webp"}, {"@type": "MenuItem", "name": "Sos B.B.Q.", "offers": {"@type": "Offer", "price": 12, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/sos-bbq.webp"}, {"@type": "MenuItem", "name": "Sos cheddar", "offers": {"@type": "Offer", "price": 12, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/sos-cheddar.webp"}, {"@type": "MenuItem", "name": "Sos sweet chili", "offers": {"@type": "Offer", "price": 12, "priceCurrency": "MDL"}, "image": "https://elgusto.onrender.com/img/sos-sweet-chili.webp"}, {"@type": "MenuItem", "name": "Adaos kebab: carne de pui", "offers": {"@type": "Offer", "price": 20, "priceCurrency": "MDL"}}, {"@type": "MenuItem", "name": "Adaos kebab: carne porc/vită", "offers": {"@type": "Offer", "price": 20, "priceCurrency": "MDL"}}, {"@type": "MenuItem", "name": "Adaos kebab: sos", "offers": {"@type": "Offer", "price": 10, "priceCurrency": "MDL"}}, {"@type": "MenuItem", "name": "Adaos kebab: cașcaval", "offers": {"@type": "Offer", "price": 12, "priceCurrency": "MDL"}}]}]}, "potentialAction": {"@type": "OrderAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://elgusto.onrender.com/#menu", "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]}, "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet", "http://purl.org/goodrelations/v1#DeliveryModePickUp"]}}</script>
 </head>
-<body>
+<body data-v="1">
+<div class="closed" id="closedBar"></div>
+<header>
+  <a class="brand" href="./" aria-label="L'Gusto"><img class="blogo" src="img/logo.webp" alt="L'Gusto express food" width="640" height="265"></a>
+  <div class="hr">
+    <nav class="lang" aria-label="Limba / Язык"><a id="l-ro" href="./" hreflang="ro" lang="ro" class="on">RO</a><a id="l-ru" href="ru/" hreflang="ru" lang="ru">RU</a></nav>
+    <a class="call" id="callBtn" href="tel:+37360465059" aria-label="Sună la L'Gusto">📞</a>
+  </div>
+</header>
 
-<section id="login">
-  <form class="lbox" id="lform">
-    <img src="../img/logo.webp" alt="L'Gusto">
-    <h1 data-t="opTitle"></h1>
-    <input id="em" type="email" autocomplete="username" required>
-    <input id="pw" type="password" autocomplete="current-password" required>
-    <div class="lerr" id="lerr"></div>
-    <button class="btn w" data-t="enter"></button>
-    <div class="test hide" id="testnote" data-t="testMode"></div>
-  </form>
+<section class="hero">
+  <div>
+    <h1 data-i="h1">Burgeri, kebab și aripioare fierbinți</h1>
+    <p data-i="lead">Comanzi din telefon în două minute. Gătim pe loc, pe str. Gagarin 39, și aducem oriunde în Edineț.</p>
+    <div class="badges"><div data-i="b1">🛵 Livrare gratuită de la 400 lei</div><div data-i="b2">🏃 Ridicare personală</div><div data-i="b3">🕗 Zilnic 08:00–21:00</div></div>
+    <button class="cta" onclick="go(CATS[0].id)" data-i="see">Vezi meniul</button><a class="cta ghost" href="#contacte" data-i="contacts">Contacte</a>
+  </div>
+  <div class="collage" id="collage"><img src="img/double-cheeseburger-lgusto.webp" alt="Double cheeseburger L'Gusto" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="Double cheeseburger L'Gusto: 115 lei"><b>115</b><span>lei</span></div></div>
 </section>
+<div class="tickwrap" aria-hidden="true"><div class="ticker"><div class="tk" id="ticker"><span class="ti"><img src="img/double-cheeseburger-lgusto.webp" alt="" width="46" height="34">Double cheeseburger L'Gusto<b>115 lei</b></span><span class="ti"><img src="img/kebab-lgusto.webp" alt="" width="46" height="34">Kebab „L'Gusto”<b>85 lei</b></span><span class="ti"><img src="img/aripi-crispy.webp" alt="" width="46" height="34">Aripi de pui crispy 🌶️<b>79 lei</b></span><span class="ti"><img src="img/crispy-burger.webp" alt="" width="46" height="34">Crispy burger<b>75 lei</b></span><span class="ti"><img src="img/fries.webp" alt="" width="46" height="34">Fries<b>40 lei</b></span><span class="ti"><img src="img/salata-creveti-tempura.webp" alt="" width="46" height="34">Salată cu creveți tempura<b>125 lei</b></span><span class="ti"><img src="img/chicken-nuggets.webp" alt="" width="46" height="34">Chicken nuggets<b>60 lei</b></span><span class="ti"><img src="img/big-double-cheeseburger.webp" alt="" width="46" height="34">Big double cheeseburger<b>100 lei</b></span><span class="ti"><img src="img/double-cheeseburger-lgusto.webp" alt="" width="46" height="34">Double cheeseburger L'Gusto<b>115 lei</b></span><span class="ti"><img src="img/kebab-lgusto.webp" alt="" width="46" height="34">Kebab „L'Gusto”<b>85 lei</b></span><span class="ti"><img src="img/aripi-crispy.webp" alt="" width="46" height="34">Aripi de pui crispy 🌶️<b>79 lei</b></span><span class="ti"><img src="img/crispy-burger.webp" alt="" width="46" height="34">Crispy burger<b>75 lei</b></span><span class="ti"><img src="img/fries.webp" alt="" width="46" height="34">Fries<b>40 lei</b></span><span class="ti"><img src="img/salata-creveti-tempura.webp" alt="" width="46" height="34">Salată cu creveți tempura<b>125 lei</b></span><span class="ti"><img src="img/chicken-nuggets.webp" alt="" width="46" height="34">Chicken nuggets<b>60 lei</b></span><span class="ti"><img src="img/big-double-cheeseburger.webp" alt="" width="46" height="34">Big double cheeseburger<b>100 lei</b></span></div></div></div>
 
-<section id="app" class="hide">
-  <header>
-    <div class="top">
-      <img src="../img/logo.webp" alt="L'Gusto">
-      <div class="sp"></div>
-      <button class="open on" id="openBtn"></button>
-      <button class="ib" id="langBtn">RO</button>
-      <button class="ib" id="outBtn" title="Exit">⏻</button>
-    </div>
-    <div class="warn hide" id="soundWarn"><span data-t="soundOff"></span><button class="btn" id="soundBtn" data-t="soundOn"></button></div>
-    <div class="warn hide" id="errWarn"></div>
-    <div class="stats">
-      <div><b id="stN">0</b><span data-t="ordersToday"></span></div>
-      <div><b id="stS">0</b><span data-t="revToday"></span></div>
-      <div><b id="stA">0</b><span data-t="avgCheck"></span></div>
-    </div>
-    <div class="tabs" id="tabs"></div>
-  </header>
-  <main id="list"></main>
-</section>
+<div class="block">
+  <h2 data-i="rec">Recomandăm</h2>
+  <div class="pop" id="pop"><div class="card">
+  <div class="pic"><img src="img/double-cheeseburger-lgusto.webp" alt="Double cheeseburger L'Gusto" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Double cheeseburger L'Gusto</h3><div class="ing">cașcaval cheddar, pârjoală de vită, pârjoală de pui, ceapă roșie, castraveți murați, chiflă, ou de prepeliță, salată iceberg, sos cheddar, sos burger, roșii</div>
+  <div class="row"><span class="gr">460 g</span><span class="pr">115 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('double-cheeseburger-lgusto',this)">+</button></div>
+  <button class="add" onclick="add('double-cheeseburger-lgusto',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/kebab-lgusto.webp" alt="Kebab „L'Gusto”" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Kebab „L'Gusto”</h3><div class="ing">lavaș, pârjoală din carne de vită/porc, cartofi pai, roșii, castraveți murați, sos de usturoi, ceapă roșie, sos tzatziki, sos B.B.Q.</div>
+  <div class="row"><span class="gr">460 g</span><span class="pr">85 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('kebab-lgusto',this)">+</button></div>
+  <button class="add" onclick="add('kebab-lgusto',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/big-double-cheeseburger.webp" alt="Big double cheeseburger" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Big double cheeseburger</h3><div class="ing">ceapă caramelizată, pârjoale porc/vită, cașcaval cheddar, salată iceberg, bacon, chiflă, castraveți murați, sos cheddar, sos burger, ceapă roșie, roșii</div>
+  <div class="row"><span class="gr">450 g</span><span class="pr">100 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('big-double-cheeseburger',this)">+</button></div>
+  <button class="add" onclick="add('big-double-cheeseburger',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/aripi-crispy.webp" alt="Aripi de pui crispy 🌶️" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Aripi de pui crispy 🌶️</h3><div class="ing">aripi de pui, sos cu usturoi, pesmeți, clear</div>
+  <div class="row"><span class="gr">250/50 g</span><span class="pr">79 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('aripi-crispy',this)">+</button></div>
+  <button class="add" onclick="add('aripi-crispy',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/creveti-tempura.webp" alt="Creveți tempura" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Creveți tempura</h3><div class="ing">creveți, pesmeți, clear, sos cu usturoi</div>
+  <div class="row"><span class="gr">150/50 g</span><span class="pr">100 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('creveti-tempura',this)">+</button></div>
+  <button class="add" onclick="add('creveti-tempura',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/salata-creveti-tempura.webp" alt="Salată cu creveți tempura" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată cu creveți tempura</h3><div class="ing">creveți tempura, avocado, icre tobiko roșii, roșii cherry, lola verde, iceberg, susan, sos spicy, sos unagi, lămâie</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">125 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-creveti-tempura',this)">+</button></div>
+  <button class="add" onclick="add('salata-creveti-tempura',this)">+ Adaugă</button></div></div></div>
+</div>
 
-<script src="../js/config.js"></script>
+<div class="search"><input id="q" type="search" oninput="filter()" aria-label="search" placeholder="🔍 Caută în meniu: burger, kebab, aripi…"></div>
+
+<nav class="tabs" id="tabs" style=""><button class="tab on" onclick="go('kebab')">🌯 Kebab și lavaș</button><button class="tab" onclick="go('aripi')">🍗 Aripioare</button><button class="tab" onclick="go('burger')">🍔 Burgeri</button><button class="tab" onclick="go('gustari')">🍟 Gustări</button><button class="tab" onclick="go('salate')">🥗 Salate</button></nav>
+<main id="menu"><section class="sec" id="s-kebab"><h2>Kebab și lavaș</h2><div class="grid"><div class="card">
+  <div class="pic"><img src="img/kebab-pui.webp" alt="Kebab pui" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Kebab pui</h3><div class="ing">carne de pui, cartofi pai, salată, lavaș, roșii, sos de usturoi, castraveți murați, sos tzatziki</div>
+  <div class="row"><span class="gr">400 g</span><span class="pr">75 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('kebab-pui',this)">+</button></div>
+  <button class="add" onclick="add('kebab-pui',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/kebab-lgusto.webp" alt="Kebab „L'Gusto”" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Kebab „L'Gusto”</h3><div class="ing">lavaș, pârjoală din carne de vită/porc, cartofi pai, roșii, castraveți murați, sos de usturoi, ceapă roșie, sos tzatziki, sos B.B.Q.</div>
+  <div class="row"><span class="gr">460 g</span><span class="pr">85 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('kebab-lgusto',this)">+</button></div>
+  <button class="add" onclick="add('kebab-lgusto',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/lavas-cascaval.webp" alt="Lavaș cu cașcaval" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Lavaș cu cașcaval</h3><div class="ing">cașcaval mozzarella, sos cu usturoi, verdeață, lavaș, roșii</div>
+  <div class="row"><span class="gr">160 g</span><span class="pr">55 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('lavas-cascaval',this)">+</button></div>
+  <button class="add" onclick="add('lavas-cascaval',this)">+ Adaugă</button></div></div></div></section><section class="sec" id="s-aripi"><h2>Aripioare</h2><div class="grid"><div class="card">
+  <div class="pic"><img src="img/aripi-crispy.webp" alt="Aripi de pui crispy 🌶️" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Aripi de pui crispy 🌶️</h3><div class="ing">aripi de pui, sos cu usturoi, pesmeți, clear</div>
+  <div class="row"><span class="gr">250/50 g</span><span class="pr">79 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('aripi-crispy',this)">+</button></div>
+  <button class="add" onclick="add('aripi-crispy',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/aripi-fries.webp" alt="Aripi fries" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Aripi fries</h3><div class="ing">aripi de pui, sos cu usturoi, ulei, sare</div>
+  <div class="row"><span class="gr">200/50 g</span><span class="pr">79 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('aripi-fries',this)">+</button></div>
+  <button class="add" onclick="add('aripi-fries',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/aripi-asiatic.webp" alt="Aripi asiatic 🌶️🌶️" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Aripi asiatic 🌶️🌶️</h3><div class="ing">aripi de pui, sos asiatic, sos picant, susan, ulei</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">79 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('aripi-asiatic',this)">+</button></div>
+  <button class="add" onclick="add('aripi-asiatic',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/aripi-bbq.webp" alt="Aripi B.B.Q." width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Aripi B.B.Q.</h3><div class="ing">aripi de pui, sos B.B.Q., ulei</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">79 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('aripi-bbq',this)">+</button></div>
+  <button class="add" onclick="add('aripi-bbq',this)">+ Adaugă</button></div></div></div></section><section class="sec" id="s-burger"><h2>Burgeri</h2><div class="grid"><div class="card">
+  <div class="pic"><img src="img/cheeseburger-classic.webp" alt="Cheeseburger classic" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Cheeseburger classic</h3><div class="ing">pârjoală vită/porc, cașcaval cheddar, castraveți murați, chiflă, salată iceberg, sos cheddar, ceapă roșie, sos burger, roșii</div>
+  <div class="row"><span class="gr">300 g</span><span class="pr">75 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('cheeseburger-classic',this)">+</button></div>
+  <button class="add" onclick="add('cheeseburger-classic',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/chicken-cheeseburger.webp" alt="Chicken cheeseburger" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Chicken cheeseburger</h3><div class="ing">pârjoală de pui, sos burger, cașcaval cheddar, chiflă, castraveți murați, salată iceberg, sos cheddar, ceapă roșie, roșii</div>
+  <div class="row"><span class="gr">300 g</span><span class="pr">70 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('chicken-cheeseburger',this)">+</button></div>
+  <button class="add" onclick="add('chicken-cheeseburger',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/big-double-cheeseburger.webp" alt="Big double cheeseburger" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Big double cheeseburger</h3><div class="ing">ceapă caramelizată, pârjoale porc/vită, cașcaval cheddar, salată iceberg, bacon, chiflă, castraveți murați, sos cheddar, sos burger, ceapă roșie, roșii</div>
+  <div class="row"><span class="gr">450 g</span><span class="pr">100 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('big-double-cheeseburger',this)">+</button></div>
+  <button class="add" onclick="add('big-double-cheeseburger',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/double-cheeseburger-lgusto.webp" alt="Double cheeseburger L'Gusto" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Double cheeseburger L'Gusto</h3><div class="ing">cașcaval cheddar, pârjoală de vită, pârjoală de pui, ceapă roșie, castraveți murați, chiflă, ou de prepeliță, salată iceberg, sos cheddar, sos burger, roșii</div>
+  <div class="row"><span class="gr">460 g</span><span class="pr">115 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('double-cheeseburger-lgusto',this)">+</button></div>
+  <button class="add" onclick="add('double-cheeseburger-lgusto',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/burger-classic.webp" alt="Burger classic" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Burger classic</h3><div class="ing">pârjoală de vită/porc, castraveți murați, chiflă, salată iceberg, ceapă roșie, sos burger, roșii</div>
+  <div class="row"><span class="gr">280 g</span><span class="pr">70 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('burger-classic',this)">+</button></div>
+  <button class="add" onclick="add('burger-classic',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/crispy-burger.webp" alt="Crispy burger" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Crispy burger</h3><div class="ing">pârjoală de pui, sos burger, pesmeți, chiflă, clear, castraveți murați, salată iceberg, lola verde, roșii</div>
+  <div class="row"><span class="gr">300 g</span><span class="pr">75 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('crispy-burger',this)">+</button></div>
+  <button class="add" onclick="add('crispy-burger',this)">+ Adaugă</button></div></div></div></section><section class="sec" id="s-gustari"><h2>Gustări</h2><div class="grid"><div class="card">
+  <div class="pic"><img src="img/creveti-tempura.webp" alt="Creveți tempura" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Creveți tempura</h3><div class="ing">creveți, pesmeți, clear, sos cu usturoi</div>
+  <div class="row"><span class="gr">150/50 g</span><span class="pr">100 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('creveti-tempura',this)">+</button></div>
+  <button class="add" onclick="add('creveti-tempura',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/chicken-nuggets.webp" alt="Chicken nuggets" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Chicken nuggets</h3><div class="ing">file de pui, pesmeți, clear, sos de usturoi</div>
+  <div class="row"><span class="gr">200/50 g</span><span class="pr">60 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('chicken-nuggets',this)">+</button></div>
+  <button class="add" onclick="add('chicken-nuggets',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/inele-calamar.webp" alt="Inele de calamar" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Inele de calamar</h3><div class="ing">inele de calamari, pesmeți, clear, sos de usturoi</div>
+  <div class="row"><span class="gr">150/50 g</span><span class="pr">75 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('inele-calamar',this)">+</button></div>
+  <button class="add" onclick="add('inele-calamar',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/cartofi-wedges.webp" alt="Cartofi wedges" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Cartofi wedges</h3><div class="ing">cartofi de casă, sare, ulei, sos de usturoi</div>
+  <div class="row"><span class="gr">150/50 g</span><span class="pr">40 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('cartofi-wedges',this)">+</button></div>
+  <button class="add" onclick="add('cartofi-wedges',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/fries.webp" alt="Fries" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Fries</h3><div class="ing">cartofi 8 mm, sare, ulei, sos de usturoi</div>
+  <div class="row"><span class="gr">150/50 g</span><span class="pr">40 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('fries',this)">+</button></div>
+  <button class="add" onclick="add('fries',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/potato-balls.webp" alt="Potato balls" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Potato balls</h3><div class="ing">cartofi bile, sare, ulei, sos de usturoi</div>
+  <div class="row"><span class="gr">150/50 g</span><span class="pr">40 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('potato-balls',this)">+</button></div>
+  <button class="add" onclick="add('potato-balls',this)">+ Adaugă</button></div></div></div></section><section class="sec" id="s-salate"><h2>Salate</h2><div class="grid"><div class="card">
+  <div class="pic"><img src="img/salata-creveti.webp" alt="Salată cu creveți" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată cu creveți</h3><div class="ing">creveți, salată iceberg, lola, roșii cherry, parmezan, sos caesar</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">120 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-creveti',this)">+</button></div>
+  <button class="add" onclick="add('salata-creveti',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/salata-pui.webp" alt="Salată cu pui" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată cu pui</h3><div class="ing">file de pui copt, salată iceberg, lola, roșii cherry, ou de prepeliță, parmezan, sos caesar</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">100 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-pui',this)">+</button></div>
+  <button class="add" onclick="add('salata-pui',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/salata-greceasca.webp" alt="Salată grecească" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată grecească</h3><div class="ing">roșii cherry, ceapă roșie, ardei dulce, castraveți, măsline, brânză feta, ulei de măsline, suc de lămâie, oregano, sare</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">65 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-greceasca',this)">+</button></div>
+  <button class="add" onclick="add('salata-greceasca',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/salata-somon.webp" alt="Salată cu somon" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată cu somon</h3><div class="ing">somon afumat, ouă de prepeliță, roșii cherry, mix de salată, salată iceberg, avocado, parmezan, sos caesar</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">120 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-somon',this)">+</button></div>
+  <button class="add" onclick="add('salata-somon',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/salata-avocado.webp" alt="Salată cu avocado" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată cu avocado</h3><div class="ing">avocado, ou de prepeliță, mix de salată, roșii cherry, parmezan, muștar, lămâie, ulei</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">75 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-avocado',this)">+</button></div>
+  <button class="add" onclick="add('salata-avocado',this)">+ Adaugă</button></div></div><div class="card">
+  <div class="pic"><img src="img/salata-creveti-tempura.webp" alt="Salată cu creveți tempura" width="480" height="360" loading="lazy" decoding="async"></div>
+  <div class="body"><h3>Salată cu creveți tempura</h3><div class="ing">creveți tempura, avocado, icre tobiko roșii, roșii cherry, lola verde, iceberg, susan, sos spicy, sos unagi, lămâie</div>
+  <div class="row"><span class="gr">250 g</span><span class="pr">125 <small>lei</small></span><button class="qbtn" aria-label="+ Adaugă" onclick="add('salata-creveti-tempura',this)">+</button></div>
+  <button class="add" onclick="add('salata-creveti-tempura',this)">+ Adaugă</button></div></div></div></section></main><div class="empty" id="empty" data-i="empty" style="display: none;">Nimic găsit. Încercați alt cuvânt.</div>
+
+<div class="block">
+  <h2 data-i="how">Cum comanzi</h2>
+  <div class="steps">
+    <div><b data-i="s1t">Alege din meniu</b><p data-i="s1p">Adaugă în coș preparatele preferate.</p></div>
+    <div><b data-i="s2t">Completează datele</b><p data-i="s2p">Nume, telefon și adresa — sau alege ridicare personală.</p></div>
+    <div><b data-i="s3t">Confirmăm rapid</b><p data-i="s3p">Operatorul primește comanda imediat și vă sună pentru confirmare.</p></div>
+  </div>
+  <h2 id="contacte" data-i="info">Informații</h2>
+  <div class="info">
+    <div id="i1"><b>📍 Adresa</b>mun. Edineț, str. Gagarin 39<br>📞 <a href="tel:+37360465059">060 46 50 59</a> <span style="color:var(--mu)">(precomandă și livrare)</span></div>
+    <div id="i2"><b>🕒 Program</b>Zilnic, 08:00–21:00</div>
+    <div id="i3"><b>🛵 Livrare</b>În Edineț — gratuit pentru comenzi de la 400 lei, pentru comenzi mai mici — cu plată (costul îl confirmă operatorul).<br>În alte localități — de la 50 lei, costul exact îl confirmă operatorul.</div>
+  </div>
+  <div class="note" data-i="alg"><b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii.</div>
+</div>
+<footer><div class="soc" id="soc"></div><span id="foot"><b>L'Gusto express food</b><br>mun. Edineț, str. Gagarin 39<br><a href="tel:+37360465059">060 46 50 59</a></span>
+  <div class="credit">Site: <a href="#" rel="nofollow">Nodo</a></div></footer>
+
+<div class="addon" id="addon"></div>
+<button class="lastord" id="lastord" style="bottom: calc(14px + env(safe-area-inset-bottom));"></button>
+<button class="cartbtn" id="cartbtn" onclick="openCart()" style="">Coșul (0): 0 lei</button>
+
+<div class="ov" id="ov" onclick="if(event.target===this)closeAll()">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<noscript><div class="closed show">Pentru comandă online activați JavaScript sau sunați: <a href="tel:+37360465059">060 46 50 59</a></div></noscript>
+<script src="js/config.js"></script>
 <script type="module">
-import * as S from "../js/store.js";
+import * as S from "./js/store.js";
+const BASE = document.documentElement.dataset.base || "";
+const PAGE_L = document.documentElement.lang === "ru" ? "ru" : "ro";
+const R = window.RESTAURANT, ALLCATS = window.CATEGORIES, MENU = window.MENU, D = R.delivery, AD = window.ADDONS || { sauces: [], kebabExtras: [], offer: {} };
+const CATS = ALLCATS.filter((c) => !c.hidden);
+window.CATS = CATS;
+const BY = Object.fromEntries(MENU.map((m) => [m.id, m]));
+const tel = "+373" + R.phone.replace(/\D/g, "").replace(/^0/, "");
+const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
 const T = {
- ru:{opTitle:"Приложение оператора",enter:"Войти",email:"Email",pass:"Пароль",badLogin:"Неверный email или пароль",
-  testMode:"Тестовый режим: Firebase не подключён, заказы видны только в этом браузере. Войти можно с любыми данными.",
-  open:"Принимаем заказы",closed:"Приём закрыт",soundOff:"Звук выключен — нажмите, чтобы слышать новые заказы",soundOn:"Включить звук",
-  ordersToday:"заказов сегодня",revToday:"лей сегодня",avgCheck:"средний чек",
-  t_new:"Новые",t_work:"В работе",t_done:"Готовые",t_stop:"Стоп-лист",
-  s_new:"Новый",s_accepted:"Принят",s_cooking:"Готовится",s_delivery:"В пути",s_done:"Выполнен",s_cancelled:"Отменён",
-  delivery:"🛵 Доставка",pickup:"🏃 Самовывоз",min:"мин назад",now:"только что",
-  a_accept:"✓ Принять",a_cook:"🍳 Готовится",a_deliv:"🛵 Отправить",a_ready:"✓ Выдан",a_done:"✓ Доставлен",a_cancel:"Отменить",
-  cancelQ:"Отменить заказ #{n}?",cancelP:"Позвоните клиенту и предупредите об отмене.",yes:"Да, отменить",no:"Нет",
-  closeQ:"Остановить приём заказов?",closeP:"Клиенты увидят на сайте, что заказы временно не принимаются.",stopBtn:"Остановить",
-  emptyNew:"Новых заказов нет. Когда клиент оформит заказ, он появится здесь со звуком.",emptyWork:"Нет заказов в работе",emptyDone:"Сегодня ещё нет выполненных заказов",
-  stopHint:"Выключите блюдо, если оно закончилось — клиенты не смогут его заказать.",subtotal:"Блюда",fee:"Доставка",total:"Итого",
-  otherZone:"Другое село",feeSmall:"Заказ меньше 400 лей: доставка платная — назовите клиенту стоимость доставки.",feeConfirm:"Доставка в село: уточните у клиента точную стоимость доставки (от 50 лей).",from:"от",errPerm:"Нет доступа к заказам. Проверьте, что ваш email добавлен в правила Firestore.",lei:"лей",newOrder:"Новый заказ"},
- ro:{opTitle:"Aplicația operatorului",enter:"Intră",email:"Email",pass:"Parola",badLogin:"Email sau parolă greșită",
-  testMode:"Mod de test: Firebase nu e conectat, comenzile se văd doar în acest browser. Puteți intra cu orice date.",
-  open:"Primim comenzi",closed:"Comenzi oprite",soundOff:"Sunetul e oprit — apăsați ca să auziți comenzile noi",soundOn:"Pornește sunetul",
-  ordersToday:"comenzi azi",revToday:"lei azi",avgCheck:"bon mediu",
-  t_new:"Noi",t_work:"În lucru",t_done:"Finalizate",t_stop:"Stop-listă",
-  s_new:"Nouă",s_accepted:"Acceptată",s_cooking:"Se gătește",s_delivery:"În livrare",s_done:"Finalizată",s_cancelled:"Anulată",
-  delivery:"🛵 Livrare",pickup:"🏃 Ridicare",min:"min în urmă",now:"chiar acum",
-  a_accept:"✓ Acceptă",a_cook:"🍳 Se gătește",a_deliv:"🛵 Trimite",a_ready:"✓ Ridicată",a_done:"✓ Livrată",a_cancel:"Anulează",
-  cancelQ:"Anulați comanda #{n}?",cancelP:"Sunați clientul și anunțați-l despre anulare.",yes:"Da, anulează",no:"Nu",
-  closeQ:"Opriți primirea comenzilor?",closeP:"Clienții vor vedea pe site că momentan nu se primesc comenzi.",stopBtn:"Oprește",
-  emptyNew:"Nu sunt comenzi noi. Când un client comandă, comanda apare aici cu sunet.",emptyWork:"Nu sunt comenzi în lucru",emptyDone:"Azi încă nu sunt comenzi finalizate",
-  stopHint:"Opriți preparatul dacă s-a terminat — clienții nu-l vor putea comanda.",subtotal:"Preparate",fee:"Livrare",total:"Total",
-  otherZone:"Altă localitate",feeSmall:"Comandă sub 400 lei: livrarea e cu plată — spuneți clientului costul livrării.",feeConfirm:"Livrare în altă localitate: confirmați cu clientul costul exact al livrării (de la 50 lei).",from:"de la",errPerm:"Nu aveți acces la comenzi. Verificați dacă email-ul e adăugat în regulile Firestore.",lei:"lei",newOrder:"Comandă nouă"}
-};
-let L = "ru"; try { L = localStorage.getItem("lg-op-lang") || "ru"; } catch (e) {}
-const t = (k) => T[L][k] || k;
+ro:{h1:'Burgeri, kebab și aripioare fierbinți',
+ lead:`Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
+ search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
+ s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
+ s3t:'Confirmăm rapid',s3p:'Operatorul primește comanda imediat și vă sună pentru confirmare.',info:'Informații',
+ i1:`<b>📍 Adresa</b>${R.address.ro}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(precomandă și livrare)</span>`,
+ i2:`<b>🕒 Program</b>Zilnic, ${H}`,
+ i3:`<b>🛵 Livrare</b>În ${R.city.ro} — gratuit pentru comenzi de la ${D.city.freeFrom} lei, pentru comenzi mai mici — ${D.city.feeBelow == null ? "cu plată (costul îl confirmă operatorul)" : D.city.feeBelow + " lei"}.<br>În alte localități — de la ${D.other.feeFrom} lei, costul exact îl confirmă operatorul.`,
+ alg:'<b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii.',
+ add:'+ Adaugă',added:'✓ Adăugat',na:'Indisponibil',cart:'Coșul',yours:'Comanda ta',subtotal:'Preparate',total:'Total',deliv:'🛵 Livrare',pick:'🏃 Ridicare',
+ zone:'Unde livrăm?',zCity:`${R.city.ro} (oraș)`,zOther:'Altă localitate',
+ needMore:(x)=>`Mai adăugați ${x} lei și livrarea în ${R.city.ro} va fi gratuită. Pentru comenzi sub ${D.city.freeFrom} lei livrarea este ${D.city.feeBelow == null ? "cu plată — costul exact îl confirmă operatorul la telefon" : D.city.feeBelow + " lei"}.`,
+ freeOk:'Livrare gratuită 🎉',otherFee:`Livrare în altă localitate: de la ${D.other.feeFrom} lei. Costul exact vi-l spune operatorul la telefon.`,
+ cur:'lei',feeLbl:'Livrare',byOp:'se confirmă la telefon',from:'de la',free:'gratuit',pickAddr:`Ridicare: ${R.address.ro}`,
+ name:'Nume',nameP:'Numele dvs.',phone:'Telefon',addr:'Adresa de livrare',addrP:'Localitatea, strada, nr., apartament',addrPC:'Strada, nr., apartament',
+ com:'Comentariu (opțional)',comP:'Ex.: fără susan, sună la sosire',errA:'Completați numele, telefonul și adresa.',errB:'Completați numele și telefonul.',
+ errPh:'Verificați numărul de telefon (ex.: 069 123 456).',errNet:'Nu s-a putut trimite comanda. Verificați internetul sau sunați-ne: ',
+ send:'Trimite comanda',sending:'Se trimite…',closedNow:`Acum nu primim comenzi online. Program: zilnic ${H}. Precomenzi: `,paused:'Momentan nu primim comenzi online. Sunați-ne: ',
+ thanks:'Mulțumim',got:(n)=>`Comanda #${n} a fost trimisă.`,callSoon:'Operatorul vă sună în câteva minute pentru confirmare.',
+ st:{new:'Comandă trimisă',accepted:'Acceptată',cooking:'Se pregătește',delivery:'În drum spre dvs.',pickupReady:'Gata — vă așteptăm',done:'Livrată. Poftă bună!',doneP:'Ridicată. Poftă bună!'},
+ cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
+ cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
+ru:{h1:'Горячие бургеры, кебабы и крылышки',
+ lead:`Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
+ search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
+ s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',
+ s3t:'Быстро подтвердим',s3p:'Оператор сразу получает заказ и перезванивает для подтверждения.',info:'Информация',
+ i1:`<b>📍 Адрес</b>${R.address.ru}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(предзаказ и доставка)</span>`,
+ i2:`<b>🕒 Часы работы</b>Ежедневно, ${H}`,
+ i3:`<b>🛵 Доставка</b>По городу ${R.city.ru} — бесплатно при заказе от ${D.city.freeFrom} лей, на меньшую сумму — ${D.city.feeBelow == null ? "платно (стоимость подтвердит оператор)" : D.city.feeBelow + " лей"}.<br>В другие сёла — от ${D.other.feeFrom} лей, точную стоимость подтвердит оператор.`,
+ alg:'<b>Проверьте аллергены перед заказом!</b> Блюда могут содержать: глютен, яйца, молоко (лактозу), рыбу, ракообразных, моллюсков, сою, кунжут, горчицу, сельдерей, орехи, арахис, сульфиты. Сообщите оператору об аллергии.',
+ add:'+ В корзину',added:'✓ Добавлено',na:'Нет в наличии',cart:'Корзина',yours:'Ваш заказ',subtotal:'Блюда',total:'Итого',deliv:'🛵 Доставка',pick:'🏃 Самовывоз',
+ zone:'Куда доставить?',zCity:`${R.city.ru} (город)`,zOther:'Другое село',
+ needMore:(x)=>`Добавьте ещё ${x} лей — и доставка по городу будет бесплатной. Для заказов до ${D.city.freeFrom} лей доставка ${D.city.feeBelow == null ? "платная — точную стоимость назовёт оператор по телефону" : "стоит " + D.city.feeBelow + " лей"}.`,
+ freeOk:'Бесплатная доставка 🎉',otherFee:`Доставка в другое село: от ${D.other.feeFrom} лей. Точную стоимость назовёт оператор по телефону.`,
+ cur:'лей',feeLbl:'Доставка',byOp:'уточнит оператор',from:'от',free:'бесплатно',pickAddr:`Самовывоз: ${R.address.ru}`,
+ name:'Имя',nameP:'Ваше имя',phone:'Телефон',addr:'Адрес доставки',addrP:'Село, улица, дом, квартира',addrPC:'Улица, дом, квартира',
+ com:'Комментарий (необязательно)',comP:'Напр.: без кунжута, позвонить по приезде',errA:'Заполните имя, телефон и адрес.',errB:'Заполните имя и телефон.',
+ errPh:'Проверьте номер телефона (напр.: 069 123 456).',errNet:'Не удалось отправить заказ. Проверьте интернет или позвоните нам: ',
+ send:'Отправить заказ',sending:'Отправляем…',closedNow:`Сейчас заказы онлайн не принимаются. Часы работы: ежедневно ${H}. Предзаказ: `,paused:'Сейчас заказы онлайн не принимаются. Позвоните нам: ',
+ thanks:'Спасибо',got:(n)=>`Заказ #${n} отправлен.`,callSoon:'Оператор перезвонит в течение нескольких минут для подтверждения.',
+ st:{new:'Заказ отправлен',accepted:'Принят',cooking:'Готовится',delivery:'Едет к вам',pickupReady:'Готов — ждём вас',done:'Доставлен. Приятного аппетита!',doneP:'Выдан. Приятного аппетита!'},
+ cancelled:`Заказ отменён. Подробности по телефону: `,close:'Закрыть',newOrder:'Новый заказ',lastO:(n,s)=>`🧾 Заказ #${n}: ${s} ›`,
+ cats:{},questions:'Вопросы? Звоните: ',adT:(n)=>`Добавить соус к «${n}»?`,adTK:(n)=>`Что добавить к «${n}»?`,adSauces:'Соусы',adExtras:'Добавки в кебаб',adDone:'Готово',adNo:'Без соуса',adCart:'Соусы к заказу',adIn:'в корзине'}};
+ALLCATS.forEach((c) => { T.ro.cats[c.id] = c.ro; T.ru.cats[c.id] = c.ru; });
+
+let cart = {}, mode = "delivery", zone = "city", L = PAGE_L, settings = { open: true, stop: [] }, sending = false;
+try { cart = JSON.parse(localStorage.getItem("lg-cart") || "{}"); Object.keys(cart).forEach((k) => { if (!BY[k]) delete cart[k]; }); } catch (e) { cart = {}; }
+const t = (k) => T[L][k];
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const MENU = window.MENU || [];
+const saveCart = () => { try { localStorage.setItem("lg-cart", JSON.stringify(cart)); } catch (e) {} };
+const avail = (id) => !(settings.stop || []).includes(id);
 
-let orders = [], settings = { open: true, stop: [] }, tab = "new", unsub = [], seen = new Set(), firstLoad = true;
-
-function applyLang() {
-  document.documentElement.lang = L;
-  document.querySelectorAll("[data-t]").forEach((el) => (el.textContent = t(el.dataset.t)));
-  $("em").placeholder = t("email"); $("pw").placeholder = t("pass");
-  $("langBtn").textContent = L === "ru" ? "RO" : "RU";
-  renderAll();
+/* ---------- время работы (по Кишинёву) ---------- */
+function isOpenNow() {
+  const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Chisinau", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+  const wd = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }[p.find((x) => x.type === "weekday").value];
+  const mins = +p.find((x) => x.type === "hour").value % 24 * 60 + +p.find((x) => x.type === "minute").value;
+  const h = R.hours[wd]; if (!h) return false;
+  const [o, c] = h.map((s) => { const [a, b] = s.split(":"); return +a * 60 + +b; });
+  return mins >= o && mins < c;
+}
+const canOrder = () => settings.open && isOpenNow();
+function updClosed() {
+  const b = $("closedBar"), ok = canOrder();
+  b.classList.toggle("show", !ok);
+  if (!ok) b.innerHTML = `${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:#fff;font-weight:800">${R.phone}</a>`;
+  setTimeout(fixSticky, 0);
 }
 
-/* ---------- звук ---------- */
-let actx = null, soundOk = false;
-function unlockSound() {
-  try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); soundOk = true; } catch (e) {}
-  $("soundWarn").classList.toggle("hide", soundOk);
-  if ("Notification" in window && Notification.permission === "default") Notification.requestPermission().catch(() => {});
-}
-function beep() {
-  if (!actx || actx.state !== "running") { $("soundWarn").classList.remove("hide"); return; }
-  const now = actx.currentTime;
-  [0, 0.18, 0.36].forEach((d, i) => {
-    const o = actx.createOscillator(), g = actx.createGain();
-    o.type = "sine"; o.frequency.value = [880, 1175, 1568][i];
-    g.gain.setValueAtTime(0.0001, now + d); g.gain.exponentialRampToValueAtTime(0.5, now + d + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, now + d + 0.16);
-    o.connect(g).connect(actx.destination); o.start(now + d); o.stop(now + d + 0.18);
-  });
-  if (navigator.vibrate) try { navigator.vibrate([200, 100, 200]); } catch (e) {}
-}
-setInterval(() => { if (orders.some((o) => o.status === "new")) beep(); }, 6000);
-$("soundBtn").onclick = unlockSound;
-document.addEventListener("pointerdown", () => { if (!soundOk) unlockSound(); }, { once: false });
-
-function notify(o) {
-  beep();
-  try { if ("Notification" in window && Notification.permission === "granted" && document.hidden) new Notification(`${t("newOrder")} #${o.num}`, { body: `${o.total} ${t("lei")} · ${o.name}`, icon: "../icons/icon-192.png" }); } catch (e) {}
-}
-let titleFlash = null;
-function updateTitle() {
-  const n = orders.filter((o) => o.status === "new").length;
-  clearInterval(titleFlash);
-  if (n) { let f = 0; titleFlash = setInterval(() => (document.title = (f ^= 1) ? `🔔 (${n}) ${t("newOrder")}` : "L'Gusto — Operator"), 1000); }
-  else document.title = "L'Gusto — Operator";
-}
-
-/* ---------- вход ---------- */
-if (!S.LIVE) $("testnote").classList.remove("hide");
-$("lform").onsubmit = async (e) => {
-  e.preventDefault(); $("lerr").textContent = ""; unlockSound();
-  try { await S.login($("em").value.trim(), $("pw").value); } catch (err) { $("lerr").textContent = t("badLogin"); }
+/* ---------- язык ---------- */
+window.setLang = function (l) {
+  if (l !== PAGE_L) { keepDraft(); location.href = l === "ru" ? BASE + "ru/" : (BASE || "./"); return; }
+  L = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i]").forEach((el) => (el.innerHTML = t(el.dataset.i)));
+  ["i1", "i2", "i3"].forEach((k) => ($(k).innerHTML = t(k)));
+  $("q").placeholder = t("search");
+  $("l-ro").classList.toggle("on", l === "ro"); $("l-ru").classList.toggle("on", l === "ru");
+  $("foot").innerHTML = `<b>L'Gusto express food</b><br>${R.address[l]}<br><a href="tel:${tel}">${R.phone}</a>`;
+  render(); extras(); filter(); upd(); updClosed(); updLast(); fillTicker();
+  if ($("ov").classList.contains("show")) { if (trackId) openTrack(trackId); else if (count()) openCart(); }
 };
-$("outBtn").onclick = () => S.logout();
-$("langBtn").onclick = () => { L = L === "ru" ? "ro" : "ru"; try { localStorage.setItem("lg-op-lang", L); } catch (e) {} applyLang(); };
 
-S.onAuth((u) => {
-  unsub.forEach((f) => f()); unsub = [];
-  $("login").classList.toggle("hide", !!u); $("app").classList.toggle("hide", !u);
-  if (!u) return;
-  firstLoad = true; seen = new Set();
-  const since = Date.now() - 24 * 3600 * 1000;
-  unsub.push(S.watchOrders(since, (list) => {
-    $("errWarn").classList.add("hide");
-    list.forEach((o) => { if (!seen.has(o.id)) { seen.add(o.id); if (!firstLoad && o.status === "new") notify(o); } });
-    firstLoad = false; orders = list; renderAll(); updateTitle();
-  }, (e) => { $("errWarn").textContent = t("errPerm"); $("errWarn").classList.remove("hide"); }));
-  unsub.push(S.watchSettings((s) => { settings = s; renderAll(); }));
-  $("soundWarn").classList.toggle("hide", soundOk);
-});
+/* ---------- меню ---------- */
+function cardHtml(m, hit) {
+  const ok = avail(m.id), ing = L === "ru" ? m.ru : m.ro;
+  return `<div class="card${ok ? "" : " na"}">${ok ? "" : `<span class="na-tag">${t("na")}</span>`}
+  <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(m.name)}" width="480" height="360" loading="lazy" decoding="async">` : `<span class="pe">${(ALLCATS.find((c) => c.id === m.cat) || {}).icon || "🍽️"}</span>`}</div>
+  <div class="body"><h3>${esc(m.name)}</h3><div class="ing">${esc(ing)}</div>
+  <div class="row"><span class="gr">${m.g ? m.g + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
+  <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
+}
+function render() {
+  $("tabs").innerHTML = CATS.map((c, i) => `<button class="tab${i ? "" : " on"}" onclick="go('${c.id}')">${c.icon} ${t("cats")[c.id]}</button>`).join("");
+  $("menu").innerHTML = CATS.map((c) => `<section class="sec" id="s-${c.id}"><h2>${t("cats")[c.id]}</h2><div class="grid">${MENU.filter((m) => m.cat === c.id).map((m) => cardHtml(m, 0)).join("")}</div></section>`).join("");
+}
+function extras() {
+  const withImg = MENU.filter((m) => m.img);
+  const pick = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-asiatic"].map((id) => BY[id]).filter(Boolean);
+  const col = pick.length === 3 ? pick : withImg.slice(0, 3);
+  $("collage").innerHTML = `<img src="${BASE}${col[0].img}" alt="${esc(col[0].name)}" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="${esc(col[0].name)}: ${col[0].price} ${t("cur")}"><b>${col[0].price}</b><span>${t("cur")}</span></div>`;
+  const recIds = ["double-cheeseburger-lgusto", "kebab-lgusto", "big-double-cheeseburger", "aripi-crispy", "creveti-tempura", "salata-creveti-tempura"].filter((id) => BY[id]);
+  $("pop").innerHTML = (recIds.length ? recIds.map((id) => BY[id]) : withImg.slice(0, 6)).map((m) => cardHtml(m, 1)).join("");
+}
+window.filter = function () {
+  const v = $("q").value.trim().toLowerCase(); let any = 0;
+  document.querySelectorAll("#menu .sec").forEach((sec) => { let n = 0; sec.querySelectorAll(".card").forEach((c) => { const ok = !v || c.textContent.toLowerCase().includes(v); c.style.display = ok ? "" : "none"; if (ok) n++; }); sec.style.display = n ? "" : "none"; if (n) any = 1; });
+  $("empty").style.display = any ? "none" : "block";
+};
+const hdrH = () => document.querySelector("header").offsetHeight + ($("closedBar").classList.contains("show") && scrollY < 5 ? 0 : 0);
+function fixSticky() { $("tabs").style.top = document.querySelector("header").offsetHeight + "px"; }
+window.go = function (id) { const el = $("s-" + id); if (!el) return; scrollTo({ top: el.getBoundingClientRect().top + scrollY - hdrH() - $("tabs").offsetHeight - 8, behavior: "smooth" }); };
+let tick = 0;
+addEventListener("scroll", () => { if (tick) return; tick = 1; requestAnimationFrame(() => { tick = 0;
+  const lim = hdrH() + $("tabs").offsetHeight + 20; let cur = CATS[0].id;
+  CATS.forEach((c) => { const el = $("s-" + c.id); if (el && el.getBoundingClientRect().top <= lim) cur = c.id; });
+  document.querySelectorAll(".tab").forEach((b, i) => { const on = CATS[i].id === cur; if (on && !b.classList.contains("on")) { b.classList.add("on"); $("tabs").scrollTo({ left: b.offsetLeft - $("tabs").clientWidth / 2 + b.offsetWidth / 2, behavior: "smooth" }); } else if (!on) b.classList.remove("on"); }); }); }, { passive: true });
+addEventListener("resize", fixSticky);
 
-/* ---------- отрисовка ---------- */
-const GROUP = { new: ["new"], work: ["accepted", "cooking", "delivery"], done: ["done", "cancelled"] };
-function renderAll() {
-  if ($("app").classList.contains("hide")) return;
-  const ob = $("openBtn"); ob.className = "open " + (settings.open ? "on" : "off"); ob.textContent = settings.open ? "● " + t("open") : "■ " + t("closed");
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const tod = orders.filter((o) => o.createdAt >= today.getTime() && o.status !== "cancelled");
-  const sum = tod.reduce((s, o) => s + (o.total || 0), 0);
-  $("stN").textContent = tod.length; $("stS").textContent = sum; $("stA").textContent = tod.length ? Math.round(sum / tod.length) : 0;
-  const c = (g) => orders.filter((o) => GROUP[g].includes(o.status)).length;
-  $("tabs").innerHTML = ["new", "work", "done", "stop"].map((k) =>
-    `<button class="tab${tab === k ? " on" : ""}" data-tab="${k}">${t("t_" + k)}${k !== "stop" ? `<span class="cnt">${k === "done" ? orders.filter((o) => o.status === "done" && o.createdAt >= today.getTime()).length : c(k)}</span>` : ""}</button>`).join("");
-  if (tab === "stop") return renderStop();
-  const list = orders.filter((o) => GROUP[tab].includes(o.status));
-  if (tab !== "new") list.sort((a, b) => (tab === "work" ? a.createdAt - b.createdAt : b.updatedAt - a.updatedAt));
-  else list.sort((a, b) => a.createdAt - b.createdAt);
-  $("list").innerHTML = list.length ? list.map(card).join("") : `<div class="empty">${t(tab === "new" ? "emptyNew" : tab === "work" ? "emptyWork" : "emptyDone")}</div>`;
+/* ---------- корзина ---------- */
+function flyToCart(b) {
+  try {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const card = b.closest(".card"), img = card && card.querySelector(".pic img"); if (!img) return;
+    const r = img.getBoundingClientRect(), cb = $("cartbtn"); const shown = cb.style.display === "block";
+    const tr = shown ? cb.getBoundingClientRect() : { left: innerWidth / 2 - 30, top: innerHeight - 70, width: 60, height: 40 };
+    const c = img.cloneNode(); c.className = "flyer";
+    Object.assign(c.style, { left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px" });
+    document.body.appendChild(c);
+    const dx = tr.left + tr.width / 2 - (r.left + r.width / 2), dy = tr.top + tr.height / 2 - (r.top + r.height / 2);
+    c.animate([{ transform: "translate(0,0) scale(1) rotate(0)", opacity: 1 },
+      { transform: `translate(${dx * .5}px,${dy * .5 - 80}px) scale(.7) rotate(-12deg)`, opacity: 1, offset: .55 },
+      { transform: `translate(${dx}px,${dy}px) scale(.15) rotate(10deg)`, opacity: .2 }],
+      { duration: 650, easing: "cubic-bezier(.5,0,.6,1)" }).onfinish = () => { c.remove(); cb.classList.remove("bump"); void cb.offsetWidth; cb.classList.add("bump"); };
+  } catch (e) {}
 }
-function ago(ms) { const m = Math.floor((Date.now() - ms) / 60000); return m < 1 ? t("now") : `${m} ${t("min")}`; }
-function hm(ms) { return new Date(ms).toLocaleTimeString("ro-MD", { hour: "2-digit", minute: "2-digit" }); }
-function card(o) {
-  const acts = [];
-  if (o.status === "new") acts.push(["accepted", "g", "a_accept"]);
-  if (o.status === "accepted") acts.push(["cooking", "y", "a_cook"]);
-  if (o.status === "cooking") acts.push(o.mode === "delivery" ? ["delivery", "v", "a_deliv"] : ["done", "g", "a_ready"]);
-  if (o.status === "delivery") acts.push(["done", "g", "a_done"]);
-  const canCancel = ["new", "accepted", "cooking", "delivery"].includes(o.status);
-  const tel = String(o.phone || "").replace(/[^\d+]/g, "");
-  return `<div class="o ${o.status === "new" ? "new" : ""}">
-   <div class="oh"><span class="num">#${o.num}</span><span class="badge b-${o.status}">${t("s_" + o.status)}</span>
-    <div class="time"><b>${hm(o.createdAt)}</b>${ago(o.createdAt)}</div></div>
-   <div class="cl"><span class="mode">${t(o.mode)}</span><br>👤 ${esc(o.name)} · <span class="mode" style="padding:1px 6px">${(o.lang || "ro").toUpperCase()}</span><br>
-    📞 <a href="tel:${esc(tel)}">${esc(o.phone)}</a>${o.mode === "delivery" ? `<br>📍 ${o.zone === "other" ? `<b style="color:var(--yl)">${t("otherZone")}</b> · ` : ""}${esc(o.addr)}` : ""}</div>
-   ${o.comment ? `<div class="com">💬 ${esc(o.comment)}</div>` : ""}
-   <div class="its">${(o.items || []).map((i) => `<div class="it"><span class="q">${i.q}×</span><span>${esc(i.n)}</span><span class="p">${i.p * i.q}</span></div>`).join("")}</div>
-   ${o.zone === "other" ? `<div class="com">⚠️ ${t("feeConfirm")}</div>` : ""}${o.mode === "delivery" && o.zone === "city" && o.subtotal < ((window.RESTAURANT.delivery.city||{}).freeFrom||0) && !o.deliveryFee ? `<div class="com">⚠️ ${t("feeSmall")}</div>` : ""}${o.deliveryFee ? `<div class="sub"><span>${t("subtotal")}</span><span>${o.subtotal} ${t("lei")}</span></div><div class="sub"><span>${t("fee")}${o.zone === "other" ? " (" + t("from") + ")" : ""}</span><span>${o.deliveryFee} ${t("lei")}</span></div>` : ""}
-   <div class="tot"><span>${t("total")}</span><span>${o.total} ${t("lei")}</span></div>
-   ${acts.length || canCancel ? `<div class="act">${acts.map(([s, c, k]) => `<button class="btn ${c}" data-id="${o.id}" data-s="${s}">${t(k)}</button>`).join("")}${canCancel ? `<button class="btn x" data-id="${o.id}" data-cancel="${o.num}">${t("a_cancel")}</button>` : ""}</div>` : ""}
-  </div>`;
+window.add = function (k, b) {
+  if (!avail(k)) return;
+  flyToCart(b);
+  cart[k] = (cart[k] || 0) + 1; saveCart();
+  const r = b.classList.contains("qbtn"); b.textContent = r ? "✓" : t("added"); b.classList.add("done");
+  if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {}
+  setTimeout(() => { b.textContent = r ? "+" : t("add"); b.classList.remove("done"); }, 900); upd();
+  offerAddons(k);
+};
+window.chg = function (k, d) { cart[k] += d; if (cart[k] <= 0) delete cart[k]; saveCart(); upd(); if (count()) openCart(); else closeAll(); };
+const sub = () => Object.entries(cart).reduce((s, [k, q]) => s + BY[k].price * q, 0);
+const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
+function fee() { if (mode !== "delivery") return 0; if (zone === "other") return D.other.feeFrom; return sub() >= D.city.freeFrom ? 0 : (D.city.feeBelow || 0); }
+const feeOpen = () => mode === "delivery" && (zone === "other" || (sub() < D.city.freeFrom && D.city.feeBelow == null));
+function upd() { const c = count(); $("cartbtn").style.display = c ? "block" : "none"; $("cartbtn").textContent = `${t("cart")} (${c}): ${sub()} ${t("cur")}`; updLast(); }
+/* ---------- соусы и добавки ---------- */
+const cap = (x) => x ? x[0].toUpperCase() + x.slice(1) : x;
+function dname(m) {
+  if (L === "ru" && m.cat === "sosuri") return cap(m.ru);
+  return m.name;
 }
-function renderStop() {
-  const off = new Set(settings.stop || []);
-  const cats = window.CATEGORIES || [];
-  $("list").innerHTML = `<div class="stop"><p style="color:var(--mu);font-size:14px">${t("stopHint")}</p>${cats.map((c) => `<h3>${c.icon} ${c[L] || c.ro}</h3><div class="sl">${MENU.filter((m) => m.cat === c.id).map((m) =>
-    `<div class="si ${off.has(m.id) ? "off" : ""}">${m.img ? `<img src="../${m.img}" alt="" style="object-fit:contain;background:#222">` : `<span style="flex:0 0 46px;text-align:center;font-size:22px">${c.icon}</span>`}<span>${esc(m.name)}</span><button class="sw ${off.has(m.id) ? "off" : ""}" data-stop="${m.id}" aria-label="${esc(m.name)}"></button></div>`).join("")}</div>`).join("")}</div>`;
+function shortName(m) { return cap(dname(m).replace(/^(Adaos kebab: |Добавка в кебаб: )/, "")); }
+const offered = new Set();
+const XICON = { "adaos-pui": "🍗", "adaos-porc-vita": "🥩", "adaos-cascaval": "🧀", "adaos-sos": "🥫" };
+function chipHtml(id) {
+  const m = BY[id]; if (!m || !avail(id)) return "";
+  const q = cart[id] || 0;
+  return `<div class="chip${q ? " in" : ""}">${m.img ? `<img src="${BASE}${m.img}" alt="" width="52" height="40">` : `<span class="ce">${XICON[id] || "➕"}</span>`}
+   <div class="cn"><b>${esc(shortName(m))}</b><span>${m.price} ${t("cur")}</span></div>
+   ${q ? `<div class="cq"><button onclick="adChg('${id}',-1)" aria-label="−">−</button><b>${q}</b><button onclick="adChg('${id}',1)" aria-label="+">+</button></div>`
+       : `<button class="cadd" onclick="adChg('${id}',1)" aria-label="${t("add")}">+</button>`}</div>`;
 }
+function groupsFor(cat) { return ((AD.offer || {})[cat] || []).filter((g) => (AD[g] || []).some((id) => BY[id] && avail(id))); }
+let adFor = null;
+function drawAddon() {
+  const m = BY[adFor]; const gs = groupsFor(m.cat);
+  $("addon").innerHTML = `<div class="adbox" role="dialog" aria-modal="true" aria-labelledby="adh">
+    <h3 id="adh">${esc(t(gs.includes("kebabExtras") ? "adTK" : "adT")(dname(m)))}</h3>
+    ${gs.map((g) => `<p class="adg">${g === "sauces" ? t("adSauces") : t("adExtras")}</p><div class="chips">${AD[g].map(chipHtml).join("")}</div>`).join("")}
+    <div class="adact"><button class="adno" onclick="closeAddon()">${t("adNo")}</button><button class="big" onclick="closeAddon()">${t("adDone")}</button></div></div>`;
+}
+function offerAddons(k) {
+  const m = BY[k]; if (!m || offered.has(k) || !groupsFor(m.cat).length) return;
+  offered.add(k); adFor = k;
+  setTimeout(() => { drawAddon(); $("addon").classList.add("show"); }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 450);
+}
+window.closeAddon = () => $("addon").classList.remove("show");
+window.adChg = function (id, d) {
+  cart[id] = (cart[id] || 0) + d; if (cart[id] <= 0) delete cart[id]; saveCart(); upd();
+  if ($("addon").classList.contains("show")) drawAddon();
+  if ($("ov").classList.contains("show") && !trackId) openCart();
+};
+$("addon").addEventListener("click", (e) => { if (e.target.id === "addon") closeAddon(); });
+addEventListener("keydown", (e) => { if (e.key === "Escape") closeAddon(); });
+function cartSauces() {
+  const need = Object.keys(cart).some((k) => BY[k] && groupsFor(BY[k].cat).includes("sauces"));
+  if (!need) return "";
+  return `<p class="adg">${t("adCart")}</p><div class="chips row">${AD.sauces.map(chipHtml).join("")}</div>`;
+}
+function lines() {
+  return Object.entries(cart).map(([k, q]) => { const m = BY[k]; return `<div class="ci">${m.img ? `<img src="${BASE}${m.img}" alt="" width="58" height="44" style="width:58px;height:44px;object-fit:contain">` : ""}<div class="n">${esc(dname(m))}${avail(k) ? "" : ` <span style="color:#ff8080">· ${t("na")}</span>`}<small>${m.price} ${t("cur")}${m.g ? " · " + m.g + " " + (L === "ru" ? "г" : "g") : ""}</small></div>
+  <div class="q"><button onclick="chg('${k}',-1)">−</button><b>${q}</b><button onclick="chg('${k}',1)">+</button></div></div>`; }).join("");
+}
+let draft = { n: "", p: "", a: "", c: "" };
+function keepDraft() { ["fn", "fp", "fa", "fc"].forEach((id, i) => { const el = $(id); if (el) draft["npac"[i]] = el.value; }); }
+window.openCart = function () {
+  keepDraft(); trackId = null;
+  const s = sub(), f = fee(), needMore = mode === "delivery" && zone === "city" && s < D.city.freeFrom;
+  const unavailable = Object.keys(cart).some((k) => !avail(k));
+  let hint = "";
+  if (mode === "delivery" && zone === "city") hint = needMore ? `<div class="hint">${t("needMore")(D.city.freeFrom - s)}</div>` : `<div class="hint ok">${t("freeOk")}</div>`;
+  if (mode === "delivery" && zone === "other") hint = `<div class="hint">${t("otherFee")}</div>`;
+  if (mode === "pickup") hint = `<div class="hint ok">📍 ${t("pickAddr")}</div>`;
+  const totalTxt = feeOpen() ? `${t("from")} ${s + f} ${t("cur")}` : `${s + f} ${t("cur")}`;
+  const block = !canOrder() || unavailable || sending;
+  $("sheet").innerHTML = `<h2>${t("yours")} <button class="x" onclick="closeAll()">×</button></h2>${lines()}${cartSauces()}
+  <div class="sumrow"><span>${t("subtotal")}</span><span>${s} ${t("cur")}</span></div>
+  ${mode === "delivery" ? `<div class="sumrow"><span>${t("feeLbl")}</span><span>${feeOpen() ? (f ? t("from") + " " + f + " " + t("cur") : t("byOp")) : (f ? f + " " + t("cur") : t("free"))}</span></div>` : ""}
+  <div class="tot"><span>${t("total")}</span><span>${totalTxt}</span></div>
+  <div class="seg"><button id="m1" class="${mode === "delivery" ? "on" : ""}" onclick="setMode('delivery')">${t("deliv")}</button><button id="m2" class="${mode === "pickup" ? "on" : ""}" onclick="setMode('pickup')">${t("pick")}</button></div>
+  ${mode === "delivery" ? `<label>${t("zone")}</label><div class="seg"><button class="${zone === "city" ? "on" : ""}" onclick="setZone('city')">${t("zCity")}</button><button class="${zone === "other" ? "on" : ""}" onclick="setZone('other')">${t("zOther")}</button></div>` : ""}
+  ${hint}
+  <label>${t("name")}</label><input id="fn" autocomplete="name" maxlength="60" placeholder="${t("nameP")}" value="${esc(draft.n)}">
+  <label>${t("phone")}</label><input id="fp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0xx xxx xxx" value="${esc(draft.p)}">
+  ${mode === "delivery" ? `<label>${t("addr")}</label><input id="fa" autocomplete="street-address" maxlength="200" placeholder="${zone === "city" ? t("addrPC") : t("addrP")}" value="${esc(draft.a)}">` : ""}
+  <label>${t("com")}</label><textarea id="fc" rows="2" maxlength="300" placeholder="${t("comP")}">${esc(draft.c)}</textarea>
+  ${!canOrder() ? `<div class="hint">${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : ""}
+  <div class="err" id="err"></div>
+  <button class="big" id="sendBtn" onclick="send()" ${block ? "disabled" : ""}>${sending ? t("sending") : `${t("send")} · ${totalTxt}`}</button>
+  <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>`;
+  $("ov").classList.add("show"); document.body.classList.add("lock");
+};
+window.setMode = (m) => { mode = m; openCart(); };
+window.setZone = (z) => { zone = z; openCart(); };
+window.closeAll = function () { keepDraft(); trackId = null; $("ov").classList.remove("show"); document.body.classList.remove("lock"); };
+const phoneOk = (p) => { const d = p.replace(/\D/g, ""); return /^0[2-9]\d{7}$/.test(d) || /^373[2-9]\d{7}$/.test(d) || (d.length >= 8 && d.length <= 15 && p.trim().startsWith("+")); };
+window.send = async function () {
+  if (sending) return;
+  const n = $("fn").value.trim(), p = $("fp").value.trim(), a = mode === "delivery" ? $("fa").value.trim() : "", c = $("fc").value.trim(), er = $("err");
+  if (!n || !p || (mode === "delivery" && !a)) { er.textContent = mode === "delivery" ? t("errA") : t("errB"); er.style.display = "block"; return; }
+  if (!phoneOk(p)) { er.textContent = t("errPh"); er.style.display = "block"; return; }
+  keepDraft(); sending = true; $("sendBtn").disabled = true; $("sendBtn").textContent = t("sending");
+  const items = Object.entries(cart).map(([k, q]) => ({ id: k, n: BY[k].name, q, p: BY[k].price }));
+  const s = sub(), f = fee();
+  try {
+    const r = await Promise.race([
+      S.createOrder({ items, subtotal: s, deliveryFee: f, total: s + f, mode: mode === "delivery" ? "delivery" : "pickup", zone: mode === "delivery" ? zone : "", name: n, phone: p, addr: a, comment: c, lang: L }),
+      new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 15000)),
+    ]);
+    cart = {}; saveCart(); sending = false; upd();
+    lastId = r.id; try { localStorage.setItem("lg-last", JSON.stringify({ id: r.id, num: r.num, mode, at: Date.now() })); } catch (e) {}
+    try { localStorage.setItem("lg-me", JSON.stringify({ n, p, a })); } catch (e) {}
+    openTrack(r.id, r.num);
+  } catch (e) {
+    sending = false; $("sendBtn").disabled = false; $("sendBtn").textContent = t("send");
+    er.innerHTML = `${t("errNet")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a>`; er.style.display = "block";
+  }
+};
 
-/* ---------- действия ---------- */
-function toast(msg) { const d = document.createElement("div"); d.className = "toast"; d.textContent = msg; document.body.appendChild(d); setTimeout(() => d.remove(), 2500); }
-function confirmBox(title, text, okLabel, onOk) {
-  const ov = document.createElement("div"); ov.className = "ov";
-  ov.innerHTML = `<div class="md"><h3>${esc(title)}</h3><p>${esc(text)}</p><div class="act"><button class="btn x" data-no>${t("no")}</button><button class="btn" style="background:var(--rd);color:#fff" data-ok>${esc(okLabel)}</button></div></div>`;
-  ov.onclick = (e) => { if (e.target === ov || e.target.dataset.no !== undefined) ov.remove(); if (e.target.dataset.ok !== undefined) { ov.remove(); onOk(); } };
-  document.body.appendChild(ov);
+/* ---------- статус заказа ---------- */
+let trackId = null, trackOff = null, lastId = null, lastOrder = null;
+function steps(o) {
+  const pick = o.mode === "pickup";
+  const seq = pick ? ["new", "accepted", "cooking", "done"] : ["new", "accepted", "cooking", "delivery", "done"];
+  const label = (s) => s === "done" ? (pick ? t("st").doneP : t("st").done) : s === "cooking" && pick && o.status === "cooking" ? t("st").cooking : t("st")[s];
+  const icons = { new: "📨", accepted: "✓", cooking: "🍳", delivery: "🛵", done: "🎉" };
+  const idx = seq.indexOf(o.status);
+  return `<div class="track">${seq.map((s, i) => `<div class="st ${i <= idx ? "on" : ""} ${i === idx && s !== "done" ? "cur" : ""}"><i>${icons[s]}</i><b>${label(s)}</b></div>`).join("")}</div>`;
 }
-document.addEventListener("click", async (e) => {
-  const b = e.target.closest("button"); if (!b) return;
-  if (b.dataset.tab) { tab = b.dataset.tab; renderAll(); scrollTo(0, 0); return; }
-  if (b.dataset.s) { b.disabled = true; try { await S.setStatus(b.dataset.id, b.dataset.s); } catch (err) { toast("Error: " + err.message); b.disabled = false; } return; }
-  if (b.dataset.cancel) { confirmBox(t("cancelQ").replace("{n}", b.dataset.cancel), t("cancelP"), t("yes"), () => S.setStatus(b.dataset.id, "cancelled")); return; }
-  if (b.dataset.stop) { const s = new Set(settings.stop || []); s.has(b.dataset.stop) ? s.delete(b.dataset.stop) : s.add(b.dataset.stop); S.setSettings({ stop: [...s] }); return; }
-  if (b.id === "openBtn") { if (settings.open) confirmBox(t("closeQ"), t("closeP"), t("stopBtn"), () => S.setSettings({ open: false })); else S.setSettings({ open: true }); }
-});
-setInterval(renderAll, 30000); // обновлять «N мин назад»
-if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
-applyLang();
+window.openTrack = function (id, num) {
+  if (!id) return;
+  trackId = id; if (trackOff) trackOff();
+  const draw = (o) => {
+    if (trackId !== id) return;
+    lastOrder = o; updLast();
+    if (!o) { $("sheet").innerHTML = `<div class="ok"><div class="em">✅</div><h3>${t("thanks")}!</h3><p>${t("got")(num || "")}</p><p class="mini">${t("callSoon")}</p><button class="big" onclick="closeAll()">${t("close")}</button></div>`; return; }
+    $("sheet").innerHTML = `<div class="ok"><div class="em">${o.status === "cancelled" ? "⚠️" : "✅"}</div><h3>${t("thanks")}, ${esc(o.name)}!</h3><p>${t("got")(o.num)}</p>
+    ${o.status === "cancelled" ? `<div class="cancelled">${t("cancelled")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : steps(o)}
+    ${o.status === "new" ? `<p class="mini">${t("callSoon")}</p>` : ""}
+    <div class="mini" style="text-align:left">${(o.items || []).map((i) => `${i.q} × ${esc(i.n)}`).join("<br>")}<br><b style="color:var(--ink)">${t("total")}: ${o.zone === "other" ? t("from") + " " : ""}${o.total} ${t("cur")}${o.zone === "city" && o.subtotal < D.city.freeFrom && D.city.feeBelow == null ? " + " + t("feeLbl").toLowerCase() : ""}</b></div>
+    <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>
+    <button class="big" onclick="closeAll()">${t("close")}</button></div>`;
+  };
+  trackOff = S.watchOrder(id, draw);
+  $("ov").classList.add("show"); document.body.classList.add("lock");
+};
+function updLast() {
+  const b = $("lastord"), o = lastOrder;
+  const show = o && !["done", "cancelled"].includes(o.status) && !$("ov").classList.contains("show");
+  b.classList.toggle("show", !!show);
+  b.style.bottom = count() ? "" : "calc(14px + env(safe-area-inset-bottom))";
+  if (show) b.textContent = t("lastO")(o.num, o.status === "done" ? "" : (o.mode === "pickup" && o.status === "cooking" ? t("st").cooking : t("st")[o.status]));
+}
+// восстановить последний заказ (до 12 часов)
+try {
+  const l = JSON.parse(localStorage.getItem("lg-last") || "null");
+  if (l && Date.now() - l.at < 12 * 3600e3) { lastId = l.id; S.watchOrder(l.id, (o) => { lastOrder = o; updLast(); }); }
+  const me = JSON.parse(localStorage.getItem("lg-me") || "null"); if (me) draft = { n: me.n || "", p: me.p || "", a: me.a || "", c: "" };
+} catch (e) {}
+
+/* ---------- motion: бегущая строка ---------- */
+function fillTicker() {
+  const names = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-crispy", "crispy-burger", "fries", "salata-creveti-tempura", "chicken-nuggets", "big-double-cheeseburger"].map((id) => BY[id]).filter(Boolean);
+  const one = names.map((m) => `<span class="ti">${m.img ? `<img src="${BASE}${m.img}" alt="" width="46" height="34">` : ""}${esc(m.name)}<b>${m.price} ${t("cur")}</b></span>`).join("");
+  $("ticker").innerHTML = one + one;
+}
+/* ---------- старт ---------- */
+$("callBtn").href = "tel:" + tel;
+$("lastord").onclick = () => openTrack(lastId);
+const soc = [["instagram", "Instagram"], ["facebook", "Facebook"], ["tiktok", "TikTok"]].filter(([k]) => R[k]);
+$("soc").innerHTML = soc.map(([k, n]) => `<a href="${esc(R[k])}" target="_blank" rel="noopener"><span>${n}</span></a>`).join("");
+S.watchSettings((s) => { settings = s; render(); extras(); filter(); updClosed(); if ($("ov").classList.contains("show") && !trackId && count()) openCart(); });
+setInterval(updClosed, 60000);
+setLang(L); fixSticky();
+if ("serviceWorker" in navigator) navigator.serviceWorker.register(BASE + "sw.js").catch(() => {});
 </script>
-</body>
-</html>
+
+
+</body></html>

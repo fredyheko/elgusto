@@ -79,6 +79,10 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 .sw{width:50px;height:30px;border-radius:15px;background:var(--gr);border:0;position:relative;flex:none}
 .sw:after{content:"";position:absolute;top:3px;left:23px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.15s}
 .sw.off{background:#444}.sw.off:after{left:3px}
+.star{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#111;color:var(--mu);font-size:22px;line-height:1}
+.star.on{background:var(--yl);border-color:var(--yl);color:#111}
+.rn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--or);color:#111;display:grid;place-items:center;font-size:13px}
+.rb{height:36px;min-width:36px;padding:0 8px}.rb:disabled{opacity:.3}
 /* modal */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.7);display:grid;place-items:center;z-index:50;padding:20px}
 .md{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;max-width:360px;width:100%}
@@ -132,7 +136,7 @@ const T = {
   testMode:"Тестовый режим: Firebase не подключён, заказы видны только в этом браузере. Войти можно с любыми данными.",
   open:"Принимаем заказы",closed:"Приём закрыт",soundOff:"Звук выключен — нажмите, чтобы слышать новые заказы",soundOn:"Включить звук",
   ordersToday:"заказов сегодня",revToday:"лей сегодня",avgCheck:"средний чек",
-  t_new:"Новые",t_work:"В работе",t_done:"Готовые",t_stop:"Стоп-лист",
+  t_new:"Новые",t_work:"В работе",t_done:"Готовые",t_stop:"Стоп-лист",t_rec:"⭐ Рекомендуем",recHint:"Эти блюда показываются на сайте в блоке «Рекомендуем», в этом порядке. Лучше 4–8 блюд. Нажмите ☆ у блюда, чтобы добавить или убрать.",recNow:"Сейчас на сайте",recAll:"Все блюда",recEmpty:"Блок «Рекомендуем» скрыт — выберите блюда ниже.",recReset:"Вернуть как было",recUp:"Выше",recDown:"Ниже",recDel:"Убрать",recSaved:"Сохранено — на сайте обновится сразу",
   s_new:"Новый",s_accepted:"Принят",s_cooking:"Готовится",s_delivery:"В пути",s_done:"Выполнен",s_cancelled:"Отменён",
   delivery:"🛵 Доставка",pickup:"🏃 Самовывоз",min:"мин назад",now:"только что",
   a_accept:"✓ Принять",a_cook:"🍳 Готовится",a_deliv:"🛵 Отправить",a_ready:"✓ Выдан",a_done:"✓ Доставлен",a_cancel:"Отменить",
@@ -145,7 +149,7 @@ const T = {
   testMode:"Mod de test: Firebase nu e conectat, comenzile se văd doar în acest browser. Puteți intra cu orice date.",
   open:"Primim comenzi",closed:"Comenzi oprite",soundOff:"Sunetul e oprit — apăsați ca să auziți comenzile noi",soundOn:"Pornește sunetul",
   ordersToday:"comenzi azi",revToday:"lei azi",avgCheck:"bon mediu",
-  t_new:"Noi",t_work:"În lucru",t_done:"Finalizate",t_stop:"Stop-listă",
+  t_new:"Noi",t_work:"În lucru",t_done:"Finalizate",t_stop:"Stop-listă",t_rec:"⭐ Recomandăm",recHint:"Aceste preparate apar pe site în blocul «Recomandăm», în această ordine. Ideal 4–8 preparate. Apăsați ☆ ca să adăugați sau să scoateți.",recNow:"Acum pe site",recAll:"Toate preparatele",recEmpty:"Blocul «Recomandăm» e ascuns — alegeți preparate mai jos.",recReset:"Revino la implicit",recUp:"Mai sus",recDown:"Mai jos",recDel:"Scoate",recSaved:"Salvat — pe site se actualizează imediat",
   s_new:"Nouă",s_accepted:"Acceptată",s_cooking:"Se gătește",s_delivery:"În livrare",s_done:"Finalizată",s_cancelled:"Anulată",
   delivery:"🛵 Livrare",pickup:"🏃 Ridicare",min:"min în urmă",now:"chiar acum",
   a_accept:"✓ Acceptă",a_cook:"🍳 Se gătește",a_deliv:"🛵 Trimite",a_ready:"✓ Ridicată",a_done:"✓ Livrată",a_cancel:"Anulează",
@@ -239,9 +243,10 @@ function renderAll() {
   const sum = tod.reduce((s, o) => s + (o.total || 0), 0);
   $("stN").textContent = tod.length; $("stS").textContent = sum; $("stA").textContent = tod.length ? Math.round(sum / tod.length) : 0;
   const c = (g) => orders.filter((o) => GROUP[g].includes(o.status)).length;
-  $("tabs").innerHTML = ["new", "work", "done", "stop"].map((k) =>
-    `<button class="tab${tab === k ? " on" : ""}" data-tab="${k}">${t("t_" + k)}${k !== "stop" ? `<span class="cnt">${k === "done" ? orders.filter((o) => o.status === "done" && o.createdAt >= today.getTime()).length : c(k)}</span>` : ""}</button>`).join("");
+  $("tabs").innerHTML = ["new", "work", "done", "stop", "rec"].map((k) =>
+    `<button class="tab${tab === k ? " on" : ""}" data-tab="${k}">${t("t_" + k)}${k !== "stop" && k !== "rec" ? `<span class="cnt">${k === "done" ? orders.filter((o) => o.status === "done" && o.createdAt >= today.getTime()).length : c(k)}</span>` : ""}</button>`).join("");
   if (tab === "stop") return renderStop();
+  if (tab === "rec") return renderRec();
   const list = orders.filter((o) => GROUP[tab].includes(o.status));
   if (tab !== "new") list.sort((a, b) => (tab === "work" ? a.createdAt - b.createdAt : b.updatedAt - a.updatedAt));
   else list.sort((a, b) => a.createdAt - b.createdAt);
@@ -269,6 +274,21 @@ function card(o) {
    ${acts.length || canCancel ? `<div class="act">${acts.map(([s, c, k]) => `<button class="btn ${c}" data-id="${o.id}" data-s="${s}">${t(k)}</button>`).join("")}${canCancel ? `<button class="btn x" data-id="${o.id}" data-cancel="${o.num}">${t("a_cancel")}</button>` : ""}</div>` : ""}
   </div>`;
 }
+const recList = () => (Array.isArray(settings.rec) ? settings.rec : (window.RECOMMENDED_DEFAULT || [])).filter((id) => MENU.some((m) => m.id === id));
+function setRec(list) { S.setSettings({ rec: list }).then(() => toast(t("recSaved"))).catch((e) => toast("Error: " + e.message)); }
+function renderRec() {
+  const rec = recList(), by = Object.fromEntries(MENU.map((m) => [m.id, m]));
+  const pic = (m, c) => m.img ? `<img src="../${m.img}" alt="" style="object-fit:contain;background:#222">` : `<span style="flex:0 0 46px;text-align:center;font-size:22px">${c ? c.icon : "🍽️"}</span>`;
+  const cats = (window.CATEGORIES || []).filter((c) => !c.hidden);
+  $("list").innerHTML = `<div class="stop"><p style="color:var(--mu);font-size:14px">${t("recHint")}</p>
+   <h3>${t("recNow")} (${rec.length})</h3>
+   ${rec.length ? `<div class="sl">${rec.map((id, i) => { const m = by[id]; return `<div class="si"><b class="rn">${i + 1}</b>${pic(m)}<span>${esc(m.name)}</span>
+     <button class="ib rb" data-recmove="${id}" data-d="-1" ${i ? "" : "disabled"} title="${t("recUp")}">↑</button><button class="ib rb" data-recmove="${id}" data-d="1" ${i < rec.length - 1 ? "" : "disabled"} title="${t("recDown")}">↓</button><button class="ib rb" data-rec="${id}" title="${t("recDel")}">✕</button></div>`; }).join("")}</div>` : `<p class="warn" style="margin:0">${t("recEmpty")}</p>`}
+   <p style="margin:10px 0"><button class="ib" data-recreset="1">${t("recReset")}</button></p>
+   <h3>${t("recAll")}</h3>
+   ${cats.map((c) => `<h3 style="margin-top:6px">${c.icon} ${c[L] || c.ro}</h3><div class="sl">${MENU.filter((m) => m.cat === c.id).map((m) => { const on = rec.includes(m.id);
+     return `<div class="si">${pic(m, c)}<span>${esc(m.name)}</span><button class="star${on ? " on" : ""}" data-rec="${m.id}" aria-pressed="${on}" aria-label="${esc(m.name)}">${on ? "★" : "☆"}</button></div>`; }).join("")}</div>`).join("")}</div>`;
+}
 function renderStop() {
   const off = new Set(settings.stop || []);
   const cats = window.CATEGORIES || [];
@@ -289,6 +309,9 @@ document.addEventListener("click", async (e) => {
   if (b.dataset.tab) { tab = b.dataset.tab; renderAll(); scrollTo(0, 0); return; }
   if (b.dataset.s) { b.disabled = true; try { await S.setStatus(b.dataset.id, b.dataset.s); } catch (err) { toast("Error: " + err.message); b.disabled = false; } return; }
   if (b.dataset.cancel) { confirmBox(t("cancelQ").replace("{n}", b.dataset.cancel), t("cancelP"), t("yes"), () => S.setStatus(b.dataset.id, "cancelled")); return; }
+  if (b.dataset.rec) { const r = recList(); const i = r.indexOf(b.dataset.rec); if (i > -1) r.splice(i, 1); else r.push(b.dataset.rec); setRec(r); return; }
+  if (b.dataset.recmove) { const r = recList(); const i = r.indexOf(b.dataset.recmove), j = i + +b.dataset.d; if (i > -1 && j >= 0 && j < r.length) { [r[i], r[j]] = [r[j], r[i]]; setRec(r); } return; }
+  if (b.dataset.recreset) { setRec(null); return; }
   if (b.dataset.stop) { const s = new Set(settings.stop || []); s.has(b.dataset.stop) ? s.delete(b.dataset.stop) : s.add(b.dataset.stop); S.setSettings({ stop: [...s] }); return; }
   if (b.id === "openBtn") { if (settings.open) confirmBox(t("closeQ"), t("closeP"), t("stopBtn"), () => S.setSettings({ open: false })); else S.setSettings({ open: true }); }
 });

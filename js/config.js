@@ -447,3 +447,6 @@ window.ADDONS = {
   // какой раздел меню → что предлагать
   offer: { kebab: ["sauces", "kebabExtras"], aripi: ["sauces"], burger: ["sauces"], gustari: ["sauces"] }
 };
+
+// 5) «Рекомендуем» по умолчанию. Оператор может поменять список в своём приложении (вкладка «Рекомендуем»).
+window.RECOMMENDED_DEFAULT = ["double-cheeseburger-lgusto", "kebab-lgusto", "big-double-cheeseburger", "aripi-crispy", "creveti-tempura", "salata-creveti-tempura"];

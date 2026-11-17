@@ -179,8 +179,10 @@ function extras() {
   const pick = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-asiatic"].map((id) => BY[id]).filter(Boolean);
   const col = pick.length === 3 ? pick : withImg.slice(0, 3);
   $("collage").innerHTML = `<img src="${BASE}${col[0].img}" alt="${esc(col[0].name)}" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="${esc(col[0].name)}: ${col[0].price} ${t("cur")}"><b>${col[0].price}</b><span>${t("cur")}</span></div>`;
-  const recIds = ["double-cheeseburger-lgusto", "kebab-lgusto", "big-double-cheeseburger", "aripi-crispy", "creveti-tempura", "salata-creveti-tempura"].filter((id) => BY[id]);
-  $("pop").innerHTML = (recIds.length ? recIds.map((id) => BY[id]) : withImg.slice(0, 6)).map((m) => cardHtml(m, 1)).join("");
+  // «Рекомендуем»: список задаёт оператор (settings.rec); null — список по умолчанию из config.js
+  const recIds = (Array.isArray(settings.rec) ? settings.rec : (window.RECOMMENDED_DEFAULT || [])).filter((id) => BY[id] && avail(id));
+  $("pop").innerHTML = recIds.map((id) => cardHtml(BY[id], 1)).join("");
+  $("pop").parentElement.style.display = recIds.length ? "" : "none";
 }
 window.filter = function () {
   const v = $("q").value.trim().toLowerCase(); let any = 0;

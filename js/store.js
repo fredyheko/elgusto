@@ -107,7 +107,7 @@ export async function setStatus(id, status) {
 }
 
 // ---------- настройки (приём заказов, стоп-лист) ----------
-const DEF = { open: true, stop: [] };
+const DEF = { open: true, stop: [], rec: null }; // rec: null = список по умолчанию из config.js
 export function watchSettings(cb) {
   if (!LIVE) { const f = () => cb({ ...DEF, ...LS.get("lg_settings", {}) }); f(); return on("lg_settings", f); }
   let off = () => {};

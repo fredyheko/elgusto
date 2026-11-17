@@ -1,9 +1,0 @@
-// Service worker: сеть в приоритете, кэш — на случай плохого интернета.
-const C = "lgusto-v3";
-self.addEventListener("install", (e) => self.skipWaiting());
-self.addEventListener("activate", (e) => e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== C).map((k) => caches.delete(k)))).then(() => self.clients.claim())));
-self.addEventListener("fetch", (e) => {
-  const u = new URL(e.request.url);
-  if (e.request.method !== "GET" || u.origin !== location.origin) return; // Firebase и шрифты — напрямую
-  e.respondWith(fetch(e.request).then((r) => { const c = r.clone(); caches.open(C).then((ca) => ca.put(e.request, c)); return r; }).catch(() => caches.match(e.request)));
-});

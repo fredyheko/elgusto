@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /operator/
+Disallow: /_build/
+
+Sitemap: https://elgusto.onrender.com/sitemap.xml

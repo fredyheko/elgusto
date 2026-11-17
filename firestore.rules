@@ -1,0 +1,53 @@
+rules_version = '2';
+// Правила безопасности базы L'Gusto.
+// ВАЖНО: впиши email(ы) операторов в список ниже — только они видят и меняют заказы.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOp() {
+      return request.auth != null
+        && request.auth.token.email in ['operator@example.com'];
+    }
+
+    function validOrder(d) {
+      return d.keys().hasOnly(['items','subtotal','deliveryFee','total','mode','zone','name','phone','addr','comment','lang','status','num','createdAt','updatedAt'])
+        && d.status == 'new'
+        && d.items is list && d.items.size() > 0 && d.items.size() <= 60
+        && d.total is number && d.total > 0 && d.total < 100000
+        && d.subtotal is number && d.deliveryFee is number
+        && d.mode in ['delivery','pickup']
+        && d.zone in ['city','other','']
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 60
+        && d.phone is string && d.phone.size() >= 6 && d.phone.size() <= 20
+        && d.addr is string && d.addr.size() <= 200
+        && d.comment is string && d.comment.size() <= 300
+        && d.lang in ['ro','ru']
+        && d.createdAt == request.time && d.updatedAt == request.time
+        && d.num == getAfter(/databases/$(database)/documents/meta/counter).data.n;
+    }
+
+    // Заказы: клиент может только создать новый и посмотреть свой (по секретному id).
+    match /orders/{id} {
+      allow create: if validOrder(request.resource.data);
+      allow get: if true;
+      allow list: if isOp();
+      allow update: if isOp()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','updatedAt'])
+        && request.resource.data.status in ['new','accepted','cooking','delivery','done','cancelled'];
+      allow delete: if false;
+    }
+
+    // Счётчик номеров заказов: только +1.
+    match /meta/counter {
+      allow get: if true;
+      allow create: if request.resource.data.keys().hasOnly(['n']) && request.resource.data.n == 1;
+      allow update: if request.resource.data.keys().hasOnly(['n']) && request.resource.data.n == resource.data.n + 1;
+    }
+
+    // Настройки (приём заказов открыт/закрыт, стоп-лист): читают все, меняет оператор.
+    match /meta/settings {
+      allow get: if true;
+      allow write: if isOp();
+    }
+  }
+}

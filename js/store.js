@@ -38,6 +38,25 @@ function on(k, f) {
 }
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 
+// ---------- телефон ----------
+// Молдавские номера приводим к виду 0XXXXXXXX, иностранные — к +цифры.
+export function normPhone(p) {
+  const raw = String(p || "").trim(), d = raw.replace(/\D/g, "");
+  let r = null;
+  if (/^0[2-9]\d{7}$/.test(d)) r = d;
+  else if (/^373[2-9]\d{7}$/.test(d)) r = "0" + d.slice(3);
+  else if (/^00\d{8,15}$/.test(d)) r = "+" + d.slice(2);
+  else if (raw.startsWith("+") && d.length >= 8 && d.length <= 15) r = "+" + d;
+  if (!r) return null;
+  if (/(\d)\1{5}/.test(r.slice(-8)) || /12345678|23456789|87654321/.test(r)) return null; // 060000000, 012345678…
+  return r;
+}
+
+// ---------- защита: лимит и блокировка ----------
+export const LIMIT = { perHour: 3 };
+const HOUR = 3600e3;
+export class OrderRefused extends Error { constructor(code) { super(code); this.code = code; } }
+
 // ---------- заказы ----------
 export async function createOrder(o) {
   const order = {
@@ -45,7 +64,13 @@ export async function createOrder(o) {
     mode: o.mode, zone: o.zone || "", name: o.name, phone: o.phone, addr: o.addr || "", comment: o.comment || "", pay: o.pay || "cash",
     lang: o.lang, status: "new",
   };
+  const ph = normPhone(o.phone);
+  if (!ph) throw new OrderRefused("phone");
+  order.phone = ph;
   if (!LIVE) {
+    if (LS.get("lg_blocked", {})[ph]) throw new OrderRefused("blocked");
+    const recent = Object.values(LS.get("lg_orders", {})).filter((x) => x.phone === ph && Date.now() - x.createdAt < HOUR);
+    if (recent.length >= LIMIT.perHour) throw new OrderRefused("limit");
     const n = LS.get("lg_counter", 0) + 1; LS.set("lg_counter", n);
     const id = uid(), now = Date.now();
     const all = LS.get("lg_orders", {});
@@ -56,8 +81,15 @@ export async function createOrder(o) {
   const { db, m } = await loadFirebase();
   const counter = m.doc(db, "meta", "counter");
   const ref = m.doc(m.collection(db, "orders"));
+  const lim = m.doc(db, "limits", ph), blk = m.doc(db, "blocked", ph);
   const num = await m.runTransaction(db, async (tx) => {
-    const snap = await tx.get(counter);
+    const [snap, ls, bs] = await Promise.all([tx.get(counter), tx.get(lim), tx.get(blk)]);
+    if (bs.exists()) throw new OrderRefused("blocked");
+    const now = m.serverTimestamp(), L0 = ls.exists() ? ls.data() : null;
+    if (L0 && Date.now() - tsToMs(L0.win) < HOUR) {
+      if (L0.n >= LIMIT.perHour) throw new OrderRefused("limit");
+      tx.set(lim, { win: L0.win, n: L0.n + 1, at: now });
+    } else tx.set(lim, { win: now, n: 1, at: now });
     const n = (snap.exists() ? snap.data().n : 0) + 1;
     tx.set(counter, { n });
     tx.set(ref, { ...order, num: n, createdAt: m.serverTimestamp(), updatedAt: m.serverTimestamp() });
@@ -104,6 +136,37 @@ export async function setStatus(id, status) {
   }
   const { db, m } = await loadFirebase();
   await m.updateDoc(m.doc(db, "orders", id), { status, updatedAt: m.serverTimestamp() });
+}
+
+// ---------- оператор: блокировка номеров и история клиента ----------
+export function watchBlocked(cb) {
+  if (!LIVE) { const f = () => cb(Object.entries(LS.get("lg_blocked", {})).map(([phone, v]) => ({ phone, ...v }))); f(); return on("lg_blocked", f); }
+  let off = () => {};
+  loadFirebase().then(({ db, m }) => {
+    off = m.onSnapshot(m.collection(db, "blocked"), (s) => cb(s.docs.map((d) => ({ phone: d.id, ...d.data(), at: tsToMs(d.data().at) }))), () => cb([]));
+  });
+  return () => off();
+}
+export async function setBlocked(phone, on_, name = "") {
+  const ph = normPhone(phone) || phone;
+  if (!LIVE) { const b = LS.get("lg_blocked", {}); if (on_) b[ph] = { name, at: Date.now() }; else delete b[ph]; LS.set("lg_blocked", b); return; }
+  const { db, m } = await loadFirebase();
+  const ref = m.doc(db, "blocked", ph);
+  if (on_) await m.setDoc(ref, { name: String(name).slice(0, 60), at: m.serverTimestamp() }); else await m.deleteDoc(ref);
+}
+// Сколько заказов было с этого номера всего и сколько из них отменено
+export async function phoneStats(phone) {
+  if (!LIVE) {
+    const xs = Object.values(LS.get("lg_orders", {})).filter((x) => x.phone === phone);
+    return { total: xs.length, cancelled: xs.filter((x) => x.status === "cancelled").length };
+  }
+  const { db, m } = await loadFirebase();
+  const col = m.collection(db, "orders");
+  const [a, c] = await Promise.all([
+    m.getCountFromServer(m.query(col, m.where("phone", "==", phone))),
+    m.getCountFromServer(m.query(col, m.where("phone", "==", phone), m.where("status", "==", "cancelled"))),
+  ]);
+  return { total: a.data().count, cancelled: c.data().count };
 }
 
 // ---------- настройки (приём заказов, стоп-лист) ----------

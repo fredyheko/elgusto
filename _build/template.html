@@ -91,7 +91,7 @@ ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
  cur:'lei',feeLbl:'Livrare',byOp:'se confirmă la telefon',from:'de la',free:'gratuit',pickAddr:`Ridicare: ${R.address.ro}`,
  name:'Nume',nameP:'Numele dvs.',phone:'Telefon',addr:'Adresa de livrare',addrP:'Localitatea, strada, nr., apartament',addrPC:'Strada, nr., apartament',
  com:'Comentariu (opțional)',comP:'Ex.: fără susan, sună la sosire',errA:'Completați numele, telefonul și adresa.',errB:'Completați numele și telefonul.',
- errPh:'Verificați numărul de telefon (ex.: 069 123 456).',errNet:'Nu s-a putut trimite comanda. Verificați internetul sau sunați-ne: ',
+ errLim:'Ați trimis deja mai multe comenzi în ultima oră. Pentru o comandă nouă sunați-ne: ',errBlk:'Nu putem primi comanda online de pe acest număr. Sunați-ne: ',errPh:'Verificați numărul de telefon (ex.: 069 123 456).',errNet:'Nu s-a putut trimite comanda. Verificați internetul sau sunați-ne: ',
  send:'Trimite comanda',sending:'Se trimite…',closedNow:`Acum nu primim comenzi online. Program: zilnic ${H}. Precomenzi: `,paused:'Momentan nu primim comenzi online. Sunați-ne: ',
  thanks:'Mulțumim',got:(n)=>`Comanda #${n} a fost trimisă.`,callSoon:'Operatorul vă sună în câteva minute pentru confirmare.',
  st:{new:'Comandă trimisă',accepted:'Acceptată',cooking:'Se pregătește',delivery:'În drum spre dvs.',pickupReady:'Gata — vă așteptăm',done:'Livrată. Poftă bună!',doneP:'Ridicată. Poftă bună!'},
@@ -114,7 +114,7 @@ ru:{h1:'Бургеры, суши и кебабы на любой вкус',
  cur:'лей',feeLbl:'Доставка',byOp:'уточнит оператор',from:'от',free:'бесплатно',pickAddr:`Самовывоз: ${R.address.ru}`,
  name:'Имя',nameP:'Ваше имя',phone:'Телефон',addr:'Адрес доставки',addrP:'Село, улица, дом, квартира',addrPC:'Улица, дом, квартира',
  com:'Комментарий (необязательно)',comP:'Напр.: без кунжута, позвонить по приезде',errA:'Заполните имя, телефон и адрес.',errB:'Заполните имя и телефон.',
- errPh:'Проверьте номер телефона (напр.: 069 123 456).',errNet:'Не удалось отправить заказ. Проверьте интернет или позвоните нам: ',
+ errLim:'С этого номера уже было несколько заказов за последний час. Для нового заказа позвоните нам: ',errBlk:'С этого номера мы не можем принять заказ онлайн. Позвоните нам: ',errPh:'Проверьте номер телефона (напр.: 069 123 456).',errNet:'Не удалось отправить заказ. Проверьте интернет или позвоните нам: ',
  send:'Отправить заказ',sending:'Отправляем…',closedNow:`Сейчас заказы онлайн не принимаются. Часы работы: ежедневно ${H}. Предзаказ: `,paused:'Сейчас заказы онлайн не принимаются. Позвоните нам: ',
  thanks:'Спасибо',got:(n)=>`Заказ #${n} отправлен.`,callSoon:'Оператор перезвонит в течение нескольких минут для подтверждения.',
  st:{new:'Заказ отправлен',accepted:'Принят',cooking:'Готовится',delivery:'Едет к вам',pickupReady:'Готов — ждём вас',done:'Доставлен. Приятного аппетита!',doneP:'Выдан. Приятного аппетита!'},
@@ -306,10 +306,12 @@ window.openCart = function () {
   <label>${t("phone")}</label><input id="fp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0xx xxx xxx" value="${esc(draft.p)}">
   ${mode === "delivery" ? `<label>${t("addr")}</label><input id="fa" autocomplete="street-address" maxlength="200" placeholder="${zone === "city" ? t("addrPC") : t("addrP")}" value="${esc(draft.a)}">` : ""}
   <label>${t("com")}</label><textarea id="fc" rows="2" maxlength="300" placeholder="${t("comP")}">${esc(draft.c)}</textarea>
+  <div class="hpf" aria-hidden="true"><label for="fw">Company</label><input id="fw" name="company" type="text" tabindex="-1" autocomplete="off"></div>
   ${!canOrder() ? `<div class="hint">${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : ""}
   <div class="err" id="err"></div>
   <button class="big" id="sendBtn" onclick="send()" ${block ? "disabled" : ""}>${sending ? t("sending") : `${t("send")} · ${totalTxt}`}</button>
   <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>`;
+  if (!formAt && $("fn")) formAt = Date.now();
   $("ov").classList.add("show"); document.body.classList.add("lock");
 };
 const payOpts = () => mode === "delivery" ? ["cash", "mia"] : ["cash", "card"];
@@ -323,12 +325,16 @@ window.setMode = (m) => {
 window.setPay = (k) => { pay = k; rerender(); };
 window.setZone = (z) => { zone = z; rerender(); };
 window.closeAll = function () { keepDraft(); trackId = null; $("ov").classList.remove("show"); document.body.classList.remove("lock"); };
-const phoneOk = (p) => { const d = p.replace(/\D/g, ""); return /^0[2-9]\d{7}$/.test(d) || /^373[2-9]\d{7}$/.test(d) || (d.length >= 8 && d.length <= 15 && p.trim().startsWith("+")); };
+const phoneOk = (p) => !!S.normPhone(p);
+let formAt = 0; // когда форма впервые показана — бот отправляет мгновенно
 window.send = async function () {
   if (sending) return;
   const n = $("fn").value.trim(), p = $("fp").value.trim(), a = mode === "delivery" ? $("fa").value.trim() : "", c = $("fc").value.trim(), er = $("err");
   if (!n || !p || (mode === "delivery" && !a)) { er.textContent = mode === "delivery" ? t("errA") : t("errB"); er.style.display = "block"; return; }
   if (!phoneOk(p)) { er.textContent = t("errPh"); er.style.display = "block"; return; }
+  const callMe = (k) => { er.innerHTML = `${t(k)}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a>`; er.style.display = "block"; };
+  // ловушка для ботов: скрытое поле заполнено или форма отправлена быстрее 3 секунд
+  if (($("fw") && $("fw").value) || Date.now() - formAt < 3000) { callMe("errNet"); return; }
   keepDraft(); sending = true; $("sendBtn").disabled = true; $("sendBtn").textContent = t("sending");
   const items = Object.entries(cart).map(([k, q]) => ({ id: k, n: BY[k].name, q, p: BY[k].price }));
   const s = sub(), f = fee();
@@ -343,7 +349,9 @@ window.send = async function () {
     openTrack(r.id, r.num);
   } catch (e) {
     sending = false; $("sendBtn").disabled = false; $("sendBtn").textContent = t("send");
-    er.innerHTML = `${t("errNet")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a>`; er.style.display = "block";
+    const code = e && e.code;
+    if (code === "phone") { er.textContent = t("errPh"); er.style.display = "block"; }
+    else callMe(code === "limit" ? "errLim" : code === "blocked" ? "errBlk" : "errNet");
   }
 };
 

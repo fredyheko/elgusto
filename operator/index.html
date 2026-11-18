@@ -61,6 +61,9 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 .mode{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;background:#222;margin-bottom:4px}
 .its{margin:10px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:8px 0}
 .it{display:flex;gap:8px;font-size:14px;padding:3px 0}.it .q{font-weight:800;color:var(--or);min-width:28px}.it .p{margin-left:auto;color:var(--mu)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.tags:empty{display:none}
+.ctag{font-size:12.5px;font-weight:700;border-radius:8px;padding:3px 8px;background:#262626;color:#ddd}.ctag.nw{background:#123a5c;color:#bfe3ff}.ctag.ok{background:#173d22;color:#9be6ae}.ctag.bad{background:#4a1515;color:#ffb3b3}
+.blkrow{text-align:right;margin-top:6px}.lnk{background:none;border:0;color:#9a9a9a;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px}
 .pay{display:inline-block;background:#12306e;color:#fff;border-radius:10px;padding:5px 10px;font-size:14px;font-weight:800;margin:8px 0 0}
 .com{background:#2a2100;color:var(--yl);border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
 .tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;margin:6px 0 2px}
@@ -152,7 +155,7 @@ const T = {
   closeQ:"Остановить приём заказов?",closeP:"Клиенты увидят на сайте, что заказы временно не принимаются.",stopBtn:"Остановить",
   emptyNew:"Новых заказов нет. Когда клиент оформит заказ, он появится здесь со звуком.",emptyWork:"Нет заказов в работе",emptyDone:"Сегодня ещё нет выполненных заказов",
   stopHint:"Выключите блюдо, если оно закончилось — клиенты не смогут его заказать.",subtotal:"Блюда",fee:"Доставка",total:"Итого",
-  otherZone:"Другой населённый пункт",pays:{cash:"💵 Наличные",mia:"📱 Оплата MIA",card:"💳 Оплата картой"},feeSmall:"Заказ меньше 400 лей: доставка платная — назовите клиенту стоимость доставки.",feeConfirm:"Доставка в другой населённый пункт: уточните у клиента точную стоимость доставки (от 50 лей).",from:"от",errPerm:"Нет доступа к заказам. Проверьте, что ваш email добавлен в правила Firestore.",lei:"лей",newOrder:"Новый заказ"},
+  otherZone:"Другой населённый пункт",cNew:"🆕 Новый клиент",cRep:"✅ Уже заказывал: {n}",cCan:"⚠️ Отменено раньше: {n}",cBlk:"🚫 Номер заблокирован",a_block:"🚫 Заблокировать",a_unblock:"Разблокировать",blockQ:"Заблокировать {p}?",blockP:"С этого номера больше нельзя будет заказать на сайте. Если заказ новый, он будет отменён.",blkTitle:"🚫 Заблокированные номера",blkEmpty:"Заблокированных номеров нет. Заблокировать номер можно в карточке заказа.",blkDone:"Номер заблокирован",unblkDone:"Номер разблокирован",pays:{cash:"💵 Наличные",mia:"📱 Оплата MIA",card:"💳 Оплата картой"},feeSmall:"Заказ меньше 400 лей: доставка платная — назовите клиенту стоимость доставки.",feeConfirm:"Доставка в другой населённый пункт: уточните у клиента точную стоимость доставки (от 50 лей).",from:"от",errPerm:"Нет доступа к заказам. Проверьте, что ваш email добавлен в правила Firestore.",lei:"лей",newOrder:"Новый заказ"},
  ro:{opTitle:"Aplicația operatorului",enter:"Intră",email:"Email",pass:"Parola",badLogin:"Email sau parolă greșită",
   testMode:"Mod de test: Firebase nu e conectat, comenzile se văd doar în acest browser. Puteți intra cu orice date.",
   open:"Primim comenzi",closed:"Comenzi oprite",soundOff:"Sunetul e oprit — apăsați ca să auziți comenzile noi",soundOn:"Pornește sunetul",
@@ -165,7 +168,7 @@ const T = {
   closeQ:"Opriți primirea comenzilor?",closeP:"Clienții vor vedea pe site că momentan nu se primesc comenzi.",stopBtn:"Oprește",
   emptyNew:"Nu sunt comenzi noi. Când un client comandă, comanda apare aici cu sunet.",emptyWork:"Nu sunt comenzi în lucru",emptyDone:"Azi încă nu sunt comenzi finalizate",
   stopHint:"Opriți preparatul dacă s-a terminat — clienții nu-l vor putea comanda.",subtotal:"Preparate",fee:"Livrare",total:"Total",
-  otherZone:"Altă localitate",pays:{cash:"💵 Numerar",mia:"📱 Plată MIA",card:"💳 Plată cu cardul"},feeSmall:"Comandă sub 400 lei: livrarea e cu plată — spuneți clientului costul livrării.",feeConfirm:"Livrare în altă localitate: confirmați cu clientul costul exact al livrării (de la 50 lei).",from:"de la",errPerm:"Nu aveți acces la comenzi. Verificați dacă email-ul e adăugat în regulile Firestore.",lei:"lei",newOrder:"Comandă nouă"}
+  otherZone:"Altă localitate",cNew:"🆕 Client nou",cRep:"✅ A mai comandat: {n}",cCan:"⚠️ Anulate anterior: {n}",cBlk:"🚫 Număr blocat",a_block:"🚫 Blochează",a_unblock:"Deblochează",blockQ:"Blocați {p}?",blockP:"De pe acest număr nu se va mai putea comanda pe site. Dacă comanda e nouă, va fi anulată.",blkTitle:"🚫 Numere blocate",blkEmpty:"Nu sunt numere blocate. Puteți bloca un număr din cardul comenzii.",blkDone:"Număr blocat",unblkDone:"Număr deblocat",pays:{cash:"💵 Numerar",mia:"📱 Plată MIA",card:"💳 Plată cu cardul"},feeSmall:"Comandă sub 400 lei: livrarea e cu plată — spuneți clientului costul livrării.",feeConfirm:"Livrare în altă localitate: confirmați cu clientul costul exact al livrării (de la 50 lei).",from:"de la",errPerm:"Nu aveți acces la comenzi. Verificați dacă email-ul e adăugat în regulile Firestore.",lei:"lei",newOrder:"Comandă nouă"}
 };
 let L = "ru"; try { L = localStorage.getItem("lg-op-lang") || "ru"; } catch (e) {}
 const t = (k) => T[L][k] || k;
@@ -238,6 +241,7 @@ S.onAuth((u) => {
     firstLoad = false; orders = list; renderAll(); updateTitle();
   }, (e) => { $("errWarn").textContent = t("errPerm"); $("errWarn").classList.remove("hide"); }));
   unsub.push(S.watchSettings((s) => { settings = s; renderAll(); }));
+  unsub.push(S.watchBlocked((b) => { blocked = b; renderAll(); }));
   $("soundWarn").classList.toggle("hide", soundOk);
 });
 
@@ -262,6 +266,19 @@ function renderAll() {
 }
 function ago(ms) { const m = Math.floor((Date.now() - ms) / 60000); return m < 1 ? t("now") : `${m} ${t("min")}`; }
 function hm(ms) { return new Date(ms).toLocaleTimeString("ro-MD", { hour: "2-digit", minute: "2-digit" }); }
+let blocked = [];
+const pstats = {}; // телефон → {total, cancelled} (история клиента)
+const isBlocked = (ph) => blocked.some((b) => b.phone === ph);
+function clientTag(o) {
+  if (isBlocked(o.phone)) return `<span class="ctag bad">${t("cBlk")}</span>`;
+  const st = pstats[o.phone];
+  if (st === undefined) { pstats[o.phone] = null; S.phoneStats(o.phone).then((r) => { pstats[o.phone] = r; renderAll(); }).catch(() => {}); return ""; }
+  if (!st) return "";
+  const prev = Math.max(0, st.total - 1), tags = [];
+  tags.push(prev ? `<span class="ctag ok">${t("cRep").replace("{n}", prev)}</span>` : `<span class="ctag nw">${t("cNew")}</span>`);
+  if (st.cancelled) tags.push(`<span class="ctag bad">${t("cCan").replace("{n}", st.cancelled)}</span>`);
+  return tags.join("");
+}
 function card(o) {
   const acts = [];
   if (o.status === "new") acts.push(["accepted", "g", "a_accept"]);
@@ -275,12 +292,14 @@ function card(o) {
     <div class="time"><b>${hm(o.createdAt)}</b>${ago(o.createdAt)}</div></div>
    <div class="cl"><span class="mode">${t(o.mode)}</span><br>👤 ${esc(o.name)} · <span class="mode" style="padding:1px 6px">${(o.lang || "ro").toUpperCase()}</span><br>
     📞 <a href="tel:${esc(tel)}">${esc(o.phone)}</a>${o.mode === "delivery" ? `<br>📍 ${o.zone === "other" ? `<b style="color:var(--yl)">${t("otherZone")}</b> · ` : ""}${esc(o.addr)}` : ""}</div>
+   <div class="tags">${clientTag(o)}</div>
    <div class="pay">${t("pays")[o.pay || "cash"] || o.pay}</div>
    ${o.comment ? `<div class="com">💬 ${esc(o.comment)}</div>` : ""}
    <div class="its">${(o.items || []).map((i) => `<div class="it"><span class="q">${i.q}×</span><span>${esc(i.n)}</span><span class="p">${i.p * i.q}</span></div>`).join("")}</div>
    ${o.zone === "other" ? `<div class="com">⚠️ ${t("feeConfirm")}</div>` : ""}${o.mode === "delivery" && o.zone === "city" && o.subtotal < ((window.RESTAURANT.delivery.city||{}).freeFrom||0) && !o.deliveryFee ? `<div class="com">⚠️ ${t("feeSmall")}</div>` : ""}${o.deliveryFee ? `<div class="sub"><span>${t("subtotal")}</span><span>${o.subtotal} ${t("lei")}</span></div><div class="sub"><span>${t("fee")}${o.zone === "other" ? " (" + t("from") + ")" : ""}</span><span>${o.deliveryFee} ${t("lei")}</span></div>` : ""}
    <div class="tot"><span>${t("total")}</span><span>${o.total} ${t("lei")}</span></div>
    ${acts.length || canCancel ? `<div class="act">${acts.map(([s, c, k]) => `<button class="btn ${c}" data-id="${o.id}" data-s="${s}">${t(k)}</button>`).join("")}${canCancel ? `<button class="btn x" data-id="${o.id}" data-cancel="${o.num}">${t("a_cancel")}</button>` : ""}</div>` : ""}
+   ${isBlocked(o.phone) ? "" : `<div class="blkrow"><button class="lnk" data-block="${esc(o.phone)}" data-bname="${esc(o.name)}" data-bid="${o.id}" data-bst="${o.status}">${t("a_block")}</button></div>`}
   </div>`;
 }
 const recList = () => (Array.isArray(settings.rec) ? settings.rec : (window.RECOMMENDED_DEFAULT || [])).filter((id) => MENU.some((m) => m.id === id));
@@ -301,7 +320,8 @@ function renderRec() {
 function renderStop() {
   const off = new Set(settings.stop || []);
   const cats = window.CATEGORIES || [];
-  $("list").innerHTML = `<div class="stop"><p style="color:var(--mu);font-size:14px">${t("stopHint")}</p>${cats.map((c) => `<h3>${c.icon} ${c[L] || c.ro}</h3><div class="sl">${MENU.filter((m) => m.cat === c.id).map((m) =>
+  const blk = `<h3>${t("blkTitle")}</h3>${blocked.length ? `<div class="sl">${blocked.map((b) => `<div class="si"><span>📞 ${esc(b.phone)}${b.name ? ` · ${esc(b.name)}` : ""}</span><button class="ib" data-unblock="${esc(b.phone)}">${t("a_unblock")}</button></div>`).join("")}</div>` : `<p style="color:var(--mu);font-size:14px">${t("blkEmpty")}</p>`}`;
+  $("list").innerHTML = `<div class="stop">${blk}<p style="color:var(--mu);font-size:14px;margin-top:18px">${t("stopHint")}</p>${cats.map((c) => `<h3>${c.icon} ${c[L] || c.ro}</h3><div class="sl">${MENU.filter((m) => m.cat === c.id).map((m) =>
     `<div class="si ${off.has(m.id) ? "off" : ""}">${m.img ? `<img src="../${m.img}" alt="" style="object-fit:contain;background:#222">` : `<span style="flex:0 0 46px;text-align:center;font-size:22px">${c.icon}</span>`}<span>${esc(m.name)}</span><button class="sw ${off.has(m.id) ? "off" : ""}" data-stop="${m.id}" aria-label="${esc(m.name)}"></button></div>`).join("")}</div>`).join("")}</div>`;
 }
 
@@ -321,6 +341,9 @@ document.addEventListener("click", async (e) => {
   if (b.dataset.rec) { const r = recList(); const i = r.indexOf(b.dataset.rec); if (i > -1) r.splice(i, 1); else r.push(b.dataset.rec); setRec(r); return; }
   if (b.dataset.recmove) { const r = recList(); const i = r.indexOf(b.dataset.recmove), j = i + +b.dataset.d; if (i > -1 && j >= 0 && j < r.length) { [r[i], r[j]] = [r[j], r[i]]; setRec(r); } return; }
   if (b.dataset.recreset) { setRec(null); return; }
+  if (b.dataset.block) { const d = b.dataset; confirmBox(t("blockQ").replace("{p}", d.block), t("blockP"), t("a_block"), async () => {
+      try { await S.setBlocked(d.block, true, d.bname); if (d.bst === "new") await S.setStatus(d.bid, "cancelled"); toast(t("blkDone")); } catch (err) { toast("Error: " + err.message); } }); return; }
+  if (b.dataset.unblock) { try { await S.setBlocked(b.dataset.unblock, false); toast(t("unblkDone")); } catch (err) { toast("Error: " + err.message); } return; }
   if (b.dataset.stop) { const s = new Set(settings.stop || []); s.has(b.dataset.stop) ? s.delete(b.dataset.stop) : s.add(b.dataset.stop); S.setSettings({ stop: [...s] }); return; }
   if (b.id === "openBtn") { if (settings.open) confirmBox(t("closeQ"), t("closeP"), t("stopBtn"), () => S.setSettings({ open: false })); else S.setSettings({ open: true }); }
 });

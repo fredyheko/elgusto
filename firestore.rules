@@ -18,7 +18,9 @@ service cloud.firestore {
         && d.mode in ['delivery','pickup']
         && d.zone in ['city','other','']
         && d.name is string && d.name.size() > 0 && d.name.size() <= 60
-        && d.phone is string && d.phone.size() >= 6 && d.phone.size() <= 20
+        && d.phone is string && d.phone.matches('^(0[2-9][0-9]{7}|[+][0-9]{8,15})$')
+        && !exists(/databases/$(database)/documents/blocked/$(d.phone))
+        && getAfter(/databases/$(database)/documents/limits/$(d.phone)).data.at == request.time
         && d.addr is string && d.addr.size() <= 200
         && d.comment is string && d.comment.size() <= 300
         && d.pay in ['cash','mia','card']
@@ -43,6 +45,32 @@ service cloud.firestore {
       allow get: if true;
       allow create: if request.resource.data.keys().hasOnly(['n']) && request.resource.data.n == 1;
       allow update: if request.resource.data.keys().hasOnly(['n']) && request.resource.data.n == resource.data.n + 1;
+    }
+
+    // Лимит заказов с одного номера: не больше 3 за час.
+    // Пишется в той же транзакции, что и заказ (см. getAfter в validOrder).
+    match /limits/{phone} {
+      allow get: if true;
+      allow create: if request.resource.data.keys().hasOnly(['win','n','at'])
+        && request.resource.data.n == 1
+        && request.resource.data.win == request.time && request.resource.data.at == request.time;
+      allow update: if request.resource.data.keys().hasOnly(['win','n','at'])
+        && request.resource.data.at == request.time
+        && (
+          (request.time > resource.data.win + duration.value(1, 'h')
+            && request.resource.data.n == 1 && request.resource.data.win == request.time)
+          || (request.time <= resource.data.win + duration.value(1, 'h')
+            && request.resource.data.win == resource.data.win
+            && request.resource.data.n == resource.data.n + 1
+            && request.resource.data.n <= 3)
+        );
+      allow delete: if isOp();
+    }
+
+    // Заблокированные номера: проверяет сайт, ведёт оператор.
+    match /blocked/{phone} {
+      allow get: if true;
+      allow list, write: if isOp();
     }
 
     // Настройки (приём заказов открыт/закрыт, стоп-лист): читают все, меняет оператор.

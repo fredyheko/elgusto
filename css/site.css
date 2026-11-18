@@ -247,9 +247,9 @@ input:focus,textarea:focus{border-color:var(--cob);outline:none}
 
 /* Background: dark wall lit by the sign — warm glow behind the hero slowly breathes */
 body[data-v="1"]{background-image:none}
-body[data-v="1"] .hero:before{content:"";position:absolute;z-index:0;left:0;right:0;top:-10%;height:110%;background:radial-gradient(closest-side,rgba(255,199,44,.32),rgba(255,150,40,.12) 55%,transparent);animation:breathe 5s ease-in-out infinite;pointer-events:none}
+body[data-v="1"] .hero:before{content:"";position:absolute;z-index:0;left:0;right:0;top:-10%;height:110%;background:radial-gradient(closest-side,rgba(255,255,255,.07),rgba(255,255,255,.025) 55%,transparent);pointer-events:none}
 @keyframes breathe{50%{opacity:.6}}
-body[data-v="1"] .collage img{filter:drop-shadow(0 0 36px rgba(255,190,60,.35)) drop-shadow(0 22px 18px rgba(0,0,0,.5))}
+body[data-v="1"] .collage img{filter:drop-shadow(0 0 28px rgba(255,255,255,.10)) drop-shadow(0 22px 18px rgba(0,0,0,.5))}
 
 @media(prefers-reduced-motion:reduce){
   .tk,.collage img,.collage img.h2img,body[data-v="1"] .hero:before{animation:none!important}

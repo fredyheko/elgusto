@@ -75,7 +75,7 @@ const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
 const T = {
 ro:{h1:'Burgeri, kebab și aripioare fierbinți',
- lead:`Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ lead:`Burgeri, kebab, sushi și aripioare. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
  b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
  search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
  s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
@@ -83,7 +83,7 @@ ro:{h1:'Burgeri, kebab și aripioare fierbinți',
  i1:`<b>📍 Adresa</b>${R.address.ro}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(precomandă și livrare)</span>`,
  i2:`<b>🕒 Program</b>Zilnic, ${H}`,
  i3:`<b>🛵 Livrare</b>În ${R.city.ro} — gratuit pentru comenzi de la ${D.city.freeFrom} lei, pentru comenzi mai mici — ${D.city.feeBelow == null ? "cu plată (costul îl confirmă operatorul)" : D.city.feeBelow + " lei"}.<br>În alte localități — de la ${D.other.feeFrom} lei, costul exact îl confirmă operatorul.`,
- alg:'<b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii.',
+ alg:'<b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii. Rulourile și seturile de sushi se servesc cu sos de soia, ghimbir marinat și wasabi.',
  add:'+ Adaugă',added:'✓ Adăugat',na:'Indisponibil',cart:'Coșul',yours:'Comanda ta',subtotal:'Preparate',total:'Total',deliv:'🛵 Livrare',pick:'🏃 Ridicare',
  zone:'Unde livrăm?',zCity:`${R.city.ro} (oraș)`,zOther:'Altă localitate',
  needMore:(x)=>`Mai adăugați ${x} lei și livrarea în ${R.city.ro} va fi gratuită. Pentru comenzi sub ${D.city.freeFrom} lei livrarea este ${D.city.feeBelow == null ? "cu plată — costul exact îl confirmă operatorul la telefon" : D.city.feeBelow + " lei"}.`,
@@ -98,7 +98,7 @@ ro:{h1:'Burgeri, kebab și aripioare fierbinți',
  cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
  cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
 ru:{h1:'Горячие бургеры, кебабы и крылышки',
- lead:`Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ lead:`Бургеры, кебабы, суши и крылышки. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
  b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
  search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
  s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',
@@ -106,7 +106,7 @@ ru:{h1:'Горячие бургеры, кебабы и крылышки',
  i1:`<b>📍 Адрес</b>${R.address.ru}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(предзаказ и доставка)</span>`,
  i2:`<b>🕒 Часы работы</b>Ежедневно, ${H}`,
  i3:`<b>🛵 Доставка</b>По городу ${R.city.ru} — бесплатно при заказе от ${D.city.freeFrom} лей, на меньшую сумму — ${D.city.feeBelow == null ? "платно (стоимость подтвердит оператор)" : D.city.feeBelow + " лей"}.<br>В другие сёла — от ${D.other.feeFrom} лей, точную стоимость подтвердит оператор.`,
- alg:'<b>Проверьте аллергены перед заказом!</b> Блюда могут содержать: глютен, яйца, молоко (лактозу), рыбу, ракообразных, моллюсков, сою, кунжут, горчицу, сельдерей, орехи, арахис, сульфиты. Сообщите оператору об аллергии.',
+ alg:'<b>Проверьте аллергены перед заказом!</b> Блюда могут содержать: глютен, яйца, молоко (лактозу), рыбу, ракообразных, моллюсков, сою, кунжут, горчицу, сельдерей, орехи, арахис, сульфиты. Сообщите оператору об аллергии. Роллы и сеты суши подаются с соевым соусом, маринованным имбирём и васаби.',
  add:'+ В корзину',added:'✓ Добавлено',na:'Нет в наличии',cart:'Корзина',yours:'Ваш заказ',subtotal:'Блюда',total:'Итого',deliv:'🛵 Доставка',pick:'🏃 Самовывоз',
  zone:'Куда доставить?',zCity:`${R.city.ru} (город)`,zOther:'Другое село',
  needMore:(x)=>`Добавьте ещё ${x} лей — и доставка по городу будет бесплатной. Для заказов до ${D.city.freeFrom} лей доставка ${D.city.feeBelow == null ? "платная — точную стоимость назовёт оператор по телефону" : "стоит " + D.city.feeBelow + " лей"}.`,
@@ -166,8 +166,8 @@ function cardHtml(m, hit) {
   const ok = avail(m.id), ing = L === "ru" ? m.ru : m.ro;
   return `<div class="card${ok ? "" : " na"}">${ok ? "" : `<span class="na-tag">${t("na")}</span>`}
   <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(m.name)}" width="480" height="360" loading="lazy" decoding="async">` : `<span class="pe">${(ALLCATS.find((c) => c.id === m.cat) || {}).icon || "🍽️"}</span>`}</div>
-  <div class="body"><h3>${esc(m.name)}</h3><div class="ing">${esc(ing)}</div>
-  <div class="row"><span class="gr">${m.g ? m.g + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
+  <div class="body"><h3>${esc(dname(m))}</h3><div class="ing">${esc(ing)}</div>
+  <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
   <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
 }
 function render() {
@@ -233,9 +233,11 @@ const feeOpen = () => mode === "delivery" && (zone === "other" || (sub() < D.cit
 function upd() { const c = count(); $("cartbtn").style.display = c ? "block" : "none"; $("cartbtn").textContent = `${t("cart")} (${c}): ${sub()} ${t("cur")}`; updLast(); }
 /* ---------- соусы и добавки ---------- */
 const cap = (x) => x ? x[0].toUpperCase() + x.slice(1) : x;
+// "840/100/50/30" (сет: суши/имбирь/васаби/соус) → показываем только вес суши
+function gShow(g) { const p = String(g).split("/"); return p.length > 2 ? p[0] : g; }
 function dname(m) {
   if (L === "ru" && m.cat === "sosuri") return cap(m.ru);
-  return m.name;
+  return L === "ru" ? m.name.replace(/ buc\.\)/, " шт.)") : m.name;
 }
 function shortName(m) { return cap(dname(m).replace(/^(Adaos kebab: |Добавка в кебаб: )/, "")); }
 const offered = new Set();
@@ -276,7 +278,7 @@ function cartSauces() {
   return `<p class="adg">${t("adCart")}</p><div class="chips row">${AD.sauces.map(chipHtml).join("")}</div>`;
 }
 function lines() {
-  return Object.entries(cart).map(([k, q]) => { const m = BY[k]; return `<div class="ci">${m.img ? `<img src="${BASE}${m.img}" alt="" width="58" height="44" style="width:58px;height:44px;object-fit:contain">` : ""}<div class="n">${esc(dname(m))}${avail(k) ? "" : ` <span style="color:#ff8080">· ${t("na")}</span>`}<small>${m.price} ${t("cur")}${m.g ? " · " + m.g + " " + (L === "ru" ? "г" : "g") : ""}</small></div>
+  return Object.entries(cart).map(([k, q]) => { const m = BY[k]; return `<div class="ci">${m.img ? `<img src="${BASE}${m.img}" alt="" width="58" height="44" style="width:58px;height:44px;object-fit:contain">` : ""}<div class="n">${esc(dname(m))}${avail(k) ? "" : ` <span style="color:#ff8080">· ${t("na")}</span>`}<small>${m.price} ${t("cur")}${m.g ? " · " + gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</small></div>
   <div class="q"><button onclick="chg('${k}',-1)">−</button><b>${q}</b><button onclick="chg('${k}',1)">+</button></div></div>`; }).join("");
 }
 let draft = { n: "", p: "", a: "", c: "" };
@@ -378,7 +380,7 @@ try {
 
 /* ---------- motion: бегущая строка ---------- */
 function fillTicker() {
-  const names = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-crispy", "crispy-burger", "fries", "salata-creveti-tempura", "chicken-nuggets", "big-double-cheeseburger"].map((id) => BY[id]).filter(Boolean);
+  const names = ["double-cheeseburger-lgusto", "sushi-philadelphia", "kebab-lgusto", "aripi-crispy", "sushi-golden-dragon", "crispy-burger", "fries", "sushi-set-lgusto", "chicken-nuggets", "big-double-cheeseburger"].map((id) => BY[id]).filter(Boolean);
   const one = names.map((m) => `<span class="ti">${m.img ? `<img src="${BASE}${m.img}" alt="" width="46" height="34">` : ""}${esc(m.name)}<b>${m.price} ${t("cur")}</b></span>`).join("");
   $("ticker").innerHTML = one + one;
 }

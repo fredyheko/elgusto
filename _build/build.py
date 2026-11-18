@@ -15,12 +15,12 @@ prices = [m["price"] for m in MENU if m["cat"] != "sosuri"]
 
 PAGES = {
  "ro": dict(path="", B="", url=SITE + "/", locale="ro_MD",
-   title="L'Gusto Edineț — burgeri, kebab, livrare gratuită",
-   desc=f"Burgeri, kebab, aripioare și salate în Edineț. Comandă online: livrare gratuită de la {R['delivery']['city']['freeFrom']} lei, zilnic {h0}–{h1}. Ridicare personală. Tel. {R['phone']}.",
+   title="L'Gusto Edineț — burgeri, sushi, kebab, livrare",
+   desc=f"Burgeri, sushi, kebab și aripioare în Edineț. Comandă online: livrare gratuită de la {R['delivery']['city']['freeFrom']} lei, zilnic {h0}–{h1}. Ridicare personală. Tel. {R['phone']}.",
    call="Sună la L'Gusto", nos=f"Pentru comandă online activați JavaScript sau sunați: <a href=\"tel:{tel}\">{R['phone']}</a>"),
  "ru": dict(path="ru/", B="../", url=SITE + "/ru/", locale="ru_MD",
-   title="L'Gusto Единцы — бургеры, кебаб, доставка еды",
-   desc=f"Бургеры, кебабы, крылышки и салаты в Единцах. Заказ онлайн: бесплатная доставка от {R['delivery']['city']['freeFrom']} лей, ежедневно {h0}–{h1}, есть самовывоз. Тел. {R['phone']}.",
+   title="L'Gusto Единцы — бургеры, суши, кебаб, доставка",
+   desc=f"Бургеры, суши, кебабы и крылышки в Единцах. Заказ онлайн: бесплатная доставка от {R['delivery']['city']['freeFrom']} лей, ежедневно {h0}–{h1}, есть самовывоз. Тел. {R['phone']}.",
    call="Позвонить в L'Gusto", nos=f"Для онлайн-заказа включите JavaScript или позвоните: <a href=\"tel:{tel}\">{R['phone']}</a>"),
 }
 
@@ -37,7 +37,7 @@ def ld(lang):
         "name": "L'Gusto", "alternateName": "L'Gusto express food", "url": p["url"], "inLanguage": lang,
         "image": SITE + "/img/og.jpg", "logo": SITE + "/icons/icon-512.png", "telephone": tel,
         "priceRange": f"{min(prices)}–{max(prices)} MDL", "currenciesAccepted": "MDL",
-        "servesCuisine": ["Burgers", "Kebab", "Fast food"], "acceptsReservations": False,
+        "servesCuisine": ["Burgers", "Sushi", "Kebab", "Fast food"], "acceptsReservations": False,
         "address": {"@type": "PostalAddress", "streetAddress": "str. Gagarin 39", "addressLocality": "Edineț", "addressRegion": "Edineț", "addressCountry": "MD"},
         "areaServed": {"@type": "City", "name": "Edineț"},
         "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": h0, "closes": h1}],

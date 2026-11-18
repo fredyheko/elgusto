@@ -68,6 +68,24 @@ window.CATEGORIES = [
   "ru": "Салаты"
  },
  {
+  "id": "rulouri",
+  "icon": "🍣",
+  "ro": "Rulouri sushi",
+  "ru": "Суши-роллы"
+ },
+ {
+  "id": "maki",
+  "icon": "🍙",
+  "ro": "Maki",
+  "ru": "Маки"
+ },
+ {
+  "id": "seturi",
+  "icon": "🍱",
+  "ro": "Seturi sushi",
+  "ru": "Сеты суши"
+ },
+ {
   "id": "sosuri",
   "hidden": true,
   "icon": "🥫",
@@ -436,6 +454,316 @@ window.MENU = [
   "g": "",
   "price": 12,
   "img": ""
+ },
+ {
+  "id": "sushi-sake-maki",
+  "cat": "maki",
+  "name": "Sake maki",
+  "ro": "somon fresh, orez fiert, susan, nori",
+  "ru": "свежий лосось, рис, кунжут, нори",
+  "g": "140",
+  "price": 50,
+  "img": "img/sushi-sake-maki.webp"
+ },
+ {
+  "id": "sushi-unagi-maki",
+  "cat": "maki",
+  "name": "Unagi maki",
+  "ro": "anghilă afumată, orez fiert, susan, nori",
+  "ru": "копчёный угорь, рис, кунжут, нори",
+  "g": "140",
+  "price": 50,
+  "img": "img/sushi-unagi-maki.webp"
+ },
+ {
+  "id": "sushi-ebi-maki",
+  "cat": "maki",
+  "name": "Ebi maki",
+  "ro": "creveți fierți, susan, orez fiert, nori",
+  "ru": "варёные креветки, кунжут, рис, нори",
+  "g": "140",
+  "price": 50,
+  "img": "img/sushi-ebi-maki.webp"
+ },
+ {
+  "id": "sushi-maguro-maki",
+  "cat": "maki",
+  "name": "Maguro maki",
+  "ro": "ton, susan, nori, orez fiert",
+  "ru": "тунец, кунжут, нори, рис",
+  "g": "140",
+  "price": 50,
+  "img": "img/sushi-maguro-maki.webp"
+ },
+ {
+  "id": "sushi-avocado-maki",
+  "cat": "maki",
+  "name": "Avocado maki",
+  "ro": "avocado, orez fiert, nori, susan",
+  "ru": "авокадо, рис, нори, кунжут",
+  "g": "140",
+  "price": 50,
+  "img": "img/sushi-avocado-maki.webp"
+ },
+ {
+  "id": "sushi-kappa-maki",
+  "cat": "maki",
+  "name": "Kappa maki",
+  "ro": "castraveți, orez fiert, susan, nori",
+  "ru": "огурец, рис, кунжут, нори",
+  "g": "140",
+  "price": 50,
+  "img": "img/sushi-kappa-maki.webp"
+ },
+ {
+  "id": "sushi-philadelphia",
+  "cat": "rulouri",
+  "name": "Philadelphia",
+  "ro": "somon fresh, avocado, castravete, philadelphia cream, orez fiert, nori",
+  "ru": "свежий лосось, авокадо, огурец, сливочный сыр, рис, нори",
+  "g": "280",
+  "price": 160,
+  "img": "img/sushi-philadelphia.webp"
+ },
+ {
+  "id": "sushi-philadelphia-ebi",
+  "cat": "rulouri",
+  "name": "Philadelphia Ebi",
+  "ro": "somon fresh, creveți fierți, avocado, castraveți, philadelphia cream, orez fiert, nori",
+  "ru": "свежий лосось, варёные креветки, авокадо, огурец, сливочный сыр, рис, нори",
+  "g": "280",
+  "price": 170,
+  "img": "img/sushi-philadelphia-ebi.webp"
+ },
+ {
+  "id": "sushi-philadelphia-lux",
+  "cat": "rulouri",
+  "name": "Philadelphia Lux",
+  "ro": "somon fresh, avocado, philadelphia cream, castraveți, caviar de somon, orez fiert, nori",
+  "ru": "свежий лосось, авокадо, сливочный сыр, огурец, икра лосося, рис, нори",
+  "g": "290",
+  "price": 180,
+  "img": "img/sushi-philadelphia-lux.webp"
+ },
+ {
+  "id": "sushi-california",
+  "cat": "rulouri",
+  "name": "California",
+  "ro": "icre tobiko, creveți fierți, avocado, castraveți, maioneză japoneză, orez fiert, nori",
+  "ru": "икра тобико, варёные креветки, авокадо, огурец, японский майонез, рис, нори",
+  "g": "260",
+  "price": 160,
+  "img": "img/sushi-california.webp"
+ },
+ {
+  "id": "sushi-california-orange",
+  "cat": "rulouri",
+  "name": "California Orange",
+  "ro": "icre tobiko, somon fresh, castraveți, cheese cream, orez fiert, nori",
+  "ru": "икра тобико, свежий лосось, огурец, сливочный сыр, рис, нори",
+  "g": "260",
+  "price": 165,
+  "img": "img/sushi-california-orange.webp"
+ },
+ {
+  "id": "sushi-california-whites",
+  "cat": "rulouri",
+  "name": "California White's",
+  "ro": "snow crab, susan alb, castraveți, avocado, maioneză japoneză, orez fiert, nori",
+  "ru": "снежный краб, белый кунжут, огурец, авокадо, японский майонез, рис, нори",
+  "g": "260",
+  "price": 95,
+  "img": "img/sushi-california-whites.webp"
+ },
+ {
+  "id": "sushi-philadelphia-double-cheese",
+  "cat": "rulouri",
+  "name": "Philadelphia Double Cheese",
+  "ro": "somon fresh, philadelphia cream, castraveți, avocado, orez fiert, nori",
+  "ru": "свежий лосось, сливочный сыр, огурец, авокадо, рис, нори",
+  "g": "280",
+  "price": 175,
+  "img": "img/sushi-philadelphia-double-cheese.webp"
+ },
+ {
+  "id": "sushi-canada",
+  "cat": "rulouri",
+  "name": "Canada",
+  "ro": "anghilă afumată, avocado, castraveți, somon fresh, philadelphia cream, susan, sos unagi, orez fiert, nori",
+  "ru": "копчёный угорь, авокадо, огурец, свежий лосось, сливочный сыр, кунжут, соус унаги, рис, нори",
+  "g": "280",
+  "price": 180,
+  "img": "img/sushi-canada.webp"
+ },
+ {
+  "id": "sushi-imperator",
+  "cat": "rulouri",
+  "name": "Imperator",
+  "ro": "creveți fierți, somon fresh, avocado, castraveți, philadelphia cream, orez fiert, nori",
+  "ru": "варёные креветки, свежий лосось, авокадо, огурец, сливочный сыр, рис, нори",
+  "g": "290",
+  "price": 155,
+  "img": "img/sushi-imperator.webp"
+ },
+ {
+  "id": "sushi-red-dragon",
+  "cat": "rulouri",
+  "name": "Red Dragon",
+  "ro": "ton fresh, caviar de somon, germeni de ceapă, avocado, philadelphia cream, orez fiert, nori",
+  "ru": "свежий тунец, икра лосося, ростки лука, авокадо, сливочный сыр, рис, нори",
+  "g": "290",
+  "price": 190,
+  "img": "img/sushi-red-dragon.webp"
+ },
+ {
+  "id": "sushi-orange-dragon",
+  "cat": "rulouri",
+  "name": "Orange Dragon",
+  "ro": "somon fresh, icre tobiko negre, germeni de floarea soarelui, avocado, castraveți, philadelphia cream, anghilă afumată, orez fiert, nori",
+  "ru": "свежий лосось, чёрная икра тобико, ростки подсолнечника, авокадо, огурец, сливочный сыр, копчёный угорь, рис, нори",
+  "g": "290",
+  "price": 185,
+  "img": "img/sushi-orange-dragon.webp"
+ },
+ {
+  "id": "sushi-golden-dragon",
+  "cat": "rulouri",
+  "name": "Golden Dragon",
+  "ro": "anghilă afumată, icre tobiko, creveți fierți, avocado, philadelphia cream, germeni, castraveți, sos unagi, orez fiert, nori",
+  "ru": "копчёный угорь, икра тобико, варёные креветки, авокадо, сливочный сыр, ростки, огурец, соус унаги, рис, нори",
+  "g": "280",
+  "price": 210,
+  "img": "img/sushi-golden-dragon.webp"
+ },
+ {
+  "id": "sushi-green-dragon",
+  "cat": "rulouri",
+  "name": "Green Dragon",
+  "ro": "avocado, philadelphia cream, icre tobiko, somon fresh, castraveți, sos unagi, susan, orez fiert, nori",
+  "ru": "авокадо, сливочный сыр, икра тобико, свежий лосось, огурец, соус унаги, кунжут, рис, нори",
+  "g": "280",
+  "price": 175,
+  "img": "img/sushi-green-dragon.webp"
+ },
+ {
+  "id": "sushi-alaska",
+  "cat": "rulouri",
+  "name": "Alaska",
+  "ro": "somon afumat, caviar de somon, cremă philadelphia, avocado, susan amestec, orez fiert, nori",
+  "ru": "копчёный лосось, икра лосося, сливочный сыр, авокадо, микс кунжута, рис, нори",
+  "g": "270",
+  "price": 145,
+  "img": "img/sushi-alaska.webp"
+ },
+ {
+  "id": "sushi-burnt",
+  "cat": "rulouri",
+  "name": "Burnt",
+  "ro": "somon grill, creveți tempura, castraveți, sos spicy, germeni de ceapă, orez fiert, nori",
+  "ru": "лосось гриль, креветки темпура, огурец, острый соус, ростки лука, рис, нори",
+  "g": "390",
+  "price": 175,
+  "img": "img/sushi-burnt.webp"
+ },
+ {
+  "id": "sushi-chuka-wakame",
+  "cat": "rulouri",
+  "name": "Chuka Wakame",
+  "ro": "chuka wakame, ton fresh, mango, susan, sos de nuci, orez fiert, nori",
+  "ru": "водоросли чука, свежий тунец, манго, кунжут, ореховый соус, рис, нори",
+  "g": "360",
+  "price": 150,
+  "img": "img/sushi-chuka-wakame.webp"
+ },
+ {
+  "id": "sushi-kani-tempura",
+  "cat": "rulouri",
+  "name": "Kani Tempura",
+  "ro": "snow crab, castravete, avocado, icre tobiko, sos unagi, philadelphia cream, susan, tempura, panko, orez fiert, nori",
+  "ru": "снежный краб, огурец, авокадо, икра тобико, соус унаги, сливочный сыр, кунжут, темпура, панко, рис, нори",
+  "g": "280",
+  "price": 140,
+  "img": "img/sushi-kani-tempura.webp"
+ },
+ {
+  "id": "sushi-unagi-tempura",
+  "cat": "rulouri",
+  "name": "Unagi Tempura",
+  "ro": "anghilă afumată, sos unagi, icre tobiko, avocado, castraveți, susan, philadelphia cream, tempura, panko, orez fiert, nori",
+  "ru": "копчёный угорь, соус унаги, икра тобико, авокадо, огурец, кунжут, сливочный сыр, темпура, панко, рис, нори",
+  "g": "280",
+  "price": 160,
+  "img": "img/sushi-unagi-tempura.webp"
+ },
+ {
+  "id": "sushi-sake-tempura",
+  "cat": "rulouri",
+  "name": "Sake Tempura",
+  "ro": "somon prăjit, sos unagi, avocado, castraveți, icre tobiko, susan, philadelphia cream, tempura, panko, orez fiert, nori",
+  "ru": "жареный лосось, соус унаги, авокадо, огурец, икра тобико, кунжут, сливочный сыр, темпура, панко, рис, нори",
+  "g": "280",
+  "price": 160,
+  "img": "img/sushi-sake-tempura.webp"
+ },
+ {
+  "id": "sushi-ebi-tempura",
+  "cat": "rulouri",
+  "name": "Ebi Tempura",
+  "ro": "creveți fierți, sos unagi, castraveți, avocado, icre tobiko, susan, philadelphia cream, tempura, panko, orez fiert, nori",
+  "ru": "варёные креветки, соус унаги, огурец, авокадо, икра тобико, кунжут, сливочный сыр, темпура, панко, рис, нори",
+  "g": "280",
+  "price": 160,
+  "img": "img/sushi-ebi-tempura.webp"
+ },
+ {
+  "id": "sushi-set-tempura",
+  "cat": "seturi",
+  "name": "Set Sushi Tempura (24 buc.)",
+  "ro": "Kani Tempura, Sake Tempura, Unagi Tempura, sos unagi, susan",
+  "ru": "Kani Tempura, Sake Tempura, Unagi Tempura, соус унаги, кунжут",
+  "g": "840/100/50/30",
+  "price": 414,
+  "img": "img/sushi-set-tempura.webp"
+ },
+ {
+  "id": "sushi-set-sake",
+  "cat": "seturi",
+  "name": "Set Sushi Sake (24 buc.)",
+  "ro": "Sake Tempura, Sake Hot Vulcan, Sake maki, sos unagi, susan",
+  "ru": "Sake Tempura, Sake Hot Vulcan, Sake maki, соус унаги, кунжут",
+  "g": "700/100/50/30",
+  "price": 355,
+  "img": "img/sushi-set-sake.webp"
+ },
+ {
+  "id": "sushi-set-asia",
+  "cat": "seturi",
+  "name": "Set Sushi Asia (24 buc.)",
+  "ro": "Canada, California Orange, Unagi maki, sos unagi, susan",
+  "ru": "Canada, California Orange, Unagi maki, соус унаги, кунжут",
+  "g": "700/80/30/30",
+  "price": 355,
+  "img": "img/sushi-set-asia.webp"
+ },
+ {
+  "id": "sushi-set-classic",
+  "cat": "seturi",
+  "name": "Set Sushi Classic (32 buc.)",
+  "ro": "Philadelphia, California White's, Philadelphia Ebi, California Black, sos spicy",
+  "ru": "Philadelphia, California White's, Philadelphia Ebi, California Black, острый соус",
+  "g": "1080/120/40/30",
+  "price": 515,
+  "img": "img/sushi-set-classic.webp"
+ },
+ {
+  "id": "sushi-set-lgusto",
+  "cat": "seturi",
+  "name": "Set Sushi L'Gusto (40 buc.)",
+  "ro": "Philadelphia, California, California White's, California Black, Ebi Tempura, Unagi maki, sos unagi, sos spicy, susan",
+  "ru": "Philadelphia, California, California White's, California Black, Ebi Tempura, Unagi maki, соус унаги, острый соус, кунжут",
+  "g": "1220/120/80/30",
+  "price": 585,
+  "img": "img/sushi-set-lgusto.webp"
  }
 ];
 

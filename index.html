@@ -579,7 +579,6 @@ window.openCart = function () {
   ${mode === "delivery" ? `<label>${t("zone")}</label><div class="seg"><button class="${zone === "city" ? "on" : ""}" onclick="setZone('city')">${t("zCity")}</button><button class="${zone === "other" ? "on" : ""}" onclick="setZone('other')">${t("zOther")}</button></div>` : ""}
   ${hint}
   <label>${t("payL")}</label><div class="seg">${payOpts().map((k) => `<button class="${pay === k ? "on" : ""}" onclick="setPay('${k}')">${t("pays")[k]}</button>`).join("")}</div>
-  ${t("payH")[pay] ? `<div class="hint ok">${t("payH")[pay]}</div>` : ""}
   <label>${t("name")}</label><input id="fn" autocomplete="name" maxlength="60" placeholder="${t("nameP")}" value="${esc(draft.n)}">
   <label>${t("phone")}</label><input id="fp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0xx xxx xxx" value="${esc(draft.p)}">
   ${mode === "delivery" ? `<label>${t("addr")}</label><input id="fa" autocomplete="street-address" maxlength="200" placeholder="${zone === "city" ? t("addrPC") : t("addrP")}" value="${esc(draft.a)}">` : ""}

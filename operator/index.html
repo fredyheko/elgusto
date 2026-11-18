@@ -61,6 +61,7 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 .mode{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;background:#222;margin-bottom:4px}
 .its{margin:10px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:8px 0}
 .it{display:flex;gap:8px;font-size:14px;padding:3px 0}.it .q{font-weight:800;color:var(--or);min-width:28px}.it .p{margin-left:auto;color:var(--mu)}
+.pay{display:inline-block;background:#12306e;color:#fff;border-radius:10px;padding:5px 10px;font-size:14px;font-weight:800;margin:8px 0 0}
 .com{background:#2a2100;color:var(--yl);border-radius:10px;padding:8px 10px;font-size:13px;margin:8px 0}
 .tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;margin:6px 0 2px}
 .sub{font-size:12px;color:var(--mu);display:flex;justify-content:space-between}
@@ -151,7 +152,7 @@ const T = {
   closeQ:"Остановить приём заказов?",closeP:"Клиенты увидят на сайте, что заказы временно не принимаются.",stopBtn:"Остановить",
   emptyNew:"Новых заказов нет. Когда клиент оформит заказ, он появится здесь со звуком.",emptyWork:"Нет заказов в работе",emptyDone:"Сегодня ещё нет выполненных заказов",
   stopHint:"Выключите блюдо, если оно закончилось — клиенты не смогут его заказать.",subtotal:"Блюда",fee:"Доставка",total:"Итого",
-  otherZone:"Другое село",feeSmall:"Заказ меньше 400 лей: доставка платная — назовите клиенту стоимость доставки.",feeConfirm:"Доставка в село: уточните у клиента точную стоимость доставки (от 50 лей).",from:"от",errPerm:"Нет доступа к заказам. Проверьте, что ваш email добавлен в правила Firestore.",lei:"лей",newOrder:"Новый заказ"},
+  otherZone:"Другое село",pays:{cash:"💵 Наличные",mia:"📱 Оплата MIA",card:"💳 Оплата картой"},feeSmall:"Заказ меньше 400 лей: доставка платная — назовите клиенту стоимость доставки.",feeConfirm:"Доставка в село: уточните у клиента точную стоимость доставки (от 50 лей).",from:"от",errPerm:"Нет доступа к заказам. Проверьте, что ваш email добавлен в правила Firestore.",lei:"лей",newOrder:"Новый заказ"},
  ro:{opTitle:"Aplicația operatorului",enter:"Intră",email:"Email",pass:"Parola",badLogin:"Email sau parolă greșită",
   testMode:"Mod de test: Firebase nu e conectat, comenzile se văd doar în acest browser. Puteți intra cu orice date.",
   open:"Primim comenzi",closed:"Comenzi oprite",soundOff:"Sunetul e oprit — apăsați ca să auziți comenzile noi",soundOn:"Pornește sunetul",
@@ -164,7 +165,7 @@ const T = {
   closeQ:"Opriți primirea comenzilor?",closeP:"Clienții vor vedea pe site că momentan nu se primesc comenzi.",stopBtn:"Oprește",
   emptyNew:"Nu sunt comenzi noi. Când un client comandă, comanda apare aici cu sunet.",emptyWork:"Nu sunt comenzi în lucru",emptyDone:"Azi încă nu sunt comenzi finalizate",
   stopHint:"Opriți preparatul dacă s-a terminat — clienții nu-l vor putea comanda.",subtotal:"Preparate",fee:"Livrare",total:"Total",
-  otherZone:"Altă localitate",feeSmall:"Comandă sub 400 lei: livrarea e cu plată — spuneți clientului costul livrării.",feeConfirm:"Livrare în altă localitate: confirmați cu clientul costul exact al livrării (de la 50 lei).",from:"de la",errPerm:"Nu aveți acces la comenzi. Verificați dacă email-ul e adăugat în regulile Firestore.",lei:"lei",newOrder:"Comandă nouă"}
+  otherZone:"Altă localitate",pays:{cash:"💵 Numerar",mia:"📱 Plată MIA",card:"💳 Plată cu cardul"},feeSmall:"Comandă sub 400 lei: livrarea e cu plată — spuneți clientului costul livrării.",feeConfirm:"Livrare în altă localitate: confirmați cu clientul costul exact al livrării (de la 50 lei).",from:"de la",errPerm:"Nu aveți acces la comenzi. Verificați dacă email-ul e adăugat în regulile Firestore.",lei:"lei",newOrder:"Comandă nouă"}
 };
 let L = "ru"; try { L = localStorage.getItem("lg-op-lang") || "ru"; } catch (e) {}
 const t = (k) => T[L][k] || k;
@@ -274,6 +275,7 @@ function card(o) {
     <div class="time"><b>${hm(o.createdAt)}</b>${ago(o.createdAt)}</div></div>
    <div class="cl"><span class="mode">${t(o.mode)}</span><br>👤 ${esc(o.name)} · <span class="mode" style="padding:1px 6px">${(o.lang || "ro").toUpperCase()}</span><br>
     📞 <a href="tel:${esc(tel)}">${esc(o.phone)}</a>${o.mode === "delivery" ? `<br>📍 ${o.zone === "other" ? `<b style="color:var(--yl)">${t("otherZone")}</b> · ` : ""}${esc(o.addr)}` : ""}</div>
+   <div class="pay">${t("pays")[o.pay || "cash"] || o.pay}</div>
    ${o.comment ? `<div class="com">💬 ${esc(o.comment)}</div>` : ""}
    <div class="its">${(o.items || []).map((i) => `<div class="it"><span class="q">${i.q}×</span><span>${esc(i.n)}</span><span class="p">${i.p * i.q}</span></div>`).join("")}</div>
    ${o.zone === "other" ? `<div class="com">⚠️ ${t("feeConfirm")}</div>` : ""}${o.mode === "delivery" && o.zone === "city" && o.subtotal < ((window.RESTAURANT.delivery.city||{}).freeFrom||0) && !o.deliveryFee ? `<div class="com">⚠️ ${t("feeSmall")}</div>` : ""}${o.deliveryFee ? `<div class="sub"><span>${t("subtotal")}</span><span>${o.subtotal} ${t("lei")}</span></div><div class="sub"><span>${t("fee")}${o.zone === "other" ? " (" + t("from") + ")" : ""}</span><span>${o.deliveryFee} ${t("lei")}</span></div>` : ""}

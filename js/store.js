@@ -42,7 +42,7 @@ const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(
 export async function createOrder(o) {
   const order = {
     items: o.items, subtotal: o.subtotal, deliveryFee: o.deliveryFee, total: o.total,
-    mode: o.mode, zone: o.zone || "", name: o.name, phone: o.phone, addr: o.addr || "", comment: o.comment || "",
+    mode: o.mode, zone: o.zone || "", name: o.name, phone: o.phone, addr: o.addr || "", comment: o.comment || "", pay: o.pay || "cash",
     lang: o.lang, status: "new",
   };
   if (!LIVE) {

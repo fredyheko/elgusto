@@ -10,7 +10,7 @@ service cloud.firestore {
     }
 
     function validOrder(d) {
-      return d.keys().hasOnly(['items','subtotal','deliveryFee','total','mode','zone','name','phone','addr','comment','lang','status','num','createdAt','updatedAt'])
+      return d.keys().hasOnly(['items','subtotal','deliveryFee','total','mode','zone','name','phone','addr','comment','pay','lang','status','num','createdAt','updatedAt'])
         && d.status == 'new'
         && d.items is list && d.items.size() > 0 && d.items.size() <= 60
         && d.total is number && d.total > 0 && d.total < 100000
@@ -21,6 +21,7 @@ service cloud.firestore {
         && d.phone is string && d.phone.size() >= 6 && d.phone.size() <= 20
         && d.addr is string && d.addr.size() <= 200
         && d.comment is string && d.comment.size() <= 300
+        && d.pay in ['cash','mia','card']
         && d.lang in ['ro','ru']
         && d.createdAt == request.time && d.updatedAt == request.time
         && d.num == getAfter(/databases/$(database)/documents/meta/counter).data.n;

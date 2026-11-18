@@ -45,12 +45,12 @@
 
 <section class="hero">
   <div>
-    <h1 data-i="h1">Burgeri, kebab și aripioare fierbinți</h1>
-    <p data-i="lead">Burgeri, kebab, sushi și aripioare. Comanzi din telefon în două minute. Gătim pe loc, pe str. Gagarin 39, și aducem oriunde în Edineț.</p>
+    <h1 data-i="h1">Burgeri, sushi și kebab pentru orice poftă</h1>
+    <p data-i="lead">Burgeri fierbinți, rulouri și seturi de sushi, kebab, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe str. Gagarin 39, și aducem oriunde în Edineț.</p>
     <div class="badges"><div data-i="b1">🛵 Livrare gratuită de la 400 lei</div><div data-i="b2">🏃 Ridicare personală</div><div data-i="b3">🕗 Zilnic 08:00–21:00</div></div>
     <button class="cta" onclick="go(CATS[0].id)" data-i="see">Vezi meniul</button><a class="cta ghost" href="#contacte" data-i="contacts">Contacte</a>
   </div>
-  <div class="collage" id="collage"><img src="img/double-cheeseburger-lgusto.webp" alt="Double cheeseburger L'Gusto" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="Double cheeseburger L'Gusto: 115 lei"><b>115</b><span>lei</span></div></div>
+  <div class="collage" id="collage"><img src="img/double-cheeseburger-lgusto.webp" alt="Double cheeseburger L'Gusto" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="Double cheeseburger L'Gusto: 115 lei"><b>115</b><span>lei</span></div><img class="h2img" src="img/sushi-set-lgusto.webp" alt="Set Sushi L'Gusto (40 buc.)" width="480" height="360"></div>
 </section>
 <div class="tickwrap" aria-hidden="true"><div class="ticker"><div class="tk" id="ticker"><span class="ti"><img src="img/double-cheeseburger-lgusto.webp" alt="" width="46" height="34">Double cheeseburger L'Gusto<b>115 lei</b></span><span class="ti"><img src="img/sushi-philadelphia.webp" alt="" width="46" height="34">Philadelphia<b>160 lei</b></span><span class="ti"><img src="img/kebab-lgusto.webp" alt="" width="46" height="34">Kebab „L'Gusto”<b>85 lei</b></span><span class="ti"><img src="img/aripi-crispy.webp" alt="" width="46" height="34">Aripi de pui crispy 🌶️<b>79 lei</b></span><span class="ti"><img src="img/sushi-golden-dragon.webp" alt="" width="46" height="34">Golden Dragon<b>210 lei</b></span><span class="ti"><img src="img/crispy-burger.webp" alt="" width="46" height="34">Crispy burger<b>75 lei</b></span><span class="ti"><img src="img/fries.webp" alt="" width="46" height="34">Fries<b>40 lei</b></span><span class="ti"><img src="img/sushi-set-lgusto.webp" alt="" width="46" height="34">Set Sushi L'Gusto (40 buc.)<b>585 lei</b></span><span class="ti"><img src="img/chicken-nuggets.webp" alt="" width="46" height="34">Chicken nuggets<b>60 lei</b></span><span class="ti"><img src="img/big-double-cheeseburger.webp" alt="" width="46" height="34">Big double cheeseburger<b>100 lei</b></span><span class="ti"><img src="img/double-cheeseburger-lgusto.webp" alt="" width="46" height="34">Double cheeseburger L'Gusto<b>115 lei</b></span><span class="ti"><img src="img/sushi-philadelphia.webp" alt="" width="46" height="34">Philadelphia<b>160 lei</b></span><span class="ti"><img src="img/kebab-lgusto.webp" alt="" width="46" height="34">Kebab „L'Gusto”<b>85 lei</b></span><span class="ti"><img src="img/aripi-crispy.webp" alt="" width="46" height="34">Aripi de pui crispy 🌶️<b>79 lei</b></span><span class="ti"><img src="img/sushi-golden-dragon.webp" alt="" width="46" height="34">Golden Dragon<b>210 lei</b></span><span class="ti"><img src="img/crispy-burger.webp" alt="" width="46" height="34">Crispy burger<b>75 lei</b></span><span class="ti"><img src="img/fries.webp" alt="" width="46" height="34">Fries<b>40 lei</b></span><span class="ti"><img src="img/sushi-set-lgusto.webp" alt="" width="46" height="34">Set Sushi L'Gusto (40 buc.)<b>585 lei</b></span><span class="ti"><img src="img/chicken-nuggets.webp" alt="" width="46" height="34">Chicken nuggets<b>60 lei</b></span><span class="ti"><img src="img/big-double-cheeseburger.webp" alt="" width="46" height="34">Big double cheeseburger<b>100 lei</b></span></div></div></div>
 
@@ -352,8 +352,8 @@ const tel = "+373" + R.phone.replace(/\D/g, "").replace(/^0/, "");
 const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
 const T = {
-ro:{h1:'Burgeri, kebab și aripioare fierbinți',
- lead:`Burgeri, kebab, sushi și aripioare. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
+ lead:`Burgeri fierbinți, rulouri și seturi de sushi, kebab, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
  b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
  search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
  s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
@@ -375,8 +375,8 @@ ro:{h1:'Burgeri, kebab și aripioare fierbinți',
  st:{new:'Comandă trimisă',accepted:'Acceptată',cooking:'Se pregătește',delivery:'În drum spre dvs.',pickupReady:'Gata — vă așteptăm',done:'Livrată. Poftă bună!',doneP:'Ridicată. Poftă bună!'},
  cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
  cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
-ru:{h1:'Горячие бургеры, кебабы и крылышки',
- lead:`Бургеры, кебабы, суши и крылышки. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ru:{h1:'Бургеры, суши и кебабы на любой вкус',
+ lead:`Горячие бургеры, суши-роллы и сеты, кебабы, крылышки и салаты. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
  b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
  search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
  s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',
@@ -456,7 +456,7 @@ function extras() {
   const withImg = MENU.filter((m) => m.img);
   const pick = ["double-cheeseburger-lgusto", "kebab-lgusto", "aripi-asiatic"].map((id) => BY[id]).filter(Boolean);
   const col = pick.length === 3 ? pick : withImg.slice(0, 3);
-  $("collage").innerHTML = `<img src="${BASE}${col[0].img}" alt="${esc(col[0].name)}" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="${esc(col[0].name)}: ${col[0].price} ${t("cur")}"><b>${col[0].price}</b><span>${t("cur")}</span></div>`;
+  $("collage").innerHTML = `<img src="${BASE}${col[0].img}" alt="${esc(col[0].name)}" fetchpriority="high" width="480" height="360"><div class="sticker" aria-label="${esc(col[0].name)}: ${col[0].price} ${t("cur")}"><b>${col[0].price}</b><span>${t("cur")}</span></div>${BY["sushi-set-lgusto"] ? `<img class="h2img" src="${BASE}${BY["sushi-set-lgusto"].img}" alt="${esc(dname(BY["sushi-set-lgusto"]))}" width="480" height="360">` : ""}`;
   // «Рекомендуем»: список задаёт оператор (settings.rec); null — список по умолчанию из config.js
   const recIds = (Array.isArray(settings.rec) ? settings.rec : (window.RECOMMENDED_DEFAULT || [])).filter((id) => BY[id] && avail(id));
   $("pop").innerHTML = recIds.map((id) => cardHtml(BY[id], 1)).join("");

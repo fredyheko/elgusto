@@ -313,9 +313,15 @@ window.openCart = function () {
   $("ov").classList.add("show"); document.body.classList.add("lock");
 };
 const payOpts = () => mode === "delivery" ? ["cash", "mia"] : ["cash", "card"];
-window.setMode = (m) => { mode = m; if (!payOpts().includes(pay)) pay = "cash"; openCart(); };
-window.setPay = (k) => { pay = k; openCart(); };
-window.setZone = (z) => { zone = z; openCart(); };
+const rerender = () => { const sh = $("sheet"), y = sh.scrollTop; openCart(); sh.scrollTop = y; };
+window.setMode = (m) => {
+  mode = m; if (!payOpts().includes(pay)) pay = "cash"; rerender();
+  // прокрутить к блоку с доставкой/самовывозом и полями заказа
+  const sh = $("sheet"), el = $("m1");
+  if (el) sh.scrollTo({ top: sh.scrollTop + el.getBoundingClientRect().top - sh.getBoundingClientRect().top - 12, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+};
+window.setPay = (k) => { pay = k; rerender(); };
+window.setZone = (z) => { zone = z; rerender(); };
 window.closeAll = function () { keepDraft(); trackId = null; $("ov").classList.remove("show"); document.body.classList.remove("lock"); };
 const phoneOk = (p) => { const d = p.replace(/\D/g, ""); return /^0[2-9]\d{7}$/.test(d) || /^373[2-9]\d{7}$/.test(d) || (d.length >= 8 && d.length <= 15 && p.trim().startsWith("+")); };
 window.send = async function () {

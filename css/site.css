@@ -262,7 +262,8 @@ body[data-v="1"] .collage img{filter:drop-shadow(0 0 36px rgba(255,190,60,.35)) 
 .adbox h3{font:800 19px/1.3 var(--disp);margin-bottom:4px}
 .adg{font-weight:700;color:var(--ink2);font-size:14px;margin:14px 0 8px}
 .chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.chips.row{display:flex;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.sheet{overflow-x:hidden;overscroll-behavior:contain}
+.chips.row{display:flex;overflow-x:auto;max-width:100%;min-width:0;overscroll-behavior-x:contain;padding-bottom:4px;scrollbar-width:none}
 .chips.row::-webkit-scrollbar{display:none}
 .chips.row .chip{flex:0 0 168px}
 .chip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:6px 8px;min-height:58px}

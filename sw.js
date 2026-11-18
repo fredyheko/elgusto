@@ -1,5 +1,5 @@
 // Service worker: сеть в приоритете, кэш — на случай плохого интернета.
-const C = "lgusto-v12";
+const C = "lgusto-v13";
 self.addEventListener("install", (e) => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== C).map((k) => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener("fetch", (e) => {

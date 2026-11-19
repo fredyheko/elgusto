@@ -366,7 +366,7 @@ ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
  zone:'Unde livrăm?',payL:'Cum plătiți?',pays:{cash:'💵 Numerar',mia:'📱 MIA',card:'💳 Card'},payH:{mia:'Plata prin MIA la primirea comenzii.',card:'Plata cu cardul la ridicare, în local.'},zCity:`${R.city.ro} (oraș)`,zOther:'Altă localitate',
  needMore:(x)=>`Mai adăugați ${x} lei și livrarea în ${R.city.ro} va fi gratuită. Pentru comenzi sub ${D.city.freeFrom} lei livrarea este ${D.city.feeBelow == null ? "cu plată — costul exact al livrării vi-l va comunica operatorul" : D.city.feeBelow + " lei"}.`,
  freeOk:'Livrare gratuită 🎉',otherFee:`Costul livrării în altă localitate vi-l va comunica operatorul.`,
- cur:'lei',feeLbl:'Livrare',byOp:'se confirmă la telefon',from:'de la',free:'gratuit',pickAddr:`Ridicare: ${R.address.ro}`,
+ cur:'lei',feeLbl:'Livrare',byOp:'o comunică operatorul',plusFee:'livrare',from:'de la',free:'gratuit',pickAddr:`Ridicare: ${R.address.ro}`,
  name:'Nume',nameP:'Numele dvs.',phone:'Telefon',addr:'Adresa de livrare',addrP:'Localitatea, strada, nr., apartament',addrPC:'Strada, nr., apartament',
  com:'Comentariu (opțional)',comP:'Ex.: fără susan, sună la sosire',errA:'Completați numele, telefonul și adresa.',errB:'Completați numele și telefonul.',
  errLim:'Ați trimis deja mai multe comenzi în ultima oră. Pentru o comandă nouă sunați-ne: ',errBlk:'Nu putem primi comanda online de pe acest număr. Sunați-ne: ',errPh:'Verificați numărul de telefon (ex.: 069 123 456).',errNet:'Nu s-a putut trimite comanda. Verificați internetul sau sunați-ne: ',
@@ -389,7 +389,7 @@ ru:{h1:'Бургеры, суши и кебабы на любой вкус',
  zone:'Куда доставить?',payL:'Как оплатите?',pays:{cash:'💵 Наличные',mia:'📱 MIA',card:'💳 Карта'},payH:{mia:'Оплата через MIA при получении заказа.',card:'Оплата картой при получении, в заведении.'},zCity:`${R.city.ru} (город)`,zOther:'Другой населённый пункт',
  needMore:(x)=>`Добавьте ещё ${x} лей — и доставка по городу будет бесплатной. Для заказов до ${D.city.freeFrom} лей доставка ${D.city.feeBelow == null ? "платная — точную стоимость доставки сообщит оператор" : "стоит " + D.city.feeBelow + " лей"}.`,
  freeOk:'Бесплатная доставка 🎉',otherFee:`Стоимость доставки в другой населённый пункт сообщит оператор.`,
- cur:'лей',feeLbl:'Доставка',byOp:'уточнит оператор',from:'от',free:'бесплатно',pickAddr:`Самовывоз: ${R.address.ru}`,
+ cur:'лей',feeLbl:'Доставка',byOp:'сообщит оператор',plusFee:'доставка',from:'от',free:'бесплатно',pickAddr:`Самовывоз: ${R.address.ru}`,
  name:'Имя',nameP:'Ваше имя',phone:'Телефон',addr:'Адрес доставки',addrP:'Село, улица, дом, квартира',addrPC:'Улица, дом, квартира',
  com:'Комментарий (необязательно)',comP:'Напр.: без кунжута, позвонить по приезде',errA:'Заполните имя, телефон и адрес.',errB:'Заполните имя и телефон.',
  errLim:'С этого номера уже было несколько заказов за последний час. Для нового заказа позвоните нам: ',errBlk:'С этого номера мы не можем принять заказ онлайн. Позвоните нам: ',errPh:'Проверьте номер телефона (напр.: 069 123 456).',errNet:'Не удалось отправить заказ. Проверьте интернет или позвоните нам: ',
@@ -507,7 +507,7 @@ window.add = function (k, b) {
 window.chg = function (k, d) { cart[k] += d; if (cart[k] <= 0) delete cart[k]; saveCart(); upd(); if (count()) openCart(); else closeAll(); };
 const sub = () => Object.entries(cart).reduce((s, [k, q]) => s + BY[k].price * q, 0);
 const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
-function fee() { if (mode !== "delivery") return 0; if (zone === "other") return D.other.feeFrom; return sub() >= D.city.freeFrom ? 0 : (D.city.feeBelow || 0); }
+function fee() { if (mode !== "delivery") return 0; if (zone === "other") return 0; /* стоимость сообщит оператор */ return sub() >= D.city.freeFrom ? 0 : (D.city.feeBelow || 0); }
 const feeOpen = () => mode === "delivery" && (zone === "other" || (sub() < D.city.freeFrom && D.city.feeBelow == null));
 function upd() { const c = count(); $("cartbtn").style.display = c ? "block" : "none"; $("cartbtn").textContent = `${t("cart")} (${c}): ${sub()} ${t("cur")}`; updLast(); }
 /* ---------- соусы и добавки ---------- */
@@ -570,7 +570,7 @@ window.openCart = function () {
   if (mode === "delivery" && zone === "city") hint = needMore ? `<div class="hint">${t("needMore")(D.city.freeFrom - s)}</div>` : `<div class="hint ok">${t("freeOk")}</div>`;
   if (mode === "delivery" && zone === "other") hint = `<div class="hint">${t("otherFee")}</div>`;
   if (mode === "pickup") hint = `<div class="hint ok">📍 ${t("pickAddr")}</div>`;
-  const totalTxt = feeOpen() ? `${t("from")} ${s + f} ${t("cur")}` : `${s + f} ${t("cur")}`;
+  const totalTxt = feeOpen() ? `${s + f} ${t("cur")} + ${t("plusFee")}` : `${s + f} ${t("cur")}`;
   const block = !canOrder() || unavailable || sending;
   $("sheet").innerHTML = `<h2>${t("yours")} <button class="x" onclick="closeAll()">×</button></h2>${lines()}${cartSauces()}
   <div class="sumrow"><span>${t("subtotal")}</span><span>${s} ${t("cur")}</span></div>
@@ -587,7 +587,7 @@ window.openCart = function () {
   <div class="hpf" aria-hidden="true"><label for="fw">Company</label><input id="fw" name="company" type="text" tabindex="-1" autocomplete="off"></div>
   ${!canOrder() ? `<div class="hint">${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : ""}
   <div class="err" id="err"></div>
-  <button class="big" id="sendBtn" onclick="send()" ${block ? "disabled" : ""}>${sending ? t("sending") : `${t("send")} · ${totalTxt}`}</button>
+  <button class="big" id="sendBtn" onclick="send()" ${block ? "disabled" : ""}>${sending ? t("sending") : (feeOpen() ? t("send") : `${t("send")} · ${totalTxt}`)}</button>
   <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>`;
   if (!formAt && $("fn")) formAt = Date.now();
   $("ov").classList.add("show"); document.body.classList.add("lock");
@@ -653,7 +653,7 @@ window.openTrack = function (id, num) {
     $("sheet").innerHTML = `<div class="ok"><div class="em">${o.status === "cancelled" ? "⚠️" : "✅"}</div><h3>${t("thanks")}, ${esc(o.name)}!</h3><p>${t("got")(o.num)}</p>
     ${o.status === "cancelled" ? `<div class="cancelled">${t("cancelled")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : steps(o)}
     ${o.status === "new" ? `<p class="mini">${t("callSoon")}</p>` : ""}
-    <div class="mini" style="text-align:left">${(o.items || []).map((i) => `${i.q} × ${esc(i.n)}`).join("<br>")}<br><b style="color:var(--ink)">${t("total")}: ${o.zone === "other" ? t("from") + " " : ""}${o.total} ${t("cur")}${o.zone === "city" && o.subtotal < D.city.freeFrom && D.city.feeBelow == null ? " + " + t("feeLbl").toLowerCase() : ""}</b></div>
+    <div class="mini" style="text-align:left">${(o.items || []).map((i) => `${i.q} × ${esc(i.n)}`).join("<br>")}<br><b style="color:var(--ink)">${t("total")}: ${o.total} ${t("cur")}${o.zone === "other" ? " + " + t("plusFee") : ""}${o.zone === "city" && o.subtotal < D.city.freeFrom && D.city.feeBelow == null ? " + " + t("feeLbl").toLowerCase() : ""}</b></div>
     <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>
     <button class="big" onclick="closeAll()">${t("close")}</button></div>`;
   };

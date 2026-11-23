@@ -122,7 +122,7 @@ ru:{h1:'Бургеры, кебабы, суши и азиатская кухня'
  cats:{},questions:'Вопросы? Звоните: ',adT:(n)=>`Добавить соус к «${n}»?`,adTK:(n)=>`Что добавить к «${n}»?`,adSauces:'Соусы',adExtras:'Добавки в кебаб',adDone:'Готово',adNo:'Без соуса',adCart:'Соусы к заказу',adIn:'в корзине'}};
 ALLCATS.forEach((c) => { T.ro.cats[c.id] = c.ro; T.ru.cats[c.id] = c.ru; });
 
-let cart = {}, mode = "delivery", zone = "city", pay = "cash", L = PAGE_L, settings = { open: true, stop: [] }, sending = false;
+let cart = {}, mode = "pickup", zone = "city", pay = "cash", L = PAGE_L, settings = { open: true, stop: [] }, sending = false;
 try { cart = JSON.parse(localStorage.getItem("lg-cart") || "{}"); Object.keys(cart).forEach((k) => { if (!BY[k]) delete cart[k]; }); } catch (e) { cart = {}; }
 const t = (k) => T[L][k];
 const $ = (id) => document.getElementById(id);
@@ -320,7 +320,7 @@ window.openCart = function () {
   <div class="sumrow"><span>${t("subtotal")}</span><span>${s} ${t("cur")}</span></div>
   ${mode === "delivery" ? `<div class="sumrow"><span>${t("feeLbl")}</span><span>${feeOpen() ? (f ? t("from") + " " + f + " " + t("cur") : t("byOp")) : (f ? f + " " + t("cur") : t("free"))}</span></div>` : ""}
   <div class="tot"><span>${t("total")}</span><span>${totalTxt}</span></div>
-  <div class="seg"><button id="m1" class="${mode === "delivery" ? "on" : ""}" onclick="setMode('delivery')">${t("deliv")}</button><button id="m2" class="${mode === "pickup" ? "on" : ""}" onclick="setMode('pickup')">${t("pick")}</button></div>
+  <div class="seg"><button id="m1" class="${mode === "pickup" ? "on" : ""}" onclick="setMode('pickup')">${t("pick")}</button><button id="m2" class="${mode === "delivery" ? "on" : ""}" onclick="setMode('delivery')">${t("deliv")}</button></div>
   ${mode === "delivery" ? `<label>${t("zone")}</label><div class="seg"><button class="${zone === "city" ? "on" : ""}" onclick="setZone('city')">${t("zCity")}</button><button class="${zone === "other" ? "on" : ""}" onclick="setZone('other')">${t("zOther")}</button></div>` : ""}
   ${hint}
   <label>${t("payL")}</label><div class="seg">${payOpts().map((k) => `<button class="${pay === k ? "on" : ""}" onclick="setPay('${k}')">${t("pays")[k]}</button>`).join("")}</div>

@@ -1062,7 +1062,7 @@ window.MENU = [
   "ru": "чесночный соус",
   "g": "",
   "price": 8,
-  "img": "img/sos-usturoi.webp"
+  "img": "img/sos-usturoi.webp?v=5"
  },
  {
   "id": "ketchup",
@@ -1072,7 +1072,7 @@ window.MENU = [
   "ru": "кетчуп",
   "g": "",
   "price": 8,
-  "img": "img/ketchup.webp"
+  "img": "img/ketchup.webp?v=5"
  },
  {
   "id": "sos-lgusto",
@@ -1082,7 +1082,7 @@ window.MENU = [
   "ru": "фирменный соус L'Gusto",
   "g": "",
   "price": 12,
-  "img": "img/sos-lgusto.webp"
+  "img": "img/sos-lgusto.webp?v=5"
  },
  {
   "id": "sos-asiatic",
@@ -1092,7 +1092,7 @@ window.MENU = [
   "ru": "азиатский соус",
   "g": "",
   "price": 12,
-  "img": "img/sos-asiatic.webp"
+  "img": "img/sos-asiatic.webp?v=5"
  },
  {
   "id": "sos-bbq",
@@ -1102,7 +1102,7 @@ window.MENU = [
   "ru": "соус барбекю",
   "g": "",
   "price": 12,
-  "img": "img/sos-bbq.webp"
+  "img": "img/sos-bbq.webp?v=5"
  },
  {
   "id": "sos-cheddar",
@@ -1112,7 +1112,7 @@ window.MENU = [
   "ru": "соус чеддер",
   "g": "",
   "price": 12,
-  "img": "img/sos-cheddar.webp"
+  "img": "img/sos-cheddar.webp?v=5"
  },
  {
   "id": "sos-sweet-chili",
@@ -1122,7 +1122,7 @@ window.MENU = [
   "ru": "соус сладкий чили",
   "g": "",
   "price": 12,
-  "img": "img/sos-sweet-chili.webp"
+  "img": "img/sos-sweet-chili.webp?v=5"
  },
  {
   "id": "adaos-pui",

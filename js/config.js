@@ -1009,17 +1009,6 @@ window.MENU = [
   "img": "img/dorna-copii.webp?v=2"
  },
  {
-  "id": "airan",
-  "cat": "bauturi",
-  "name": "Airan",
-  "nameRu": "Айран",
-  "ro": "băutură din lapte fermentat",
-  "ru": "кисломолочный напиток",
-  "unit": "ml",
-  "price": 17,
-  "icon": "🥛"
- },
- {
   "id": "burn",
   "cat": "bauturi",
   "name": "Burn",

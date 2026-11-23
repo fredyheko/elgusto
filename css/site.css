@@ -283,3 +283,8 @@ body[data-v="1"] .collage img{filter:drop-shadow(0 0 28px rgba(255,255,255,.10))
 .adact .big{margin-top:0;flex:1}
 .adno{background:none;border:0;color:var(--ink2);font:600 15px var(--text);padding:12px 8px;min-height:48px}
 .hpf{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);opacity:0;pointer-events:none}
+.vars{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.var{font:inherit;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px;border:2px solid #e8dcc0;background:#fff;color:var(--ink);cursor:pointer;line-height:1.1}
+.var.on{background:var(--cob,#1534B8);border-color:var(--cob,#1534B8);color:#fff}
+.var:disabled{opacity:.4;text-decoration:line-through;cursor:default}
+.pop .vars{display:none}

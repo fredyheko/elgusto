@@ -86,6 +86,24 @@ window.CATEGORIES = [
   "ru": "Сеты суши"
  },
  {
+  "id": "wok",
+  "icon": "🥢",
+  "ro": "Wok",
+  "ru": "Вок"
+ },
+ {
+  "id": "supe",
+  "icon": "🍜",
+  "ro": "Supe asiatice",
+  "ru": "Азиатские супы"
+ },
+ {
+  "id": "poke",
+  "icon": "🥗",
+  "ro": "Poke",
+  "ru": "Поке"
+ },
+ {
   "id": "sosuri",
   "hidden": true,
   "icon": "🥫",
@@ -344,6 +362,465 @@ window.MENU = [
   "g": "250",
   "price": 125,
   "img": "img/salata-creveti-tempura.webp?v=3"
+ },
+ {
+  "id": "soba-pui",
+  "cat": "wok",
+  "name": "Soba cu pui",
+  "nameRu": "Соба с курицей",
+  "grp": "soba",
+  "gname": {
+   "ro": "Soba",
+   "ru": "Соба"
+  },
+  "v": {
+   "ro": "Pui",
+   "ru": "Курица"
+  },
+  "ro": "tăiței soba",
+  "ru": "лапша соба",
+  "g": "370",
+  "price": 100,
+  "img": "img/soba.webp"
+ },
+ {
+  "id": "soba-vita",
+  "cat": "wok",
+  "name": "Soba cu vită",
+  "nameRu": "Соба с говядиной",
+  "grp": "soba",
+  "gname": {
+   "ro": "Soba",
+   "ru": "Соба"
+  },
+  "v": {
+   "ro": "Vită",
+   "ru": "Говядина"
+  },
+  "ro": "tăiței soba",
+  "ru": "лапша соба",
+  "g": "370",
+  "price": 130,
+  "img": "img/soba.webp"
+ },
+ {
+  "id": "soba-fructe-de-mare",
+  "cat": "wok",
+  "name": "Soba cu fructe de mare",
+  "nameRu": "Соба с морепродуктами",
+  "grp": "soba",
+  "gname": {
+   "ro": "Soba",
+   "ru": "Соба"
+  },
+  "v": {
+   "ro": "Fructe de mare",
+   "ru": "Морепродукты"
+  },
+  "ro": "tăiței soba",
+  "ru": "лапша соба",
+  "g": "370",
+  "price": 140,
+  "img": "img/soba.webp"
+ },
+ {
+  "id": "soba-creveti",
+  "cat": "wok",
+  "name": "Soba cu creveți",
+  "nameRu": "Соба с креветками",
+  "grp": "soba",
+  "gname": {
+   "ro": "Soba",
+   "ru": "Соба"
+  },
+  "v": {
+   "ro": "Creveți",
+   "ru": "Креветки"
+  },
+  "ro": "tăiței soba",
+  "ru": "лапша соба",
+  "g": "370",
+  "price": 120,
+  "img": "img/soba.webp"
+ },
+ {
+  "id": "udon-pui",
+  "cat": "wok",
+  "name": "Udon cu pui",
+  "nameRu": "Удон с курицей",
+  "grp": "udon",
+  "gname": {
+   "ro": "Udon",
+   "ru": "Удон"
+  },
+  "v": {
+   "ro": "Pui",
+   "ru": "Курица"
+  },
+  "ro": "tăiței udon",
+  "ru": "лапша удон",
+  "g": "370",
+  "price": 100,
+  "img": "img/udon.webp"
+ },
+ {
+  "id": "udon-vita",
+  "cat": "wok",
+  "name": "Udon cu vită",
+  "nameRu": "Удон с говядиной",
+  "grp": "udon",
+  "gname": {
+   "ro": "Udon",
+   "ru": "Удон"
+  },
+  "v": {
+   "ro": "Vită",
+   "ru": "Говядина"
+  },
+  "ro": "tăiței udon",
+  "ru": "лапша удон",
+  "g": "370",
+  "price": 130,
+  "img": "img/udon.webp"
+ },
+ {
+  "id": "udon-fructe-de-mare",
+  "cat": "wok",
+  "name": "Udon cu fructe de mare",
+  "nameRu": "Удон с морепродуктами",
+  "grp": "udon",
+  "gname": {
+   "ro": "Udon",
+   "ru": "Удон"
+  },
+  "v": {
+   "ro": "Fructe de mare",
+   "ru": "Морепродукты"
+  },
+  "ro": "tăiței udon",
+  "ru": "лапша удон",
+  "g": "370",
+  "price": 140,
+  "img": "img/udon.webp"
+ },
+ {
+  "id": "udon-creveti",
+  "cat": "wok",
+  "name": "Udon cu creveți",
+  "nameRu": "Удон с креветками",
+  "grp": "udon",
+  "gname": {
+   "ro": "Udon",
+   "ru": "Удон"
+  },
+  "v": {
+   "ro": "Creveți",
+   "ru": "Креветки"
+  },
+  "ro": "tăiței udon",
+  "ru": "лапша удон",
+  "g": "370",
+  "price": 120,
+  "img": "img/udon.webp"
+ },
+ {
+  "id": "funceoza-pui",
+  "cat": "wok",
+  "name": "Funceoza cu pui",
+  "nameRu": "Фунчоза с курицей",
+  "grp": "funceoza",
+  "gname": {
+   "ro": "Funceoza",
+   "ru": "Фунчоза"
+  },
+  "v": {
+   "ro": "Pui",
+   "ru": "Курица"
+  },
+  "ro": "tăiței funceoza",
+  "ru": "лапша фунчоза",
+  "g": "370",
+  "price": 100,
+  "img": "img/funceoza.webp"
+ },
+ {
+  "id": "funceoza-vita",
+  "cat": "wok",
+  "name": "Funceoza cu vită",
+  "nameRu": "Фунчоза с говядиной",
+  "grp": "funceoza",
+  "gname": {
+   "ro": "Funceoza",
+   "ru": "Фунчоза"
+  },
+  "v": {
+   "ro": "Vită",
+   "ru": "Говядина"
+  },
+  "ro": "tăiței funceoza",
+  "ru": "лапша фунчоза",
+  "g": "370",
+  "price": 130,
+  "img": "img/funceoza.webp"
+ },
+ {
+  "id": "funceoza-fructe-de-mare",
+  "cat": "wok",
+  "name": "Funceoza cu fructe de mare",
+  "nameRu": "Фунчоза с морепродуктами",
+  "grp": "funceoza",
+  "gname": {
+   "ro": "Funceoza",
+   "ru": "Фунчоза"
+  },
+  "v": {
+   "ro": "Fructe de mare",
+   "ru": "Морепродукты"
+  },
+  "ro": "tăiței funceoza",
+  "ru": "лапша фунчоза",
+  "g": "370",
+  "price": 140,
+  "img": "img/funceoza.webp"
+ },
+ {
+  "id": "funceoza-creveti",
+  "cat": "wok",
+  "name": "Funceoza cu creveți",
+  "nameRu": "Фунчоза с креветками",
+  "grp": "funceoza",
+  "gname": {
+   "ro": "Funceoza",
+   "ru": "Фунчоза"
+  },
+  "v": {
+   "ro": "Creveți",
+   "ru": "Креветки"
+  },
+  "ro": "tăiței funceoza",
+  "ru": "лапша фунчоза",
+  "g": "370",
+  "price": 120,
+  "img": "img/funceoza.webp"
+ },
+ {
+  "id": "fried-rice-pui",
+  "cat": "wok",
+  "name": "Fried rice cu pui",
+  "nameRu": "Жареный рис с курицей",
+  "grp": "fried-rice",
+  "gname": {
+   "ro": "Fried rice",
+   "ru": "Жареный рис"
+  },
+  "v": {
+   "ro": "Pui",
+   "ru": "Курица"
+  },
+  "ro": "orez prăjit",
+  "ru": "жареный рис",
+  "g": "370",
+  "price": 95,
+  "img": "img/fried-rice.webp"
+ },
+ {
+  "id": "fried-rice-vita",
+  "cat": "wok",
+  "name": "Fried rice cu vită",
+  "nameRu": "Жареный рис с говядиной",
+  "grp": "fried-rice",
+  "gname": {
+   "ro": "Fried rice",
+   "ru": "Жареный рис"
+  },
+  "v": {
+   "ro": "Vită",
+   "ru": "Говядина"
+  },
+  "ro": "orez prăjit",
+  "ru": "жареный рис",
+  "g": "370",
+  "price": 129,
+  "img": "img/fried-rice.webp"
+ },
+ {
+  "id": "fried-rice-fructe-de-mare",
+  "cat": "wok",
+  "name": "Fried rice cu fructe de mare",
+  "nameRu": "Жареный рис с морепродуктами",
+  "grp": "fried-rice",
+  "gname": {
+   "ro": "Fried rice",
+   "ru": "Жареный рис"
+  },
+  "v": {
+   "ro": "Fructe de mare",
+   "ru": "Морепродукты"
+  },
+  "ro": "orez prăjit",
+  "ru": "жареный рис",
+  "g": "370",
+  "price": 135,
+  "img": "img/fried-rice.webp"
+ },
+ {
+  "id": "fried-rice-creveti",
+  "cat": "wok",
+  "name": "Fried rice cu creveți",
+  "nameRu": "Жареный рис с креветками",
+  "grp": "fried-rice",
+  "gname": {
+   "ro": "Fried rice",
+   "ru": "Жареный рис"
+  },
+  "v": {
+   "ro": "Creveți",
+   "ru": "Креветки"
+  },
+  "ro": "orez prăjit",
+  "ru": "жареный рис",
+  "g": "370",
+  "price": 115,
+  "img": "img/fried-rice.webp"
+ },
+ {
+  "id": "ramen-pui",
+  "cat": "supe",
+  "name": "Ramen cu pui",
+  "nameRu": "Рамен с курицей",
+  "grp": "ramen",
+  "gname": {
+   "ro": "Ramen",
+   "ru": "Рамен"
+  },
+  "v": {
+   "ro": "Pui",
+   "ru": "Курица"
+  },
+  "ro": "bulion, tăiței ramen, ouă de găină, carne fiartă, nori",
+  "ru": "бульон, лапша рамен, куриные яйца, отварное мясо, нори",
+  "g": "400",
+  "price": 120,
+  "img": "img/ramen.webp"
+ },
+ {
+  "id": "ramen-vita",
+  "cat": "supe",
+  "name": "Ramen cu vită",
+  "nameRu": "Рамен с говядиной",
+  "grp": "ramen",
+  "gname": {
+   "ro": "Ramen",
+   "ru": "Рамен"
+  },
+  "v": {
+   "ro": "Vită",
+   "ru": "Говядина"
+  },
+  "ro": "bulion, tăiței ramen, ouă de găină, carne fiartă, nori",
+  "ru": "бульон, лапша рамен, куриные яйца, отварное мясо, нори",
+  "g": "400",
+  "price": 140,
+  "img": "img/ramen.webp"
+ },
+ {
+  "id": "tom-yum-ebi",
+  "cat": "supe",
+  "name": "Tom Yum Ebi",
+  "nameRu": "Том Ям с креветками",
+  "ro": "tom yum, ciuperci, creveți, bulion, roșii cherry, susan, verdeață",
+  "ru": "том ям, грибы, креветки, бульон, помидоры черри, кунжут, зелень",
+  "g": "400",
+  "price": 145,
+  "img": "img/tom-yum-ebi.webp"
+ },
+ {
+  "id": "tom-yum-fish",
+  "cat": "supe",
+  "name": "Tom Yum Fish",
+  "nameRu": "Том Ям с рыбой",
+  "ro": "bulion, tom yum, somon, biban, ciuperci, roșii cherry, verdeață",
+  "ru": "бульон, том ям, лосось, окунь, грибы, помидоры черри, зелень",
+  "g": "400",
+  "price": 140,
+  "img": "img/tom-yum-fish.webp"
+ },
+ {
+  "id": "miso-vegan",
+  "cat": "supe",
+  "name": "Miso Vegan",
+  "nameRu": "Мисо веган",
+  "ro": "bulion miso, wakame, shiitake, susan, tofu",
+  "ru": "бульон мисо, вакаме, шиитаке, кунжут, тофу",
+  "g": "400",
+  "price": 100,
+  "img": "img/miso-vegan.webp"
+ },
+ {
+  "id": "miso-fructe-de-mare",
+  "cat": "supe",
+  "name": "Miso cu fructe de mare",
+  "nameRu": "Мисо с морепродуктами",
+  "ro": "bulion miso, cocktail de fructe de mare, wakame, shiitake, susan",
+  "ru": "бульон мисо, коктейль из морепродуктов, вакаме, шиитаке, кунжут",
+  "g": "400",
+  "price": 145,
+  "img": "img/miso-fructe-de-mare.webp"
+ },
+ {
+  "id": "poke-vegan",
+  "cat": "poke",
+  "name": "Poke Vegan",
+  "nameRu": "Поке веган",
+  "ro": "mango copt, edamame, roșii cherry, orez fiert, tofu, germeni de mazăre, susan alb/negru, sos ponzu, avocado",
+  "ru": "спелое манго, эдамаме, помидоры черри, отварной рис, тофу, ростки гороха, кунжут белый/чёрный, соус понзу, авокадо",
+  "g": "100",
+  "price": 95,
+  "img": "img/poke-vegan.webp"
+ },
+ {
+  "id": "poke-maguro",
+  "cat": "poke",
+  "name": "Poke Maguro",
+  "nameRu": "Поке магуро",
+  "ro": "ton, edamame, avocado, mango, nori, susan, orez fiert, verdeață, sos ponzu",
+  "ru": "тунец, эдамаме, авокадо, манго, нори, кунжут, отварной рис, зелень, соус понзу",
+  "g": "400",
+  "price": 145,
+  "img": "img/poke-maguro.webp"
+ },
+ {
+  "id": "poke-sake",
+  "cat": "poke",
+  "name": "Poke Sake",
+  "nameRu": "Поке сяке",
+  "ro": "somon, avocado, chuka, mango, castraveți, roșii cherry, sos de nuci, sos ponzu, orez fiert, susan",
+  "ru": "лосось, авокадо, чука, манго, огурцы, помидоры черри, ореховый соус, соус понзу, отварной рис, кунжут",
+  "g": "400",
+  "price": 135,
+  "img": "img/poke-sake.webp"
+ },
+ {
+  "id": "poke-ebi",
+  "cat": "poke",
+  "name": "Poke Ebi",
+  "nameRu": "Поке эби",
+  "ro": "creveți fierți, edamame, icre tobiko, roșii cherry, avocado, orez fiert, sos ponzu, sos spicy, mango, verdeață",
+  "ru": "отварные креветки, эдамаме, икра тобико, помидоры черри, авокадо, отварной рис, соус понзу, соус спайси, манго, зелень",
+  "g": "400",
+  "price": 125,
+  "img": "img/poke-ebi.webp"
+ },
+ {
+  "id": "poke-unagi",
+  "cat": "poke",
+  "name": "Poke Unagi",
+  "nameRu": "Поке унаги",
+  "ro": "nori, anghilă afumată, orez fiert, mango, castraveți, avocado, verdeață, ghimbir marinat, sos unagi, susan, sos ponzu",
+  "ru": "нори, копчёный угорь, отварной рис, манго, огурцы, авокадо, зелень, маринованный имбирь, соус унаги, кунжут, соус понзу",
+  "g": "400",
+  "price": 150,
+  "img": "img/poke-unagi.webp"
  },
  {
   "id": "sos-usturoi",

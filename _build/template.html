@@ -75,7 +75,7 @@ const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
 const T = {
 ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
- lead:`Burgeri fierbinți, rulouri și seturi de sushi, kebab, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ lead:`Burgeri fierbinți, rulouri și seturi de sushi, wok, poke, kebab, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
  b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
  search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
  s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
@@ -98,7 +98,7 @@ ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
  cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
  cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
 ru:{h1:'Бургеры, суши и кебабы на любой вкус',
- lead:`Горячие бургеры, суши-роллы и сеты, кебабы, крылышки и салаты. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ lead:`Горячие бургеры, суши-роллы и сеты, вок, поке, кебабы, крылышки и салаты. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
  b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
  search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
  s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',
@@ -162,7 +162,11 @@ window.setLang = function (l) {
 };
 
 /* ---------- меню ---------- */
+// Блюда с вариантами (grp): одна карточка, выбор варианта — кнопками
+const SEL = {};
+const grpItems = (g) => MENU.filter((x) => x.grp === g);
 function cardHtml(m, hit) {
+  if (m.grp) return grpCard(m);
   const ok = avail(m.id), ing = L === "ru" ? m.ru : m.ro;
   return `<div class="card${ok ? "" : " na"}">${ok ? "" : `<span class="na-tag">${t("na")}</span>`}
   <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(m.name)}" width="480" height="360" loading="lazy" decoding="async">` : `<span class="pe">${(ALLCATS.find((c) => c.id === m.cat) || {}).icon || "🍽️"}</span>`}</div>
@@ -170,9 +174,25 @@ function cardHtml(m, hit) {
   <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
   <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
 }
+function grpCard(m0) {
+  const all = grpItems(m0.grp), av = all.filter((x) => avail(x.id));
+  let m = BY[SEL[m0.grp]] || m0; if (!avail(m.id) && av.length) m = av[0];
+  const ok = av.length > 0, ing = L === "ru" ? m.ru : m.ro, gn = m.gname[L] || m.gname.ro;
+  return `<div class="card${ok ? "" : " na"}" data-grp="${m.grp}">${ok ? "" : `<span class="na-tag">${t("na")}</span>`}
+  <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(gn)}" width="480" height="360" loading="lazy" decoding="async">` : ""}</div>
+  <div class="body"><h3>${esc(gn)}</h3><div class="ing">${esc(ing)}</div>
+  <div class="vars" role="group" aria-label="${esc(gn)}">${all.map((x) => `<button class="var${x.id === m.id ? " on" : ""}" ${avail(x.id) ? "" : "disabled"} aria-pressed="${x.id === m.id}" onclick="setVar('${m.grp}','${x.id}')">${esc(x.v[L] || x.v.ro)}</button>`).join("")}</div>
+  <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
+  <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
+}
+window.setVar = function (g, id) {
+  SEL[g] = id;
+  document.querySelectorAll(`.card[data-grp="${g}"]`).forEach((c) => { const t_ = document.createElement("div"); t_.innerHTML = grpCard(BY[id]); c.replaceWith(t_.firstElementChild); });
+};
+const catCards = (cid) => { const seen = new Set(); return MENU.filter((m) => m.cat === cid).filter((m) => !m.grp || (!seen.has(m.grp) && seen.add(m.grp))).map((m) => cardHtml(m, 0)).join(""); };
 function render() {
   $("tabs").innerHTML = CATS.map((c, i) => `<button class="tab${i ? "" : " on"}" onclick="go('${c.id}')">${c.icon} ${t("cats")[c.id]}</button>`).join("");
-  $("menu").innerHTML = CATS.map((c) => `<section class="sec" id="s-${c.id}"><h2>${t("cats")[c.id]}</h2><div class="grid">${MENU.filter((m) => m.cat === c.id).map((m) => cardHtml(m, 0)).join("")}</div></section>`).join("");
+  $("menu").innerHTML = CATS.map((c) => `<section class="sec" id="s-${c.id}"><h2>${t("cats")[c.id]}</h2><div class="grid">${catCards(c.id)}</div></section>`).join("");
 }
 function extras() {
   const withImg = MENU.filter((m) => m.img);
@@ -238,6 +258,7 @@ const cap = (x) => x ? x[0].toUpperCase() + x.slice(1) : x;
 function gShow(g) { const p = String(g).split("/"); return p.length > 2 ? p[0] : g; }
 function dname(m) {
   if (L === "ru" && m.cat === "sosuri") return cap(m.ru);
+  if (L === "ru" && m.nameRu) return m.nameRu;
   return L === "ru" ? m.name.replace(/ buc\.\)/, " шт.)") : m.name;
 }
 function shortName(m) { return cap(dname(m).replace(/^(Adaos kebab: |Добавка в кебаб: )/, "")); }

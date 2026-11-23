@@ -843,9 +843,9 @@ window.MENU = [
  {
   "id": "fresh-grepfrut",
   "cat": "bauturi",
-  "name": "Fresh de grepfrut",
+  "name": "Fresh de grapefruit",
   "nameRu": "Фреш из грейпфрута",
-  "ro": "suc proaspăt stors de grepfrut",
+  "ro": "suc proaspăt stors de grapefruit",
   "ru": "свежевыжатый сок грейпфрута",
   "g": "360",
   "unit": "ml",
@@ -867,9 +867,9 @@ window.MENU = [
  {
   "id": "fresh-grepfrut-portocale",
   "cat": "bauturi",
-  "name": "Fresh grepfrut–portocale",
+  "name": "Fresh grapefruit–portocale",
   "nameRu": "Фреш грейпфрут–апельсин",
-  "ro": "suc proaspăt stors din grepfrut și portocale",
+  "ro": "suc proaspăt stors din grapefruit și portocale",
   "ru": "свежевыжатый сок грейпфрута и апельсина",
   "g": "360",
   "unit": "ml",

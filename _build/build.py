@@ -76,7 +76,7 @@ def head(lang):
      f'<link rel="manifest" href="{B}manifest.json">',
      f'<link rel="icon" href="{B}icons/icon-192.png">',
      f'<link rel="apple-touch-icon" href="{B}icons/apple-touch-icon.png">',
-     f'<link rel="preload" href="{B}img/logo.webp" as="image" type="image/webp">',
+     f'<link rel="preload" href="{B}img/logo-new.webp" as="image" type="image/webp">',
      '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
      '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap">',
      '<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">',

@@ -294,3 +294,5 @@ body[data-v="1"] .collage img{filter:drop-shadow(0 0 28px rgba(255,255,255,.10))
 .wm i{font:700 10.5px/1 "Golos Text",system-ui,sans-serif;font-style:normal;color:#f3e7c7;letter-spacing:.32em;text-transform:uppercase;margin:7px 0 0 3px}
 @media (max-width:640px){.wm b{font-size:26px}.wm i{font-size:9.5px;letter-spacing:.28em}}
 .chip img{width:50px;height:50px;object-fit:cover;object-position:50% 46%;flex:none}
+.blogo{height:58px;width:auto;margin:-4px 0}
+@media (max-width:640px){.blogo{height:50px}}

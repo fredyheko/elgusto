@@ -1040,7 +1040,7 @@ window.MENU = [
   "ru": "энергетический напиток",
   "unit": "ml",
   "price": 35,
-  "icon": "⚡"
+  "img": "img/monster.webp?v=1"
  },
  {
   "id": "jack-daniels-cola",

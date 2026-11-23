@@ -463,7 +463,7 @@ window.MENU = [
   "ru": "свежий лосось, рис, кунжут, нори",
   "g": "140",
   "price": 50,
-  "img": "img/sushi-sake-maki.webp"
+  "img": "img/sushi-sake-maki.webp?v=3"
  },
  {
   "id": "sushi-unagi-maki",
@@ -473,7 +473,7 @@ window.MENU = [
   "ru": "копчёный угорь, рис, кунжут, нори",
   "g": "140",
   "price": 50,
-  "img": "img/sushi-unagi-maki.webp"
+  "img": "img/sushi-unagi-maki.webp?v=3"
  },
  {
   "id": "sushi-ebi-maki",
@@ -483,7 +483,7 @@ window.MENU = [
   "ru": "варёные креветки, кунжут, рис, нори",
   "g": "140",
   "price": 50,
-  "img": "img/sushi-ebi-maki.webp"
+  "img": "img/sushi-ebi-maki.webp?v=3"
  },
  {
   "id": "sushi-maguro-maki",
@@ -493,7 +493,7 @@ window.MENU = [
   "ru": "тунец, кунжут, нори, рис",
   "g": "140",
   "price": 50,
-  "img": "img/sushi-maguro-maki.webp"
+  "img": "img/sushi-maguro-maki.webp?v=3"
  },
  {
   "id": "sushi-avocado-maki",
@@ -503,7 +503,7 @@ window.MENU = [
   "ru": "авокадо, рис, нори, кунжут",
   "g": "140",
   "price": 50,
-  "img": "img/sushi-avocado-maki.webp"
+  "img": "img/sushi-avocado-maki.webp?v=3"
  },
  {
   "id": "sushi-kappa-maki",
@@ -513,7 +513,7 @@ window.MENU = [
   "ru": "огурец, рис, кунжут, нори",
   "g": "140",
   "price": 50,
-  "img": "img/sushi-kappa-maki.webp"
+  "img": "img/sushi-kappa-maki.webp?v=3"
  },
  {
   "id": "sushi-philadelphia",
@@ -523,7 +523,7 @@ window.MENU = [
   "ru": "свежий лосось, авокадо, огурец, сливочный сыр, рис, нори",
   "g": "280",
   "price": 160,
-  "img": "img/sushi-philadelphia.webp"
+  "img": "img/sushi-philadelphia.webp?v=3"
  },
  {
   "id": "sushi-philadelphia-ebi",
@@ -533,7 +533,7 @@ window.MENU = [
   "ru": "свежий лосось, варёные креветки, авокадо, огурец, сливочный сыр, рис, нори",
   "g": "280",
   "price": 170,
-  "img": "img/sushi-philadelphia-ebi.webp"
+  "img": "img/sushi-philadelphia-ebi.webp?v=3"
  },
  {
   "id": "sushi-philadelphia-lux",
@@ -543,7 +543,7 @@ window.MENU = [
   "ru": "свежий лосось, авокадо, сливочный сыр, огурец, икра лосося, рис, нори",
   "g": "290",
   "price": 180,
-  "img": "img/sushi-philadelphia-lux.webp"
+  "img": "img/sushi-philadelphia-lux.webp?v=3"
  },
  {
   "id": "sushi-california",
@@ -553,7 +553,7 @@ window.MENU = [
   "ru": "икра тобико, варёные креветки, авокадо, огурец, японский майонез, рис, нори",
   "g": "260",
   "price": 160,
-  "img": "img/sushi-california.webp"
+  "img": "img/sushi-california.webp?v=3"
  },
  {
   "id": "sushi-california-orange",
@@ -563,7 +563,7 @@ window.MENU = [
   "ru": "икра тобико, свежий лосось, огурец, сливочный сыр, рис, нори",
   "g": "260",
   "price": 165,
-  "img": "img/sushi-california-orange.webp"
+  "img": "img/sushi-california-orange.webp?v=3"
  },
  {
   "id": "sushi-california-whites",
@@ -573,7 +573,7 @@ window.MENU = [
   "ru": "снежный краб, белый кунжут, огурец, авокадо, японский майонез, рис, нори",
   "g": "260",
   "price": 95,
-  "img": "img/sushi-california-whites.webp"
+  "img": "img/sushi-california-whites.webp?v=3"
  },
  {
   "id": "sushi-philadelphia-double-cheese",
@@ -583,7 +583,7 @@ window.MENU = [
   "ru": "свежий лосось, сливочный сыр, огурец, авокадо, рис, нори",
   "g": "280",
   "price": 175,
-  "img": "img/sushi-philadelphia-double-cheese.webp"
+  "img": "img/sushi-philadelphia-double-cheese.webp?v=3"
  },
  {
   "id": "sushi-canada",
@@ -593,7 +593,7 @@ window.MENU = [
   "ru": "копчёный угорь, авокадо, огурец, свежий лосось, сливочный сыр, кунжут, соус унаги, рис, нори",
   "g": "280",
   "price": 180,
-  "img": "img/sushi-canada.webp"
+  "img": "img/sushi-canada.webp?v=3"
  },
  {
   "id": "sushi-imperator",
@@ -603,7 +603,7 @@ window.MENU = [
   "ru": "варёные креветки, свежий лосось, авокадо, огурец, сливочный сыр, рис, нори",
   "g": "290",
   "price": 155,
-  "img": "img/sushi-imperator.webp"
+  "img": "img/sushi-imperator.webp?v=3"
  },
  {
   "id": "sushi-red-dragon",
@@ -613,7 +613,7 @@ window.MENU = [
   "ru": "свежий тунец, икра лосося, ростки лука, авокадо, сливочный сыр, рис, нори",
   "g": "290",
   "price": 190,
-  "img": "img/sushi-red-dragon.webp"
+  "img": "img/sushi-red-dragon.webp?v=3"
  },
  {
   "id": "sushi-orange-dragon",
@@ -623,7 +623,7 @@ window.MENU = [
   "ru": "свежий лосось, чёрная икра тобико, ростки подсолнечника, авокадо, огурец, сливочный сыр, копчёный угорь, рис, нори",
   "g": "290",
   "price": 185,
-  "img": "img/sushi-orange-dragon.webp"
+  "img": "img/sushi-orange-dragon.webp?v=3"
  },
  {
   "id": "sushi-golden-dragon",
@@ -633,7 +633,7 @@ window.MENU = [
   "ru": "копчёный угорь, икра тобико, варёные креветки, авокадо, сливочный сыр, ростки, огурец, соус унаги, рис, нори",
   "g": "280",
   "price": 210,
-  "img": "img/sushi-golden-dragon.webp"
+  "img": "img/sushi-golden-dragon.webp?v=3"
  },
  {
   "id": "sushi-green-dragon",
@@ -643,7 +643,7 @@ window.MENU = [
   "ru": "авокадо, сливочный сыр, икра тобико, свежий лосось, огурец, соус унаги, кунжут, рис, нори",
   "g": "280",
   "price": 175,
-  "img": "img/sushi-green-dragon.webp"
+  "img": "img/sushi-green-dragon.webp?v=3"
  },
  {
   "id": "sushi-alaska",
@@ -653,7 +653,7 @@ window.MENU = [
   "ru": "копчёный лосось, икра лосося, сливочный сыр, авокадо, микс кунжута, рис, нори",
   "g": "270",
   "price": 145,
-  "img": "img/sushi-alaska.webp"
+  "img": "img/sushi-alaska.webp?v=3"
  },
  {
   "id": "sushi-burnt",
@@ -663,7 +663,7 @@ window.MENU = [
   "ru": "лосось гриль, креветки темпура, огурец, острый соус, ростки лука, рис, нори",
   "g": "390",
   "price": 175,
-  "img": "img/sushi-burnt.webp"
+  "img": "img/sushi-burnt.webp?v=3"
  },
  {
   "id": "sushi-chuka-wakame",
@@ -673,7 +673,7 @@ window.MENU = [
   "ru": "водоросли чука, свежий тунец, манго, кунжут, ореховый соус, рис, нори",
   "g": "360",
   "price": 150,
-  "img": "img/sushi-chuka-wakame.webp"
+  "img": "img/sushi-chuka-wakame.webp?v=3"
  },
  {
   "id": "sushi-kani-tempura",
@@ -683,7 +683,7 @@ window.MENU = [
   "ru": "снежный краб, огурец, авокадо, икра тобико, соус унаги, сливочный сыр, кунжут, темпура, панко, рис, нори",
   "g": "280",
   "price": 140,
-  "img": "img/sushi-kani-tempura.webp"
+  "img": "img/sushi-kani-tempura.webp?v=3"
  },
  {
   "id": "sushi-unagi-tempura",
@@ -693,7 +693,7 @@ window.MENU = [
   "ru": "копчёный угорь, соус унаги, икра тобико, авокадо, огурец, кунжут, сливочный сыр, темпура, панко, рис, нори",
   "g": "280",
   "price": 160,
-  "img": "img/sushi-unagi-tempura.webp"
+  "img": "img/sushi-unagi-tempura.webp?v=3"
  },
  {
   "id": "sushi-sake-tempura",
@@ -703,7 +703,7 @@ window.MENU = [
   "ru": "жареный лосось, соус унаги, авокадо, огурец, икра тобико, кунжут, сливочный сыр, темпура, панко, рис, нори",
   "g": "280",
   "price": 160,
-  "img": "img/sushi-sake-tempura.webp"
+  "img": "img/sushi-sake-tempura.webp?v=3"
  },
  {
   "id": "sushi-ebi-tempura",
@@ -713,7 +713,7 @@ window.MENU = [
   "ru": "варёные креветки, соус унаги, огурец, авокадо, икра тобико, кунжут, сливочный сыр, темпура, панко, рис, нори",
   "g": "280",
   "price": 160,
-  "img": "img/sushi-ebi-tempura.webp"
+  "img": "img/sushi-ebi-tempura.webp?v=3"
  },
  {
   "id": "sushi-set-tempura",
@@ -723,7 +723,7 @@ window.MENU = [
   "ru": "Kani Tempura, Sake Tempura, Unagi Tempura, соус унаги, кунжут",
   "g": "840/100/50/30",
   "price": 414,
-  "img": "img/sushi-set-tempura.webp"
+  "img": "img/sushi-set-tempura.webp?v=3"
  },
  {
   "id": "sushi-set-sake",
@@ -733,7 +733,7 @@ window.MENU = [
   "ru": "Sake Tempura, Sake Hot Vulcan, Sake maki, соус унаги, кунжут",
   "g": "700/100/50/30",
   "price": 355,
-  "img": "img/sushi-set-sake.webp"
+  "img": "img/sushi-set-sake.webp?v=3"
  },
  {
   "id": "sushi-set-asia",
@@ -743,7 +743,7 @@ window.MENU = [
   "ru": "Canada, California Orange, Unagi maki, соус унаги, кунжут",
   "g": "700/80/30/30",
   "price": 355,
-  "img": "img/sushi-set-asia.webp"
+  "img": "img/sushi-set-asia.webp?v=3"
  },
  {
   "id": "sushi-set-classic",
@@ -753,7 +753,7 @@ window.MENU = [
   "ru": "Philadelphia, California White's, Philadelphia Ebi, California Black, острый соус",
   "g": "1080/120/40/30",
   "price": 515,
-  "img": "img/sushi-set-classic.webp"
+  "img": "img/sushi-set-classic.webp?v=3"
  },
  {
   "id": "sushi-set-lgusto",
@@ -763,7 +763,7 @@ window.MENU = [
   "ru": "Philadelphia, California, California White's, California Black, Ebi Tempura, Unagi maki, соус унаги, острый соус, кунжут",
   "g": "1220/120/80/30",
   "price": 585,
-  "img": "img/sushi-set-lgusto.webp"
+  "img": "img/sushi-set-lgusto.webp?v=3"
  }
 ];
 

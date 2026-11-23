@@ -303,7 +303,7 @@ window.MENU = [
   "ru": "запечённое куриное филе, салат айсберг, лолло, помидоры черри, перепелиное яйцо, пармезан, соус цезарь",
   "g": "250",
   "price": 100,
-  "img": "img/salata-pui.webp?v=3"
+  "img": "img/salata-pui.webp?v=4"
  },
  {
   "id": "salata-greceasca",

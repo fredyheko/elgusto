@@ -387,7 +387,7 @@ window.MENU = [
   "ru": "лапша соба",
   "g": "370",
   "price": 100,
-  "img": "img/soba.webp?v=2"
+  "img": "img/soba.webp?v=3"
  },
  {
   "id": "soba-vita",
@@ -407,7 +407,7 @@ window.MENU = [
   "ru": "лапша соба",
   "g": "370",
   "price": 130,
-  "img": "img/soba.webp?v=2"
+  "img": "img/soba.webp?v=3"
  },
  {
   "id": "soba-fructe-de-mare",
@@ -427,7 +427,7 @@ window.MENU = [
   "ru": "лапша соба",
   "g": "370",
   "price": 140,
-  "img": "img/soba.webp?v=2"
+  "img": "img/soba.webp?v=3"
  },
  {
   "id": "soba-creveti",
@@ -447,7 +447,7 @@ window.MENU = [
   "ru": "лапша соба",
   "g": "370",
   "price": 120,
-  "img": "img/soba.webp?v=2"
+  "img": "img/soba.webp?v=3"
  },
  {
   "id": "udon-pui",
@@ -467,7 +467,7 @@ window.MENU = [
   "ru": "лапша удон",
   "g": "370",
   "price": 100,
-  "img": "img/udon.webp?v=2"
+  "img": "img/udon.webp?v=3"
  },
  {
   "id": "udon-vita",
@@ -487,7 +487,7 @@ window.MENU = [
   "ru": "лапша удон",
   "g": "370",
   "price": 130,
-  "img": "img/udon.webp?v=2"
+  "img": "img/udon.webp?v=3"
  },
  {
   "id": "udon-fructe-de-mare",
@@ -507,7 +507,7 @@ window.MENU = [
   "ru": "лапша удон",
   "g": "370",
   "price": 140,
-  "img": "img/udon.webp?v=2"
+  "img": "img/udon.webp?v=3"
  },
  {
   "id": "udon-creveti",
@@ -527,7 +527,7 @@ window.MENU = [
   "ru": "лапша удон",
   "g": "370",
   "price": 120,
-  "img": "img/udon.webp?v=2"
+  "img": "img/udon.webp?v=3"
  },
  {
   "id": "funceoza-pui",
@@ -547,7 +547,7 @@ window.MENU = [
   "ru": "лапша фунчоза",
   "g": "370",
   "price": 100,
-  "img": "img/funceoza.webp?v=2"
+  "img": "img/funceoza.webp?v=3"
  },
  {
   "id": "funceoza-vita",
@@ -567,7 +567,7 @@ window.MENU = [
   "ru": "лапша фунчоза",
   "g": "370",
   "price": 130,
-  "img": "img/funceoza.webp?v=2"
+  "img": "img/funceoza.webp?v=3"
  },
  {
   "id": "funceoza-fructe-de-mare",
@@ -587,7 +587,7 @@ window.MENU = [
   "ru": "лапша фунчоза",
   "g": "370",
   "price": 140,
-  "img": "img/funceoza.webp?v=2"
+  "img": "img/funceoza.webp?v=3"
  },
  {
   "id": "funceoza-creveti",
@@ -607,7 +607,7 @@ window.MENU = [
   "ru": "лапша фунчоза",
   "g": "370",
   "price": 120,
-  "img": "img/funceoza.webp?v=2"
+  "img": "img/funceoza.webp?v=3"
  },
  {
   "id": "fried-rice-pui",
@@ -627,7 +627,7 @@ window.MENU = [
   "ru": "жареный рис",
   "g": "370",
   "price": 95,
-  "img": "img/fried-rice.webp?v=2"
+  "img": "img/fried-rice.webp?v=3"
  },
  {
   "id": "fried-rice-vita",
@@ -647,7 +647,7 @@ window.MENU = [
   "ru": "жареный рис",
   "g": "370",
   "price": 129,
-  "img": "img/fried-rice.webp?v=2"
+  "img": "img/fried-rice.webp?v=3"
  },
  {
   "id": "fried-rice-fructe-de-mare",
@@ -667,7 +667,7 @@ window.MENU = [
   "ru": "жареный рис",
   "g": "370",
   "price": 135,
-  "img": "img/fried-rice.webp?v=2"
+  "img": "img/fried-rice.webp?v=3"
  },
  {
   "id": "fried-rice-creveti",
@@ -687,7 +687,7 @@ window.MENU = [
   "ru": "жареный рис",
   "g": "370",
   "price": 115,
-  "img": "img/fried-rice.webp?v=2"
+  "img": "img/fried-rice.webp?v=3"
  },
  {
   "id": "ramen-pui",
@@ -707,7 +707,7 @@ window.MENU = [
   "ru": "бульон, лапша рамен, куриные яйца, отварное мясо, нори",
   "g": "400",
   "price": 120,
-  "img": "img/ramen.webp?v=2"
+  "img": "img/ramen.webp?v=3"
  },
  {
   "id": "ramen-vita",
@@ -727,7 +727,7 @@ window.MENU = [
   "ru": "бульон, лапша рамен, куриные яйца, отварное мясо, нори",
   "g": "400",
   "price": 140,
-  "img": "img/ramen.webp?v=2"
+  "img": "img/ramen.webp?v=3"
  },
  {
   "id": "tom-yum-ebi",
@@ -738,7 +738,7 @@ window.MENU = [
   "ru": "том ям, грибы, креветки, бульон, помидоры черри, кунжут, зелень",
   "g": "400",
   "price": 145,
-  "img": "img/tom-yum-ebi.webp?v=2"
+  "img": "img/tom-yum-ebi.webp?v=3"
  },
  {
   "id": "tom-yum-fish",
@@ -749,7 +749,7 @@ window.MENU = [
   "ru": "бульон, том ям, лосось, окунь, грибы, помидоры черри, зелень",
   "g": "400",
   "price": 140,
-  "img": "img/tom-yum-fish.webp?v=2"
+  "img": "img/tom-yum-fish.webp?v=3"
  },
  {
   "id": "miso-vegan",
@@ -760,7 +760,7 @@ window.MENU = [
   "ru": "бульон мисо, вакаме, шиитаке, кунжут, тофу",
   "g": "400",
   "price": 100,
-  "img": "img/miso-vegan.webp?v=2"
+  "img": "img/miso-vegan.webp?v=3"
  },
  {
   "id": "miso-fructe-de-mare",
@@ -771,7 +771,7 @@ window.MENU = [
   "ru": "бульон мисо, коктейль из морепродуктов, вакаме, шиитаке, кунжут",
   "g": "400",
   "price": 145,
-  "img": "img/miso-fructe-de-mare.webp?v=2"
+  "img": "img/miso-fructe-de-mare.webp?v=3"
  },
  {
   "id": "poke-vegan",
@@ -782,7 +782,7 @@ window.MENU = [
   "ru": "спелое манго, эдамаме, помидоры черри, отварной рис, тофу, ростки гороха, кунжут белый/чёрный, соус понзу, авокадо",
   "g": "100",
   "price": 95,
-  "img": "img/poke-vegan.webp?v=2"
+  "img": "img/poke-vegan.webp?v=3"
  },
  {
   "id": "poke-maguro",
@@ -793,7 +793,7 @@ window.MENU = [
   "ru": "тунец, эдамаме, авокадо, манго, нори, кунжут, отварной рис, зелень, соус понзу",
   "g": "400",
   "price": 145,
-  "img": "img/poke-maguro.webp?v=2"
+  "img": "img/poke-maguro.webp?v=3"
  },
  {
   "id": "poke-sake",
@@ -804,7 +804,7 @@ window.MENU = [
   "ru": "лосось, авокадо, чука, манго, огурцы, помидоры черри, ореховый соус, соус понзу, отварной рис, кунжут",
   "g": "400",
   "price": 135,
-  "img": "img/poke-sake.webp?v=2"
+  "img": "img/poke-sake.webp?v=3"
  },
  {
   "id": "poke-ebi",
@@ -815,7 +815,7 @@ window.MENU = [
   "ru": "отварные креветки, эдамаме, икра тобико, помидоры черри, авокадо, отварной рис, соус понзу, соус спайси, манго, зелень",
   "g": "400",
   "price": 125,
-  "img": "img/poke-ebi.webp?v=2"
+  "img": "img/poke-ebi.webp?v=3"
  },
  {
   "id": "poke-unagi",
@@ -826,7 +826,7 @@ window.MENU = [
   "ru": "нори, копчёный угорь, отварной рис, манго, огурцы, авокадо, зелень, маринованный имбирь, соус унаги, кунжут, соус понзу",
   "g": "400",
   "price": 150,
-  "img": "img/poke-unagi.webp?v=2"
+  "img": "img/poke-unagi.webp?v=3"
  },
  {
   "id": "limonada",

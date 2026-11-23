@@ -898,7 +898,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 20,
-  "icon": "🥤"
+  "img": "img/coca-cola-zero.webp?v=2"
  },
  {
   "id": "fanta",
@@ -910,7 +910,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 20,
-  "icon": "🍊"
+  "img": "img/fanta.webp?v=2"
  },
  {
   "id": "sprite",

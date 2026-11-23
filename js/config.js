@@ -317,7 +317,7 @@ window.MENU = [
   "ru": "креветки, салат айсберг, лолло, помидоры черри, пармезан, соус цезарь",
   "g": "250",
   "price": 120,
-  "img": "img/salata-creveti.webp?v=3"
+  "img": "img/salata-creveti.webp?v=7"
  },
  {
   "id": "salata-pui",
@@ -327,7 +327,7 @@ window.MENU = [
   "ru": "запечённое куриное филе, салат айсберг, лолло, помидоры черри, перепелиное яйцо, пармезан, соус цезарь",
   "g": "250",
   "price": 100,
-  "img": "img/salata-pui.webp?v=4"
+  "img": "img/salata-pui.webp?v=7"
  },
  {
   "id": "salata-greceasca",
@@ -337,7 +337,7 @@ window.MENU = [
   "ru": "помидоры черри, красный лук, сладкий перец, огурцы, маслины, сыр фета, оливковое масло, лимонный сок, орегано, соль",
   "g": "250",
   "price": 65,
-  "img": "img/salata-greceasca.webp?v=3"
+  "img": "img/salata-greceasca.webp?v=7"
  },
  {
   "id": "salata-somon",
@@ -347,7 +347,7 @@ window.MENU = [
   "ru": "копчёный лосось, перепелиные яйца, помидоры черри, микс салата, салат айсберг, авокадо, пармезан, соус цезарь",
   "g": "250",
   "price": 120,
-  "img": "img/salata-somon.webp?v=3"
+  "img": "img/salata-somon.webp?v=7"
  },
  {
   "id": "salata-avocado",
@@ -357,7 +357,7 @@ window.MENU = [
   "ru": "авокадо, перепелиное яйцо, микс салата, помидоры черри, пармезан, горчица, лимон, масло",
   "g": "250",
   "price": 75,
-  "img": "img/salata-avocado.webp?v=3"
+  "img": "img/salata-avocado.webp?v=7"
  },
  {
   "id": "salata-creveti-tempura",
@@ -367,7 +367,7 @@ window.MENU = [
   "ru": "креветки темпура, авокадо, красная икра тобико, помидоры черри, лолло верде, айсберг, кунжут, острый соус, соус унаги, лимон",
   "g": "250",
   "price": 125,
-  "img": "img/salata-creveti-tempura.webp?v=3"
+  "img": "img/salata-creveti-tempura.webp?v=7"
  },
  {
   "id": "soba-pui",
@@ -850,7 +850,7 @@ window.MENU = [
   "g": "360",
   "unit": "ml",
   "price": 65,
-  "img": "img/fresh-grepfrut.webp"
+  "img": "img/fresh-grepfrut.webp?v=7"
  },
  {
   "id": "fresh-portocale",
@@ -874,7 +874,7 @@ window.MENU = [
   "g": "360",
   "unit": "ml",
   "price": 65,
-  "img": "img/fresh-grepfrut-portocale.webp"
+  "img": "img/fresh-grepfrut-portocale.webp?v=7"
  },
  {
   "id": "coca-cola",

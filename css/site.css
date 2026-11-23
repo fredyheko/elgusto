@@ -288,3 +288,8 @@ body[data-v="1"] .collage img{filter:drop-shadow(0 0 28px rgba(255,255,255,.10))
 .var.on{background:var(--cob,#1534B8);border-color:var(--cob,#1534B8);color:#fff}
 .var:disabled{opacity:.4;text-decoration:line-through;cursor:default}
 .pop .vars{display:none}
+.brand{line-height:1}
+.wm{display:inline-flex;flex-direction:column;align-items:flex-start}
+.wm b{font:900 30px/1 var(--disp);color:var(--sun);letter-spacing:-.02em;text-shadow:1px 1px 0 var(--night),2px 2px 0 var(--night),3px 3px 0 var(--night),4px 5px 8px rgba(5,12,50,.45)}
+.wm i{font:700 10.5px/1 "Golos Text",system-ui,sans-serif;font-style:normal;color:#f3e7c7;letter-spacing:.32em;text-transform:uppercase;margin:7px 0 0 3px}
+@media (max-width:640px){.wm b{font-size:26px}.wm i{font-size:9.5px;letter-spacing:.28em}}

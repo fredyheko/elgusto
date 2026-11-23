@@ -1018,7 +1018,7 @@ window.MENU = [
   "g": "250",
   "unit": "ml",
   "price": 28,
-  "img": "img/burn.webp?v=3"
+  "img": "img/burn.webp?v=4"
  },
  {
   "id": "monster",

@@ -74,8 +74,8 @@ const tel = "+373" + R.phone.replace(/\D/g, "").replace(/^0/, "");
 const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
 const T = {
-ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
- lead:`Burgeri fierbinți, rulouri și seturi de sushi, wok, poke, kebab, fresh-uri, limonadă, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ro:{h1:'Burgeri, kebab, sushi și bucătărie asiatică',
+ lead:`Burgeri fierbinți, kebab, aripioare și salate, plus bucătărie asiatică: sushi, wok, supe și poke. Și fresh-uri, limonadă și băuturi. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
  b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
  search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
  s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
@@ -97,8 +97,8 @@ ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
  st:{new:'Comandă trimisă',accepted:'Acceptată',cooking:'Se pregătește',delivery:'În drum spre dvs.',pickupReady:'Gata — vă așteptăm',done:'Livrată. Poftă bună!',doneP:'Ridicată. Poftă bună!'},
  cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
  cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
-ru:{h1:'Бургеры, суши и кебабы на любой вкус',
- lead:`Горячие бургеры, суши-роллы и сеты, вок, поке, кебабы, фреши, лимонад, крылышки и салаты. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ru:{h1:'Бургеры, кебабы, суши и азиатская кухня',
+ lead:`Горячие бургеры, кебабы, крылышки и салаты, а ещё азиатская кухня: суши, вок, супы и поке. И фреши, лимонад и напитки. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
  b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
  search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
  s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',

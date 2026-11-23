@@ -886,7 +886,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 20,
-  "icon": "🥤"
+  "img": "img/coca-cola.webp?v=2"
  },
  {
   "id": "coca-cola-zero",
@@ -922,7 +922,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 20,
-  "icon": "🍋"
+  "img": "img/sprite.webp?v=2"
  },
  {
   "id": "schweppes",
@@ -934,7 +934,7 @@ window.MENU = [
   "g": "330",
   "unit": "ml",
   "price": 20,
-  "icon": "🥤"
+  "img": "img/schweppes.webp?v=2"
  },
  {
   "id": "fuzetea",
@@ -946,7 +946,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 22,
-  "icon": "🧋"
+  "img": "img/fuzetea.webp?v=2"
  },
  {
   "id": "cappy",
@@ -958,7 +958,7 @@ window.MENU = [
   "g": "330",
   "unit": "ml",
   "price": 22,
-  "icon": "🧃"
+  "img": "img/cappy.webp?v=2"
  },
  {
   "id": "cappy-mini",
@@ -970,7 +970,7 @@ window.MENU = [
   "g": "200",
   "unit": "ml",
   "price": 15,
-  "icon": "🧃"
+  "img": "img/cappy-mini.webp?v=2"
  },
  {
   "id": "dorna-minerala",
@@ -982,7 +982,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 15,
-  "icon": "💧"
+  "img": "img/dorna-minerala.webp?v=2"
  },
  {
   "id": "dorna-plata",
@@ -994,7 +994,7 @@ window.MENU = [
   "g": "500",
   "unit": "ml",
   "price": 15,
-  "icon": "💧"
+  "img": "img/dorna-plata.webp?v=2"
  },
  {
   "id": "dorna-copii",
@@ -1006,7 +1006,7 @@ window.MENU = [
   "g": "330",
   "unit": "ml",
   "price": 15,
-  "icon": "💧"
+  "img": "img/dorna-copii.webp?v=2"
  },
  {
   "id": "airan",
@@ -1029,7 +1029,7 @@ window.MENU = [
   "g": "250",
   "unit": "ml",
   "price": 28,
-  "icon": "⚡"
+  "img": "img/burn.webp?v=2"
  },
  {
   "id": "monster",
@@ -1051,7 +1051,8 @@ window.MENU = [
   "ru": "алкогольный напиток, 18+",
   "unit": "ml",
   "price": 65,
-  "icon": "🥃"
+  "img": "img/jack-daniels-cola.webp?v=2",
+  "g": "330"
  },
  {
   "id": "sos-usturoi",

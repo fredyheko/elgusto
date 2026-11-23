@@ -103,7 +103,7 @@ window.MENU = [
   "ru": "курица, картофель пай, салат, лаваш, помидоры, чесночный соус, маринованные огурцы, соус цацики",
   "g": "400",
   "price": 75,
-  "img": "img/kebab-pui.webp?v=2"
+  "img": "img/kebab-pui.webp?v=3"
  },
  {
   "id": "kebab-lgusto",
@@ -113,7 +113,7 @@ window.MENU = [
   "ru": "лаваш, котлета из говядины/свинины, картофель пай, помидоры, маринованные огурцы, чесночный соус, красный лук, соус цацики, соус барбекю",
   "g": "460",
   "price": 85,
-  "img": "img/kebab-lgusto.webp?v=2"
+  "img": "img/kebab-lgusto.webp?v=3"
  },
  {
   "id": "lavas-cascaval",
@@ -123,7 +123,7 @@ window.MENU = [
   "ru": "сыр моцарелла, чесночный соус, зелень, лаваш, помидоры",
   "g": "160",
   "price": 55,
-  "img": "img/lavas-cascaval.webp?v=2"
+  "img": "img/lavas-cascaval.webp?v=3"
  },
  {
   "id": "aripi-crispy",
@@ -133,7 +133,7 @@ window.MENU = [
   "ru": "куриные крылышки, чесночный соус, панировка, кляр",
   "g": "250/50",
   "price": 79,
-  "img": "img/aripi-crispy.webp?v=2"
+  "img": "img/aripi-crispy.webp?v=3"
  },
  {
   "id": "aripi-fries",
@@ -143,7 +143,7 @@ window.MENU = [
   "ru": "куриные крылышки, чесночный соус, масло, соль",
   "g": "200/50",
   "price": 79,
-  "img": "img/aripi-fries.webp?v=2"
+  "img": "img/aripi-fries.webp?v=3"
  },
  {
   "id": "aripi-asiatic",
@@ -153,7 +153,7 @@ window.MENU = [
   "ru": "куриные крылышки, азиатский соус, острый соус, кунжут, масло",
   "g": "250",
   "price": 79,
-  "img": "img/aripi-asiatic.webp?v=2"
+  "img": "img/aripi-asiatic.webp?v=3"
  },
  {
   "id": "aripi-bbq",
@@ -163,7 +163,7 @@ window.MENU = [
   "ru": "куриные крылышки, соус барбекю, масло",
   "g": "250",
   "price": 79,
-  "img": "img/aripi-bbq.webp?v=2"
+  "img": "img/aripi-bbq.webp?v=3"
  },
  {
   "id": "cheeseburger-classic",
@@ -173,7 +173,7 @@ window.MENU = [
   "ru": "котлета говядина/свинина, сыр чеддер, маринованные огурцы, булочка, салат айсберг, соус чеддер, красный лук, бургерный соус, помидоры",
   "g": "300",
   "price": 75,
-  "img": "img/cheeseburger-classic.webp?v=2"
+  "img": "img/cheeseburger-classic.webp?v=3"
  },
  {
   "id": "chicken-cheeseburger",
@@ -183,7 +183,7 @@ window.MENU = [
   "ru": "куриная котлета, бургерный соус, сыр чеддер, булочка, маринованные огурцы, салат айсберг, соус чеддер, красный лук, помидоры",
   "g": "300",
   "price": 70,
-  "img": "img/chicken-cheeseburger.webp?v=2"
+  "img": "img/chicken-cheeseburger.webp?v=3"
  },
  {
   "id": "big-double-cheeseburger",
@@ -193,7 +193,7 @@ window.MENU = [
   "ru": "карамелизированный лук, котлеты свинина/говядина, сыр чеддер, салат айсберг, бекон, булочка, маринованные огурцы, соус чеддер, бургерный соус, красный лук, помидоры",
   "g": "450",
   "price": 100,
-  "img": "img/big-double-cheeseburger.webp?v=2"
+  "img": "img/big-double-cheeseburger.webp?v=3"
  },
  {
   "id": "double-cheeseburger-lgusto",
@@ -203,7 +203,7 @@ window.MENU = [
   "ru": "сыр чеддер, говяжья котлета, куриная котлета, красный лук, маринованные огурцы, булочка, перепелиное яйцо, салат айсберг, соус чеддер, бургерный соус, помидоры",
   "g": "460",
   "price": 115,
-  "img": "img/double-cheeseburger-lgusto.webp?v=2"
+  "img": "img/double-cheeseburger-lgusto.webp?v=3"
  },
  {
   "id": "burger-classic",
@@ -213,7 +213,7 @@ window.MENU = [
   "ru": "котлета говядина/свинина, маринованные огурцы, булочка, салат айсберг, красный лук, бургерный соус, помидоры",
   "g": "280",
   "price": 70,
-  "img": "img/burger-classic.webp?v=2"
+  "img": "img/burger-classic.webp?v=3"
  },
  {
   "id": "crispy-burger",
@@ -223,7 +223,7 @@ window.MENU = [
   "ru": "куриная котлета, бургерный соус, панировка, булочка, кляр, маринованные огурцы, салат айсберг, лолло верде, помидоры",
   "g": "300",
   "price": 75,
-  "img": "img/crispy-burger.webp?v=2"
+  "img": "img/crispy-burger.webp?v=3"
  },
  {
   "id": "creveti-tempura",
@@ -233,7 +233,7 @@ window.MENU = [
   "ru": "креветки, панировка, кляр, чесночный соус",
   "g": "150/50",
   "price": 100,
-  "img": "img/creveti-tempura.webp?v=2"
+  "img": "img/creveti-tempura.webp?v=3"
  },
  {
   "id": "chicken-nuggets",
@@ -243,7 +243,7 @@ window.MENU = [
   "ru": "куриное филе, панировка, кляр, чесночный соус",
   "g": "200/50",
   "price": 60,
-  "img": "img/chicken-nuggets.webp?v=2"
+  "img": "img/chicken-nuggets.webp?v=3"
  },
  {
   "id": "inele-calamar",
@@ -253,7 +253,7 @@ window.MENU = [
   "ru": "кольца кальмара, панировка, кляр, чесночный соус",
   "g": "150/50",
   "price": 75,
-  "img": "img/inele-calamar.webp?v=2"
+  "img": "img/inele-calamar.webp?v=3"
  },
  {
   "id": "cartofi-wedges",
@@ -263,7 +263,7 @@ window.MENU = [
   "ru": "картофель по-домашнему, соль, масло, чесночный соус",
   "g": "150/50",
   "price": 40,
-  "img": "img/cartofi-wedges.webp?v=2"
+  "img": "img/cartofi-wedges.webp?v=3"
  },
  {
   "id": "fries",
@@ -273,7 +273,7 @@ window.MENU = [
   "ru": "картофель фри 8 мм, соль, масло, чесночный соус",
   "g": "150/50",
   "price": 40,
-  "img": "img/fries.webp?v=2"
+  "img": "img/fries.webp?v=3"
  },
  {
   "id": "potato-balls",
@@ -283,7 +283,7 @@ window.MENU = [
   "ru": "картофельные шарики, соль, масло, чесночный соус",
   "g": "150/50",
   "price": 40,
-  "img": "img/potato-balls.webp?v=2"
+  "img": "img/potato-balls.webp?v=3"
  },
  {
   "id": "salata-creveti",
@@ -293,7 +293,7 @@ window.MENU = [
   "ru": "креветки, салат айсберг, лолло, помидоры черри, пармезан, соус цезарь",
   "g": "250",
   "price": 120,
-  "img": "img/salata-creveti.webp?v=2"
+  "img": "img/salata-creveti.webp?v=3"
  },
  {
   "id": "salata-pui",
@@ -303,7 +303,7 @@ window.MENU = [
   "ru": "запечённое куриное филе, салат айсберг, лолло, помидоры черри, перепелиное яйцо, пармезан, соус цезарь",
   "g": "250",
   "price": 100,
-  "img": "img/salata-pui.webp?v=2"
+  "img": "img/salata-pui.webp?v=3"
  },
  {
   "id": "salata-greceasca",
@@ -313,7 +313,7 @@ window.MENU = [
   "ru": "помидоры черри, красный лук, сладкий перец, огурцы, маслины, сыр фета, оливковое масло, лимонный сок, орегано, соль",
   "g": "250",
   "price": 65,
-  "img": "img/salata-greceasca.webp?v=2"
+  "img": "img/salata-greceasca.webp?v=3"
  },
  {
   "id": "salata-somon",
@@ -323,7 +323,7 @@ window.MENU = [
   "ru": "копчёный лосось, перепелиные яйца, помидоры черри, микс салата, салат айсберг, авокадо, пармезан, соус цезарь",
   "g": "250",
   "price": 120,
-  "img": "img/salata-somon.webp?v=2"
+  "img": "img/salata-somon.webp?v=3"
  },
  {
   "id": "salata-avocado",
@@ -333,7 +333,7 @@ window.MENU = [
   "ru": "авокадо, перепелиное яйцо, микс салата, помидоры черри, пармезан, горчица, лимон, масло",
   "g": "250",
   "price": 75,
-  "img": "img/salata-avocado.webp?v=2"
+  "img": "img/salata-avocado.webp?v=3"
  },
  {
   "id": "salata-creveti-tempura",
@@ -343,7 +343,7 @@ window.MENU = [
   "ru": "креветки темпура, авокадо, красная икра тобико, помидоры черри, лолло верде, айсберг, кунжут, острый соус, соус унаги, лимон",
   "g": "250",
   "price": 125,
-  "img": "img/salata-creveti-tempura.webp?v=2"
+  "img": "img/salata-creveti-tempura.webp?v=3"
  },
  {
   "id": "sos-usturoi",

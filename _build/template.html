@@ -75,7 +75,7 @@ const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
 const T = {
 ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
- lead:`Burgeri fierbinți, rulouri și seturi de sushi, wok, poke, kebab, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
+ lead:`Burgeri fierbinți, rulouri și seturi de sushi, wok, poke, kebab, fresh-uri, limonadă, aripioare și salate. Comanzi din telefon în două minute. Gătim pe loc, pe ${R.address.ro.replace(/^mun\. [^,]+, /,'')}, și aducem oriunde în ${R.city.ro}.`,
  b1:`🛵 Livrare gratuită de la ${D.city.freeFrom} lei`,b2:'🏃 Ridicare personală',b3:`🕗 Zilnic ${H}`,see:'Vezi meniul',contacts:'Contacte',rec:'Recomandăm',
  search:'🔍 Caută în meniu: burger, kebab, aripi…',empty:'Nimic găsit. Încercați alt cuvânt.',how:'Cum comanzi',
  s1t:'Alege din meniu',s1p:'Adaugă în coș preparatele preferate.',s2t:'Completează datele',s2p:'Nume, telefon și adresa — sau alege ridicare personală.',
@@ -98,7 +98,7 @@ ro:{h1:'Burgeri, sushi și kebab pentru orice poftă',
  cancelled:`Comanda a fost anulată. Pentru detalii sunați: `,close:'Închide',newOrder:'Comandă nouă',lastO:(n,s)=>`🧾 Comanda #${n}: ${s} ›`,
  cats:{},questions:'Întrebări? Sunați: ',adT:(n)=>`Adaugi un sos la ${n}?`,adTK:(n)=>`Ce adaugi la ${n}?`,adSauces:'Sosuri',adExtras:'Adaosuri în kebab',adDone:'Gata',adNo:'Fără sos',adCart:'Sosuri la comandă',adIn:'în coș'},
 ru:{h1:'Бургеры, суши и кебабы на любой вкус',
- lead:`Горячие бургеры, суши-роллы и сеты, вок, поке, кебабы, крылышки и салаты. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
+ lead:`Горячие бургеры, суши-роллы и сеты, вок, поке, кебабы, фреши, лимонад, крылышки и салаты. Закажите с телефона за две минуты. Готовим сразу, на ${R.address.ru.replace(/^мун\. [^,]+, /,'')}, и привозим по всем Единцам.`,
  b1:`🛵 Бесплатная доставка от ${D.city.freeFrom} лей`,b2:'🏃 Самовывоз',b3:`🕗 Ежедневно ${H}`,see:'Смотреть меню',contacts:'Контакты',rec:'Рекомендуем',
  search:'🔍 Поиск по меню: бургер, кебаб, крылышки…',empty:'Ничего не найдено. Попробуйте другое слово.',how:'Как заказать',
  s1t:'Выберите блюда',s1p:'Добавьте в корзину то, что нравится.',s2t:'Заполните данные',s2p:'Имя, телефон и адрес — или выберите самовывоз.',
@@ -169,9 +169,9 @@ function cardHtml(m, hit) {
   if (m.grp) return grpCard(m);
   const ok = avail(m.id), ing = L === "ru" ? m.ru : m.ro;
   return `<div class="card${ok ? "" : " na"}">${ok ? "" : `<span class="na-tag">${t("na")}</span>`}
-  <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(m.name)}" width="480" height="360" loading="lazy" decoding="async">` : `<span class="pe">${(ALLCATS.find((c) => c.id === m.cat) || {}).icon || "🍽️"}</span>`}</div>
+  <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(m.name)}" width="480" height="360" loading="lazy" decoding="async">` : `<span class="pe">${m.icon || (ALLCATS.find((c) => c.id === m.cat) || {}).icon || "🍽️"}</span>`}</div>
   <div class="body"><h3>${esc(dname(m))}</h3><div class="ing">${esc(ing)}</div>
-  <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
+  <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + unitOf(m) : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
   <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
 }
 function grpCard(m0) {
@@ -182,7 +182,7 @@ function grpCard(m0) {
   <div class="pic">${m.img ? `<img src="${BASE}${m.img}" alt="${esc(gn)}" width="480" height="360" loading="lazy" decoding="async">` : ""}</div>
   <div class="body"><h3>${esc(gn)}</h3><div class="ing">${esc(ing)}</div>
   <div class="vars" role="group" aria-label="${esc(gn)}">${all.map((x) => `<button class="var${x.id === m.id ? " on" : ""}" ${avail(x.id) ? "" : "disabled"} aria-pressed="${x.id === m.id}" onclick="setVar('${m.grp}','${x.id}')">${esc(x.v[L] || x.v.ro)}</button>`).join("")}</div>
-  <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
+  <div class="row"><span class="gr">${m.g ? gShow(m.g) + " " + unitOf(m) : ""}</span><span class="pr">${m.price} <small>${t("cur")}</small></span><button class="qbtn" aria-label="${t("add")}" onclick="add('${m.id}',this)">+</button></div>
   <button class="add" onclick="add('${m.id}',this)">${t("add")}</button></div></div>`;
 }
 window.setVar = function (g, id) {
@@ -255,6 +255,7 @@ function upd() { const c = count(); $("cartbtn").style.display = c ? "block" : "
 /* ---------- соусы и добавки ---------- */
 const cap = (x) => x ? x[0].toUpperCase() + x.slice(1) : x;
 // "840/100/50/30" (сет: суши/имбирь/васаби/соус) → показываем только вес суши
+const unitOf = (m) => m.unit === "ml" ? (L === "ru" ? "мл" : "ml") : (L === "ru" ? "г" : "g");
 function gShow(g) { const p = String(g).split("/"); return p.length > 2 ? p[0] : g; }
 function dname(m) {
   if (L === "ru" && m.cat === "sosuri") return cap(m.ru);
@@ -300,7 +301,7 @@ function cartSauces() {
   return `<p class="adg">${t("adCart")}</p><div class="chips row">${AD.sauces.map(chipHtml).join("")}</div>`;
 }
 function lines() {
-  return Object.entries(cart).map(([k, q]) => { const m = BY[k]; return `<div class="ci">${m.img ? `<img src="${BASE}${m.img}" alt="" width="58" height="44" style="width:58px;height:44px;object-fit:contain">` : ""}<div class="n">${esc(dname(m))}${avail(k) ? "" : ` <span style="color:#ff8080">· ${t("na")}</span>`}<small>${m.price} ${t("cur")}${m.g ? " · " + gShow(m.g) + " " + (L === "ru" ? "г" : "g") : ""}</small></div>
+  return Object.entries(cart).map(([k, q]) => { const m = BY[k]; return `<div class="ci">${m.img ? `<img src="${BASE}${m.img}" alt="" width="58" height="44" style="width:58px;height:44px;object-fit:contain">` : ""}<div class="n">${esc(dname(m))}${avail(k) ? "" : ` <span style="color:#ff8080">· ${t("na")}</span>`}<small>${m.price} ${t("cur")}${m.g ? " · " + gShow(m.g) + " " + unitOf(m) : ""}</small></div>
   <div class="q"><button onclick="chg('${k}',-1)">−</button><b>${q}</b><button onclick="chg('${k}',1)">+</button></div></div>`; }).join("");
 }
 let draft = { n: "", p: "", a: "", c: "" };

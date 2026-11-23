@@ -31,7 +31,7 @@ def ld(lang):
                 "hasMenuItem": [dict({"@type": "MenuItem", "name": m["name"],
                     "offers": {"@type": "Offer", "price": m["price"], "priceCurrency": "MDL"}},
                     **({"description": m[lang]} if m[lang] else {}),
-                    **({"image": SITE + "/" + m["img"]} if m["img"] else {}))
+                    **({"image": SITE + "/" + m["img"]} if m.get("img") else {}))
                   for m in MENU if m["cat"] == c["id"]]} for c in CATS]}
     return {"@context": "https://schema.org", "@type": ["Restaurant", "FastFoodRestaurant"], "@id": SITE + "/#restaurant",
         "name": "L'Gusto", "alternateName": "L'Gusto express food", "url": p["url"], "inLanguage": lang,

@@ -35,7 +35,7 @@ def ld(lang):
                   for m in MENU if m["cat"] == c["id"]]} for c in CATS]}
     return {"@context": "https://schema.org", "@type": ["Restaurant", "FastFoodRestaurant"], "@id": SITE + "/#restaurant",
         "name": "L'Gusto", "alternateName": "L'Gusto express food", "url": p["url"], "inLanguage": lang,
-        "image": SITE + "/img/og.jpg", "logo": SITE + "/icons/icon-512.png", "telephone": tel,
+        "image": SITE + "/img/og.jpg", "logo": SITE + "/icons/icon-512.png", "telephone": tel, "sameAs": [u for u in [R.get("facebook"), R.get("instagram"), R.get("tiktok")] if u],
         "priceRange": f"{min(prices)}–{max(prices)} MDL", "currenciesAccepted": "MDL",
         "servesCuisine": ["Burgers", "Kebab", "Sushi", "Asian", "Fast food"], "acceptsReservations": False,
         "address": {"@type": "PostalAddress", "streetAddress": "str. Gagarin 39", "addressLocality": "Edineț", "addressRegion": "Edineț", "addressCountry": "MD"},

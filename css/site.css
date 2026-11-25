@@ -296,3 +296,4 @@ body[data-v="1"] .collage img{filter:drop-shadow(0 0 28px rgba(255,255,255,.10))
 .chip img{width:50px;height:50px;object-fit:cover;object-position:50% 46%;flex:none}
 .blogo{height:58px;width:auto;margin:-4px 0}
 @media (max-width:640px){.blogo{height:50px}}
+.soc a{display:inline-flex;align-items:center;gap:7px}

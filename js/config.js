@@ -32,7 +32,7 @@ window.RESTAURANT = {
     other: { minOrder: 0, feeFrom: 50 },
     time: { ro: "", ru: "" }  // например "45–60 min" / "45–60 мин" (пусто = не показывать)
   },
-  instagram: "", facebook: "", tiktok: ""
+  instagram: "", facebook: "https://www.facebook.com/share/1Vk7RXLr7c/", tiktok: ""
 };
 
 // 3) Меню. price — лей, g — граммы (текст, например "250/50"; пусто — не показывать), img — фото в папке img/

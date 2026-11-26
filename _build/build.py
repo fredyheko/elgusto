@@ -6,7 +6,7 @@ OUT = sys.argv[1]
 SITE = (sys.argv[2] if len(sys.argv) > 2 else "https://elgusto.onrender.com").rstrip("/")
 TPL = open(os.path.join(os.path.dirname(__file__), "template.html"), encoding="utf-8").read()
 
-cfg = subprocess.run(["node", "-e", "global.window={};require(process.argv[1]);console.log(JSON.stringify({R:window.RESTAURANT,C:window.CATEGORIES,M:window.MENU}))",
+cfg = subprocess.run(["node", "-e", "global.window={};global.location={hostname:''};require(process.argv[1]);console.log(JSON.stringify({R:window.RESTAURANT,C:window.CATEGORIES,M:window.MENU}))",
                       os.path.abspath(os.path.join(OUT, "js/config.js"))], capture_output=True, text=True, check=True).stdout
 CFG = json.loads(cfg); R, CATS, MENU = CFG["R"], CFG["C"], CFG["M"]
 tel = "+373" + re.sub(r"\D", "", R["phone"]).lstrip("0")

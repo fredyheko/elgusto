@@ -61,7 +61,7 @@ export class OrderRefused extends Error { constructor(code) { super(code); this.
 export async function createOrder(o) {
   const order = {
     items: o.items, subtotal: o.subtotal, deliveryFee: o.deliveryFee, total: o.total,
-    mode: o.mode, zone: o.zone || "", name: o.name, phone: o.phone, addr: o.addr || "", comment: o.comment || "", pay: o.pay || "cash",
+    mode: o.mode, zone: o.zone || "", loc: String(o.loc || "").slice(0, 60), name: o.name, phone: o.phone, addr: o.addr || "", comment: o.comment || "", pay: o.pay || "cash",
     lang: o.lang, status: "new",
   };
   const ph = normPhone(o.phone);

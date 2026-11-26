@@ -10,13 +10,14 @@ service cloud.firestore {
     }
 
     function validOrder(d) {
-      return d.keys().hasOnly(['items','subtotal','deliveryFee','total','mode','zone','name','phone','addr','comment','pay','lang','status','num','createdAt','updatedAt'])
+      return d.keys().hasOnly(['items','subtotal','deliveryFee','total','mode','zone','loc','name','phone','addr','comment','pay','lang','status','num','createdAt','updatedAt'])
         && d.status == 'new'
         && d.items is list && d.items.size() > 0 && d.items.size() <= 60
         && d.total is number && d.total > 0 && d.total < 100000
         && d.subtotal is number && d.deliveryFee is number
         && d.mode in ['delivery','pickup']
         && d.zone in ['city','other','']
+        && d.loc is string && d.loc.size() <= 60
         && d.name is string && d.name.size() > 0 && d.name.size() <= 60
         && d.phone is string && d.phone.matches('^(0[2-9][0-9]{7}|[+][0-9]{8,15})$')
         && !exists(/databases/$(database)/documents/blocked/$(d.phone))

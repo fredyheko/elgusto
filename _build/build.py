@@ -125,6 +125,21 @@ with sync_playwright() as pw:
     b.close()
 srv.shutdown()
 
+# 2б) метки версий у скриптов и стилей, чтобы браузер не брал старые из кэша
+import hashlib, re
+def _h(rel):
+    fp = os.path.join(OUT, rel)
+    return hashlib.md5(open(fp, "rb").read()).hexdigest()[:8] if os.path.exists(fp) else None
+VER = {rel: _h(rel) for rel in ("js/store.js", "js/config.js", "css/site.css")}
+def _ver(path):
+    if not os.path.exists(path): return
+    t = open(path, encoding="utf-8").read()
+    for rel, h in VER.items():
+        if h: t = re.sub(re.escape(rel) + r'(\?v=[0-9a-z]+)?"', f'{rel}?v={h}"', t)
+    open(path, "w", encoding="utf-8").write(t)
+for p in PAGES.values(): _ver(os.path.join(OUT, p["path"], "index.html"))
+_ver(os.path.join(OUT, "operator", "index.html"))
+
 # 3) robots.txt и sitemap.xml
 open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nDisallow: /operator/\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n")
 alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{PAGES[l]["url"]}"/>' for l in PAGES) + f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{PAGES["ro"]["url"]}"/>'

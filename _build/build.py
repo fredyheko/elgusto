@@ -16,11 +16,11 @@ prices = [m["price"] for m in MENU if m["cat"] != "sosuri"]
 PAGES = {
  "ro": dict(path="", B="", url=SITE + "/", locale="ro_MD",
    title="L'Gusto Edineț — burgeri, kebab, sushi, wok, livrare",
-   desc=f"Burgeri, kebab, sushi și bucătărie asiatică în Edineț. Comandă online: livrare gratuită de la {R['delivery']['city']['freeFrom']} lei, zilnic {h0}–{h1}. Ridicare personală. Tel. {R['phone']}.",
+   desc=f"Burgeri, kebab, sushi și bucătărie asiatică în Edineț. Comandă online: livrare în Edineț (gratuită de la {R['delivery']['city']['freeFrom']} lei) și în localitățile din apropiere, zilnic {h0}–{h1}. Ridicare personală. Tel. {R['phone']}.",
    call="Sună la L'Gusto", nos=f"Pentru comandă online activați JavaScript sau sunați: <a href=\"tel:{tel}\">{R['phone']}</a>"),
  "ru": dict(path="ru/", B="../", url=SITE + "/ru/", locale="ru_MD",
    title="L'Gusto Единцы — бургеры, кебаб, суши, вок, доставка",
-   desc=f"Бургеры, кебабы, суши и азиатская кухня в Единцах. Заказ онлайн: бесплатная доставка от {R['delivery']['city']['freeFrom']} лей, ежедневно {h0}–{h1}, есть самовывоз. Тел. {R['phone']}.",
+   desc=f"Бургеры, кебабы, суши и азиатская кухня в Единцах. Заказ онлайн: доставка по Единцам (бесплатно от {R['delivery']['city']['freeFrom']} лей) и в соседние сёла, ежедневно {h0}–{h1}, есть самовывоз. Тел. {R['phone']}.",
    call="Позвонить в L'Gusto", nos=f"Для онлайн-заказа включите JavaScript или позвоните: <a href=\"tel:{tel}\">{R['phone']}</a>"),
 }
 

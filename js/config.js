@@ -935,7 +935,7 @@ window.MENU = [
   "g": "360",
   "unit": "ml",
   "price": 65,
-  "img": "img/fresh-grepfrut-portocale.webp?v=9"
+  "img": "img/fresh-grepfrut-portocale.webp?v=10"
  },
  {
   "id": "coca-cola",

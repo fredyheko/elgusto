@@ -918,7 +918,7 @@ window.MENU = [
   "nameRu": "Фреш из грейпфрута",
   "ro": "suc proaspăt stors de grapefruit",
   "ru": "свежевыжатый сок грейпфрута",
-  "g": "360",
+  "g": "270",
   "unit": "ml",
   "price": 65,
   "img": "img/fresh-grepfrut.webp?v=8"
@@ -930,7 +930,7 @@ window.MENU = [
   "nameRu": "Апельсиновый фреш",
   "ro": "suc proaspăt stors de portocale",
   "ru": "свежевыжатый апельсиновый сок",
-  "g": "360",
+  "g": "270",
   "unit": "ml",
   "price": 65,
   "img": "img/fresh-portocale.webp"
@@ -942,7 +942,7 @@ window.MENU = [
   "nameRu": "Фреш грейпфрут–апельсин",
   "ro": "suc proaspăt stors din grapefruit și portocale",
   "ru": "свежевыжатый сок грейпфрута и апельсина",
-  "g": "360",
+  "g": "270",
   "unit": "ml",
   "price": 65,
   "img": "img/fresh-grepfrut-portocale.webp?v=10"

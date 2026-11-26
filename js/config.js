@@ -331,6 +331,16 @@ window.MENU = [
   "img": "img/chicken-nuggets.webp?v=3"
  },
  {
+  "id": "strips-pui",
+  "cat": "gustari",
+  "name": "Strips de pui",
+  "ro": "file de pui, pesmeți, clear, sos de usturoi",
+  "ru": "куриное филе, панировка, кляр, чесночный соус",
+  "g": "180/50",
+  "price": 75,
+  "img": "img/strips-pui.webp?v=1"
+ },
+ {
   "id": "inele-calamar",
   "cat": "gustari",
   "name": "Inele de calamar",

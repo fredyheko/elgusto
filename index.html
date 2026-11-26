@@ -476,7 +476,7 @@
   <div class="info">
     <div id="i1"><b>📍 Adresa</b>mun. Edineț, str. Gagarin 39<br>📞 <a href="tel:+37360465059">060 46 50 59</a> <span style="color:var(--mu)">(precomandă și livrare)</span></div>
     <div id="i2"><b>🕒 Program</b>Zilnic, 08:00–21:00</div>
-    <div id="i3"><b>🛵 Livrare</b>În Edineț — gratuit pentru comenzi de la 400 lei, pentru comenzi mai mici — 50 lei.<br>În alte localități — de la 50 lei, costul exact îl confirmă operatorul.</div>
+    <div id="i3"><b>🛵 Livrare</b>În Edineț — gratuit pentru comenzi de la 400 lei, pentru comenzi mai mici — 50 lei.<br>În alte localități — după tarif; pentru comenzi de la 400 lei livrarea e cu 50 lei mai ieftină.</div>
   </div>
   <div class="note" data-i="alg"><b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii. Rulourile și seturile de sushi se servesc cu sos de soia, ghimbir marinat și wasabi.</div>
 </div>
@@ -492,7 +492,7 @@
 </div>
 
 <noscript><div class="closed show">Pentru comandă online activați JavaScript sau sunați: <a href="tel:+37360465059">060 46 50 59</a></div></noscript>
-<script src="js/config.js?v=80e3cd73"></script>
+<script src="js/config.js?v=53deb30d"></script>
 <script type="module">
 import * as S from "./js/store.js?v=f33407d0";
 const BASE = document.documentElement.dataset.base || "";
@@ -516,10 +516,10 @@ ro:{h1:'Burgeri, kebab, sushi și bucătărie asiatică',
  s3t:'Confirmăm rapid',s3p:'Operatorul primește comanda imediat și vă sună pentru confirmare.',info:'Informații',
  i1:`<b>📍 Adresa</b>${R.address.ro}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(precomandă și livrare)</span>`,
  i2:`<b>🕒 Program</b>Zilnic, ${H}`,
- i3:`<b>🛵 Livrare</b>În ${R.city.ro} — gratuit pentru comenzi de la ${D.city.freeFrom} lei, pentru comenzi mai mici — ${D.city.feeBelow == null ? "cu plată (costul îl confirmă operatorul)" : D.city.feeBelow + " lei"}.<br>În alte localități — de la ${D.other.feeFrom} lei, costul exact îl confirmă operatorul.`,
+ i3:`<b>🛵 Livrare</b>În ${R.city.ro} — gratuit pentru comenzi de la ${D.city.freeFrom} lei, pentru comenzi mai mici — ${D.city.feeBelow == null ? "cu plată (costul îl confirmă operatorul)" : D.city.feeBelow + " lei"}.<br>În alte localități — după tarif; pentru comenzi de la ${D.other.discountFrom} lei livrarea e cu ${D.other.discount} lei mai ieftină.`,
  alg:'<b>Verificați alergenii înainte de comandă!</b> Preparatele pot conține: gluten, ouă, lapte (lactoză), pește, crustacee, moluște, soia, susan, muștar, țelină, nuci, arahide, sulfiți. Spuneți operatorului despre alergii. Rulourile și seturile de sushi se servesc cu sos de soia, ghimbir marinat și wasabi.',
  add:'+ Adaugă',added:'✓ Adăugat',na:'Indisponibil',cart:'Coșul',yours:'Comanda ta',subtotal:'Preparate',total:'Total',deliv:'🛵 Livrare',pick:'🏃 Ridicare',
- zone:'Unde livrăm?',locL:'Localitatea',locFee:(n,f)=>`Livrare în ${n}: ${f} lei.`,payL:'Cum plătiți?',pays:{cash:'💵 Numerar',mia:'📱 MIA',card:'💳 Card'},payH:{mia:'Plata prin MIA la primirea comenzii.',card:'Plata cu cardul la ridicare, în local.'},zCity:`${R.city.ro} (oraș)`,zOther:'Altă localitate',
+ zone:'Unde livrăm?',locL:'Localitatea',locFee:(n,f)=>`Livrare în ${n}: ${f} lei.`,locDisc:(n,f,b)=>`Livrare în ${n}: <s>${b}</s> <b>${f} lei</b> — reducere ${D.other.discount} lei la livrare pentru comenzi de la ${D.other.discountFrom} lei.`,locMore:(x)=>` Mai adăugați ${x} lei și livrarea va fi cu ${D.other.discount} lei mai ieftină.`,payL:'Cum plătiți?',pays:{cash:'💵 Numerar',mia:'📱 MIA',card:'💳 Card'},payH:{mia:'Plata prin MIA la primirea comenzii.',card:'Plata cu cardul la ridicare, în local.'},zCity:`${R.city.ro} (oraș)`,zOther:'Altă localitate',
  needMore:(x)=>`Mai adăugați ${x} lei și livrarea în ${R.city.ro} va fi gratuită. Pentru comenzi sub ${D.city.freeFrom} lei livrarea este ${D.city.feeBelow == null ? "cu plată — costul exact al livrării vi-l va comunica operatorul" : D.city.feeBelow + " lei"}.`,
  freeOk:'Livrare gratuită 🎉',otherFee:`Costul livrării în altă localitate vi-l va comunica operatorul.`,
  cur:'lei',feeLbl:'Livrare',byOp:'o comunică operatorul',plusFee:'livrare',from:'de la',free:'gratuit',pickAddr:`Ridicare: ${R.address.ro}`,
@@ -539,10 +539,10 @@ ru:{h1:'Бургеры, кебабы, суши и азиатская кухня'
  s3t:'Быстро подтвердим',s3p:'Оператор сразу получает заказ и перезванивает для подтверждения.',info:'Информация',
  i1:`<b>📍 Адрес</b>${R.address.ru}<br>📞 <a href="tel:${tel}">${R.phone}</a> <span style="color:var(--mu)">(предзаказ и доставка)</span>`,
  i2:`<b>🕒 Часы работы</b>Ежедневно, ${H}`,
- i3:`<b>🛵 Доставка</b>По городу ${R.city.ru} — бесплатно при заказе от ${D.city.freeFrom} лей, на меньшую сумму — ${D.city.feeBelow == null ? "платно (стоимость подтвердит оператор)" : D.city.feeBelow + " лей"}.<br>В другие сёла — от ${D.other.feeFrom} лей, точную стоимость подтвердит оператор.`,
+ i3:`<b>🛵 Доставка</b>По городу ${R.city.ru} — бесплатно при заказе от ${D.city.freeFrom} лей, на меньшую сумму — ${D.city.feeBelow == null ? "платно (стоимость подтвердит оператор)" : D.city.feeBelow + " лей"}.<br>В другие сёла — по тарифу; при заказе от ${D.other.discountFrom} лей доставка на ${D.other.discount} лей дешевле.`,
  alg:'<b>Проверьте аллергены перед заказом!</b> Блюда могут содержать: глютен, яйца, молоко (лактозу), рыбу, ракообразных, моллюсков, сою, кунжут, горчицу, сельдерей, орехи, арахис, сульфиты. Сообщите оператору об аллергии. Роллы и сеты суши подаются с соевым соусом, маринованным имбирём и васаби.',
  add:'+ В корзину',added:'✓ Добавлено',na:'Нет в наличии',cart:'Корзина',yours:'Ваш заказ',subtotal:'Блюда',total:'Итого',deliv:'🛵 Доставка',pick:'🏃 Самовывоз',
- zone:'Куда доставить?',locL:'Населённый пункт',locFee:(n,f)=>`Доставка в ${n}: ${f} лей.`,payL:'Как оплатите?',pays:{cash:'💵 Наличные',mia:'📱 MIA',card:'💳 Карта'},payH:{mia:'Оплата через MIA при получении заказа.',card:'Оплата картой при получении, в заведении.'},zCity:`${R.city.ru} (город)`,zOther:'Другой населённый пункт',
+ zone:'Куда доставить?',locL:'Населённый пункт',locFee:(n,f)=>`Доставка в ${n}: ${f} лей.`,locDisc:(n,f,b)=>`Доставка в ${n}: <s>${b}</s> <b>${f} лей</b> — скидка ${D.other.discount} лей на доставку при заказе от ${D.other.discountFrom} лей.`,locMore:(x)=>` Добавьте ещё ${x} лей — и доставка будет на ${D.other.discount} лей дешевле.`,payL:'Как оплатите?',pays:{cash:'💵 Наличные',mia:'📱 MIA',card:'💳 Карта'},payH:{mia:'Оплата через MIA при получении заказа.',card:'Оплата картой при получении, в заведении.'},zCity:`${R.city.ru} (город)`,zOther:'Другой населённый пункт',
  needMore:(x)=>`Добавьте ещё ${x} лей — и доставка по городу будет бесплатной. Для заказов до ${D.city.freeFrom} лей доставка ${D.city.feeBelow == null ? "платная — точную стоимость доставки сообщит оператор" : "стоит " + D.city.feeBelow + " лей"}.`,
  freeOk:'Бесплатная доставка 🎉',otherFee:`Стоимость доставки в другой населённый пункт сообщит оператор.`,
  cur:'лей',feeLbl:'Доставка',byOp:'сообщит оператор',plusFee:'доставка',from:'от',free:'бесплатно',pickAddr:`Самовывоз: ${R.address.ru}`,
@@ -685,7 +685,9 @@ const sub = () => Object.entries(cart).reduce((s, [k, q]) => s + BY[k].price * q
 const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
 const LOCS = (D.localities || []), LOCBY = Object.fromEntries(LOCS.map((x) => [x.id, x]));
 const locName = (x) => x ? (L === "ru" ? x.ru : x.ro) : (L === "ru" ? R.city.ru : R.city.ro);
-function fee() { if (mode !== "delivery") return 0; if (zone === "other") return (LOCBY[loc] || {}).fee || 0; return sub() >= D.city.freeFrom ? 0 : (D.city.feeBelow || 0); }
+const locBase = () => (LOCBY[loc] || {}).fee || 0;
+const locDisc = () => (D.other.discountFrom && sub() >= D.other.discountFrom ? Math.min(locBase(), D.other.discount || 0) : 0);
+function fee() { if (mode !== "delivery") return 0; if (zone === "other") return locBase() - locDisc(); return sub() >= D.city.freeFrom ? 0 : (D.city.feeBelow || 0); }
 const feeOpen = () => mode === "delivery" && zone === "city" && sub() < D.city.freeFrom && D.city.feeBelow == null;
 function upd() { const c = count(); $("cartbtn").style.display = c ? "block" : "none"; $("cartbtn").textContent = `${t("cart")} (${c}): ${sub()} ${t("cur")}`; updLast(); }
 /* ---------- соусы и добавки ---------- */
@@ -748,7 +750,7 @@ window.openCart = function () {
   const unavailable = Object.keys(cart).some((k) => !avail(k));
   let hint = "";
   if (mode === "delivery" && zone === "city") hint = needMore ? `<div class="hint">${t("needMore")(D.city.freeFrom - s)}</div>` : `<div class="hint ok">${t("freeOk")}</div>`;
-  if (mode === "delivery" && zone === "other") hint = `<div class="hint">${t("locFee")(locName(LOCBY[loc]), f)}</div>`;
+  if (mode === "delivery" && zone === "other") hint = `<div class="hint">${locDisc() ? t("locDisc")(locName(LOCBY[loc]), f, locBase()) : t("locFee")(locName(LOCBY[loc]), f) + (D.other.discountFrom && locBase() ? t("locMore")(D.other.discountFrom - s) : "")}</div>`;
   if (mode === "pickup") hint = `<div class="hint ok">📍 ${t("pickAddr")}</div>`;
   const totalTxt = feeOpen() ? `${s + f} ${t("cur")} + ${t("plusFee")}` : `${s + f} ${t("cur")}`;
   const block = !canOrder() || unavailable || sending;
@@ -834,7 +836,7 @@ window.openTrack = function (id, num) {
     $("sheet").innerHTML = `<div class="ok"><div class="em">${o.status === "cancelled" ? "⚠️" : "✅"}</div><h3>${t("thanks")}, ${esc(o.name)}!</h3><p>${t("got")(o.num)}</p>
     ${o.status === "cancelled" ? `<div class="cancelled">${t("cancelled")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : steps(o)}
     ${o.status === "new" ? `<p class="mini">${t("callSoon")}</p>` : ""}
-    <div class="mini" style="text-align:left">${(o.items || []).map((i) => `${i.q} × ${esc(i.n)}`).join("<br>")}<br><b style="color:var(--ink)">${t("total")}: ${o.total} ${t("cur")}${o.zone === "other" && !o.deliveryFee ? " + " + t("plusFee") : ""}${o.zone === "city" && o.subtotal < D.city.freeFrom && D.city.feeBelow == null ? " + " + t("feeLbl").toLowerCase() : ""}</b></div>
+    <div class="mini" style="text-align:left">${(o.items || []).map((i) => `${i.q} × ${esc(i.n)}`).join("<br>")}<br><b style="color:var(--ink)">${t("total")}: ${o.total} ${t("cur")}${o.zone === "other" && !o.deliveryFee && !o.loc ? " + " + t("plusFee") : ""}${o.zone === "city" && o.subtotal < D.city.freeFrom && D.city.feeBelow == null ? " + " + t("feeLbl").toLowerCase() : ""}</b></div>
     <div class="mini">${t("questions")}<a href="tel:${tel}">${R.phone}</a></div>
     <button class="big" onclick="closeAll()">${t("close")}</button></div>`;
   };

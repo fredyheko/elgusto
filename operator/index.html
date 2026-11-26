@@ -109,7 +109,7 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
   <form class="lbox" id="lform">
     <img src="../img/logo-new.webp" alt="L'Gusto">
     <h1 data-t="opTitle"></h1>
-    <input id="em" type="email" autocomplete="username" required>
+    <input id="em" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>
     <input id="pw" type="password" autocomplete="current-password" required>
     <div class="lerr" id="lerr"></div>
     <button class="btn w" data-t="enter"></button>
@@ -143,7 +143,7 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 import * as S from "../js/store.js";
 
 const T = {
- ru:{opTitle:"Приложение оператора",enter:"Войти",email:"Email",pass:"Пароль",badLogin:"Неверный email или пароль",
+ ru:{opTitle:"Приложение оператора",enter:"Войти",email:"Логин",pass:"Пароль",badLogin:"Неверный логин или пароль",
   testMode:"Тестовый режим: Firebase не подключён, заказы видны только в этом браузере. Войти можно с любыми данными.",
   open:"Принимаем заказы",closed:"Приём закрыт",soundOff:"Звук выключен — нажмите, чтобы слышать новые заказы",soundOn:"Включить звук",
   ordersToday:"заказов сегодня",revToday:"лей сегодня",avgCheck:"средний чек",
@@ -156,7 +156,7 @@ const T = {
   emptyNew:"Новых заказов нет. Когда клиент оформит заказ, он появится здесь со звуком.",emptyWork:"Нет заказов в работе",emptyDone:"Сегодня ещё нет выполненных заказов",
   stopHint:"Выключите блюдо, если оно закончилось — клиенты не смогут его заказать.",subtotal:"Блюда",fee:"Доставка",total:"Итого",
   otherZone:"Другой населённый пункт",cNew:"🆕 Новый клиент",cRep:"✅ Уже заказывал: {n}",cCan:"⚠️ Отменено раньше: {n}",cBlk:"🚫 Номер заблокирован",a_block:"🚫 Заблокировать",a_unblock:"Разблокировать",blockQ:"Заблокировать {p}?",blockP:"С этого номера больше нельзя будет заказать на сайте. Если заказ новый, он будет отменён.",blkTitle:"🚫 Заблокированные номера",blkEmpty:"Заблокированных номеров нет. Заблокировать номер можно в карточке заказа.",blkDone:"Номер заблокирован",unblkDone:"Номер разблокирован",pays:{cash:"💵 Наличные",mia:"📱 Оплата MIA",card:"💳 Оплата картой"},feeSmall:"Заказ меньше 400 лей: доставка платная — назовите клиенту стоимость доставки.",feeConfirm:"Доставка в другой населённый пункт: уточните у курьера стоимость доставки (от 50 лей), сообщите её клиенту и прибавьте к итогу.",from:"от",errPerm:"Нет доступа к заказам. Проверьте, что ваш email добавлен в правила Firestore.",lei:"лей",newOrder:"Новый заказ"},
- ro:{opTitle:"Aplicația operatorului",enter:"Intră",email:"Email",pass:"Parola",badLogin:"Email sau parolă greșită",
+ ro:{opTitle:"Aplicația operatorului",enter:"Intră",email:"Login",pass:"Parola",badLogin:"Login sau parolă greșită",
   testMode:"Mod de test: Firebase nu e conectat, comenzile se văd doar în acest browser. Puteți intra cu orice date.",
   open:"Primim comenzi",closed:"Comenzi oprite",soundOff:"Sunetul e oprit — apăsați ca să auziți comenzile noi",soundOn:"Pornește sunetul",
   ordersToday:"comenzi azi",revToday:"lei azi",avgCheck:"bon mediu",

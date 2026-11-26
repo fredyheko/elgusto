@@ -6,6 +6,9 @@
 //    Project settings → Your apps → Web app → firebaseConfig.
 //    Пока apiKey пустой, сайт работает в ТЕСТОВОМ режиме:
 //    заказы хранятся только в этом браузере.
+// Свой сервер заказов на хостинге lgusto.md (на других адресах сайт работает в тестовом режиме)
+window.API_URL = /(^|\.)lgusto\.md$/.test(location.hostname) ? "/api/" : "";
+
 window.FIREBASE_CONFIG = {
   apiKey: "",
   authDomain: "",

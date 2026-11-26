@@ -4,7 +4,9 @@
 // ============================================================
 const FB_VER = "10.12.2";
 const cfg = window.FIREBASE_CONFIG || {};
-export const LIVE = !!cfg.apiKey;
+// Свой сервер (PHP на хостинге): задаётся window.API_URL в config.js
+const API = window.API_URL || "";
+export const LIVE = !!API || !!cfg.apiKey;
 
 export const STATUSES = ["new", "accepted", "cooking", "delivery", "done", "cancelled"];
 
@@ -57,6 +59,42 @@ export const LIMIT = { perHour: 3 };
 const HOUR = 3600e3;
 export class OrderRefused extends Error { constructor(code) { super(code); this.code = code; } }
 
+
+// ---------- свой сервер (PHP API) ----------
+async function call(a, { method = "GET", body, q = "" } = {}) {
+  const r = await fetch(`${API}?a=${a}${q}`, { method, credentials: "same-origin", cache: "no-store",
+    headers: body ? { "Content-Type": "application/json" } : {}, body: body ? JSON.stringify(body) : undefined });
+  let j = null; try { j = await r.json(); } catch (e) {}
+  if (!r.ok) { const code = (j && j.error) || "net"; if (["phone", "blocked", "limit", "closed"].includes(code)) throw new OrderRefused(code); const e = new Error(code); e.code = code; throw e; }
+  return j;
+}
+function poll(fn, ms, cb, onErr) {
+  let stop = false, t = null, last = "";
+  const tick = async () => {
+    if (stop) return;
+    try { const v = await fn(); const k = JSON.stringify(v); if (k !== last) { last = k; cb(v); } }
+    catch (e) { onErr && onErr(e); }
+    if (!stop) t = setTimeout(tick, document.hidden ? ms * 3 : ms);
+  };
+  tick();
+  const vis = () => { if (!document.hidden && !stop) { clearTimeout(t); tick(); } };
+  document.addEventListener("visibilitychange", vis);
+  return () => { stop = true; clearTimeout(t); document.removeEventListener("visibilitychange", vis); };
+}
+const api = {
+  create: (order) => call("create", { method: "POST", body: order }),
+  watchOrder: (id, cb) => poll(() => call("order", { q: "&id=" + encodeURIComponent(id) }), 5000, cb, () => {}),
+  watchOrders: (since, cb, onErr) => poll(() => call("orders", { q: "&since=" + since }), 4000, cb, onErr),
+  setStatus: (id, status) => call("status", { method: "POST", body: { id, status } }),
+  watchBlocked: (cb) => poll(() => call("blocked"), 15000, cb, () => cb([])),
+  setBlocked: (phone, on_, name) => call("blocked", { method: "POST", body: { phone, on: on_, name } }),
+  phoneStats: (phone) => call("stats", { q: "&phone=" + encodeURIComponent(phone) }),
+  watchSettings: (cb) => poll(() => call("settings"), 20000, (v) => cb({ ...DEF, ...(v || {}) }), () => {}),
+  setSettings: (patch) => call("settings", { method: "POST", body: patch }),
+};
+const authL = [];
+const authEmit = (u) => authL.forEach((f) => f(u));
+
 // ---------- заказы ----------
 export async function createOrder(o) {
   const order = {
@@ -67,6 +105,7 @@ export async function createOrder(o) {
   const ph = normPhone(o.phone);
   if (!ph) throw new OrderRefused("phone");
   order.phone = ph;
+  if (API) return api.create(order);
   if (!LIVE) {
     if (LS.get("lg_blocked", {})[ph]) throw new OrderRefused("blocked");
     const recent = Object.values(LS.get("lg_orders", {})).filter((x) => x.phone === ph && Date.now() - x.createdAt < HOUR);
@@ -103,6 +142,7 @@ const norm = (id, d) => ({ ...d, id, createdAt: tsToMs(d.createdAt), updatedAt: 
 
 // Клиент следит за своим заказом
 export function watchOrder(id, cb) {
+  if (API) return api.watchOrder(id, cb);
   if (!LIVE) {
     const f = () => { const o = LS.get("lg_orders", {})[id]; cb(o || null); };
     f(); return on("lg_orders", f);
@@ -116,6 +156,7 @@ export function watchOrder(id, cb) {
 
 // Оператор: все заказы с указанного момента, новые сверху
 export function watchOrders(sinceMs, cb, onErr) {
+  if (API) return api.watchOrders(sinceMs, cb, onErr);
   if (!LIVE) {
     const f = () => cb(Object.values(LS.get("lg_orders", {})).filter((o) => o.createdAt >= sinceMs).sort((a, b) => b.createdAt - a.createdAt));
     f(); return on("lg_orders", f);
@@ -129,6 +170,7 @@ export function watchOrders(sinceMs, cb, onErr) {
 }
 
 export async function setStatus(id, status) {
+  if (API) return api.setStatus(id, status);
   if (!LIVE) {
     const all = LS.get("lg_orders", {});
     if (all[id]) { all[id].status = status; all[id].updatedAt = Date.now(); LS.set("lg_orders", all); }
@@ -140,6 +182,7 @@ export async function setStatus(id, status) {
 
 // ---------- оператор: блокировка номеров и история клиента ----------
 export function watchBlocked(cb) {
+  if (API) return api.watchBlocked(cb);
   if (!LIVE) { const f = () => cb(Object.entries(LS.get("lg_blocked", {})).map(([phone, v]) => ({ phone, ...v }))); f(); return on("lg_blocked", f); }
   let off = () => {};
   loadFirebase().then(({ db, m }) => {
@@ -149,6 +192,7 @@ export function watchBlocked(cb) {
 }
 export async function setBlocked(phone, on_, name = "") {
   const ph = normPhone(phone) || phone;
+  if (API) return api.setBlocked(ph, on_, name);
   if (!LIVE) { const b = LS.get("lg_blocked", {}); if (on_) b[ph] = { name, at: Date.now() }; else delete b[ph]; LS.set("lg_blocked", b); return; }
   const { db, m } = await loadFirebase();
   const ref = m.doc(db, "blocked", ph);
@@ -156,6 +200,7 @@ export async function setBlocked(phone, on_, name = "") {
 }
 // Сколько заказов было с этого номера всего и сколько из них отменено
 export async function phoneStats(phone) {
+  if (API) return api.phoneStats(phone);
   if (!LIVE) {
     const xs = Object.values(LS.get("lg_orders", {})).filter((x) => x.phone === phone);
     return { total: xs.length, cancelled: xs.filter((x) => x.status === "cancelled").length };
@@ -172,6 +217,7 @@ export async function phoneStats(phone) {
 // ---------- настройки (приём заказов, стоп-лист) ----------
 const DEF = { open: true, stop: [], rec: null }; // rec: null = список по умолчанию из config.js
 export function watchSettings(cb) {
+  if (API) return api.watchSettings(cb);
   if (!LIVE) { const f = () => cb({ ...DEF, ...LS.get("lg_settings", {}) }); f(); return on("lg_settings", f); }
   let off = () => {};
   loadFirebase().then(({ db, m }) => {
@@ -180,6 +226,7 @@ export function watchSettings(cb) {
   return () => off();
 }
 export async function setSettings(patch) {
+  if (API) return api.setSettings(patch);
   if (!LIVE) { LS.set("lg_settings", { ...DEF, ...LS.get("lg_settings", {}), ...patch }); return; }
   const { db, m } = await loadFirebase();
   await m.setDoc(m.doc(db, "meta", "settings"), patch, { merge: true });
@@ -187,18 +234,21 @@ export async function setSettings(patch) {
 
 // ---------- вход оператора ----------
 export function onAuth(cb) {
+  if (API) { authL.push(cb); call("me").then(cb).catch(() => cb(null)); return () => authL.splice(authL.indexOf(cb), 1); }
   if (!LIVE) { const f = () => cb(LS.get("lg_auth", null)); f(); return on("lg_auth", f); }
   let off = () => {};
   loadFirebase().then(({ auth, a }) => { off = a.onAuthStateChanged(auth, (u) => cb(u ? { email: u.email } : null)); });
   return () => off();
 }
 export async function login(email, pass) {
+  if (API) { const u = await call("login", { method: "POST", body: { login: email, password: pass } }); authEmit(u); return; }
   if (!LIVE) { if (!email || !pass) throw new Error("empty"); LS.set("lg_auth", { email }); return; }
   const { auth, a } = await loadFirebase();
   await a.setPersistence(auth, a.browserLocalPersistence);
   await a.signInWithEmailAndPassword(auth, email, pass);
 }
 export async function logout() {
+  if (API) { await call("logout", { method: "POST" }).catch(() => {}); authEmit(null); return; }
   if (!LIVE) { LS.set("lg_auth", null); return; }
   const { auth, a } = await loadFirebase();
   await a.signOut(auth);

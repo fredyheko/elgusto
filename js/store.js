@@ -96,6 +96,11 @@ const api = {
   watchSettings: (cb) => poll(() => call("settings"), 20000, (v) => cb({ ...DEF, ...(v || {}) }), () => {}),
   setSettings: (patch) => call("settings", { method: "POST", body: patch }).then((r) => { refreshAll(); return r; }),
 };
+// ---------- пароль для цен ----------
+// без своего сервера (тестовый режим) пароль не нужен
+export const adminState = () => (API ? call("admin") : Promise.resolve({ set: true, left: 99999, demo: true }));
+export const adminUnlock = (password) => (API ? call("admin", { method: "POST", body: { password } }) : Promise.resolve({ set: true, left: 99999, demo: true }));
+export const adminLock = () => (API ? call("admin", { method: "POST", body: { lock: 1 } }).catch(() => {}) : Promise.resolve());
 const authL = [];
 const authEmit = (u) => authL.forEach((f) => f(u));
 

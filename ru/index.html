@@ -501,6 +501,9 @@ const R = window.RESTAURANT, ALLCATS = window.CATEGORIES, MENU = window.MENU, D 
 const CATS = ALLCATS.filter((c) => !c.hidden);
 window.CATS = CATS;
 const BY = Object.fromEntries(MENU.map((m) => [m.id, m]));
+const BASE_PRICE = Object.fromEntries(MENU.map((m) => [m.id, m.price]));
+// цены, изменённые оператором, поверх цен из config.js
+function applyPrices(pr) { pr = pr && typeof pr === "object" ? pr : {}; MENU.forEach((m) => { const v = +pr[m.id]; m.price = v > 0 ? v : BASE_PRICE[m.id]; }); }
 const tel = "+373" + R.phone.replace(/\D/g, "").replace(/^0/, "");
 const H = R.hours[0] ? `${R.hours[0][0]}–${R.hours[0][1]}` : "";
 
@@ -864,7 +867,7 @@ $("lastord").onclick = () => openTrack(lastId);
 const soc = [["instagram", "Instagram"], ["facebook", "Facebook"], ["tiktok", "TikTok"]].filter(([k]) => R[k]);
 const SICO = { facebook: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg>' };
 $("soc").innerHTML = soc.map(([k, n]) => `<a href="${esc(R[k])}" target="_blank" rel="noopener" aria-label="${n}">${SICO[k] || ""}<span>${n}</span></a>`).join("");
-S.watchSettings((s) => { settings = s; render(); extras(); filter(); updClosed(); if ($("ov").classList.contains("show") && !trackId && count()) openCart(); });
+S.watchSettings((s) => { settings = s; applyPrices(s.prices); render(); extras(); filter(); updClosed(); if ($("ov").classList.contains("show") && !trackId && count()) openCart(); });
 setInterval(updClosed, 60000);
 setLang(L); fixSticky();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register(BASE + "sw.js").catch(() => {});

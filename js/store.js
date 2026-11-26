@@ -219,7 +219,7 @@ export async function phoneStats(phone) {
 }
 
 // ---------- настройки (приём заказов, стоп-лист) ----------
-const DEF = { open: true, stop: [], rec: null }; // rec: null = список по умолчанию из config.js
+const DEF = { open: true, stop: [], rec: null, prices: null }; // prices: {id: цена} — цены, изменённые оператором // rec: null = список по умолчанию из config.js
 export function watchSettings(cb) {
   if (API) return api.watchSettings(cb);
   if (!LIVE) { const f = () => cb({ ...DEF, ...LS.get("lg_settings", {}) }); f(); return on("lg_settings", f); }
@@ -233,7 +233,7 @@ export async function setSettings(patch) {
   if (API) return api.setSettings(patch);
   if (!LIVE) { LS.set("lg_settings", { ...DEF, ...LS.get("lg_settings", {}), ...patch }); return; }
   const { db, m } = await loadFirebase();
-  await m.setDoc(m.doc(db, "meta", "settings"), patch, { merge: true });
+  await m.setDoc(m.doc(db, "meta", "settings"), patch, { mergeFields: Object.keys(patch) });
 }
 
 // ---------- вход оператора ----------

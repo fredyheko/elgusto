@@ -330,7 +330,7 @@ window.openCart = function () {
   <label>${t("phone")}</label><input id="fp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0xx xxx xxx" value="${esc(draft.p)}">
   ${mode === "delivery" ? `<label>${t("addr")}</label><input id="fa" autocomplete="street-address" maxlength="200" placeholder="${t("addrPC")}" value="${esc(draft.a)}">` : ""}
   <label>${t("com")}</label><textarea id="fc" rows="2" maxlength="300" placeholder="${t("comP")}">${esc(draft.c)}</textarea>
-  <div class="hpf" aria-hidden="true"><label for="fw">Company</label><input id="fw" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+  <div class="hpf" aria-hidden="true"><input id="fw" name="lg_hp_x7" type="text" tabindex="-1" autocomplete="new-password" data-lpignore="true" data-1p-ignore="true" aria-label="-"></div>
   ${!canOrder() ? `<div class="hint">${settings.open ? t("closedNow") : t("paused")}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a></div>` : ""}
   <div class="err" id="err"></div>
   <button class="big" id="sendBtn" onclick="send()" ${block ? "disabled" : ""}>${sending ? t("sending") : (feeOpen() ? t("send") : `${t("send")} · ${totalTxt}`)}</button>
@@ -358,8 +358,8 @@ window.send = async function () {
   if (!n || !p || (mode === "delivery" && !a)) { er.textContent = mode === "delivery" ? t("errA") : t("errB"); er.style.display = "block"; return; }
   if (!phoneOk(p)) { er.textContent = t("errPh"); er.style.display = "block"; return; }
   const callMe = (k) => { er.innerHTML = `${t(k)}<a href="tel:${tel}" style="color:inherit;font-weight:800">${R.phone}</a>`; er.style.display = "block"; };
-  // ловушка для ботов: скрытое поле заполнено или форма отправлена быстрее 3 секунд
-  if (($("fw") && $("fw").value) || Date.now() - formAt < 3000) { callMe("errNet"); return; }
+  // ловушка для ботов: мгновенная отправка или скрытое поле + быстрая отправка (автозаполнение браузера не мешает живым людям)
+  const el = Date.now() - formAt; if (el < 1200 || (($("fw") && $("fw").value) && el < 8000)) { callMe("errNet"); return; }
   keepDraft(); sending = true; $("sendBtn").disabled = true; $("sendBtn").textContent = t("sending");
   const items = Object.entries(cart).map(([k, q]) => ({ id: k, n: BY[k].name, q, p: BY[k].price }));
   const s = sub(), f = fee();

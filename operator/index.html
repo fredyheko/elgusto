@@ -105,7 +105,8 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 </head>
 <body>
 
-<section id="login">
+<div id="boot" style="min-height:100vh;display:grid;place-items:center"><img src="../img/logo-new.webp" alt="L'Gusto" style="height:70px;opacity:.85"></div>
+<section id="login" class="hide">
   <form class="lbox" id="lform">
     <img src="../img/logo-new.webp" alt="L'Gusto">
     <h1 data-t="opTitle"></h1>
@@ -231,6 +232,7 @@ $("langBtn").onclick = () => { L = L === "ru" ? "ro" : "ru"; try { localStorage.
 
 S.onAuth((u) => {
   unsub.forEach((f) => f()); unsub = [];
+  $("boot") && $("boot").remove();
   $("login").classList.toggle("hide", !!u); $("app").classList.toggle("hide", !u);
   if (!u) return;
   firstLoad = true; seen = new Set();

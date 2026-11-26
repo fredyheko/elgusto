@@ -297,3 +297,4 @@ body[data-v="1"] .collage img{filter:drop-shadow(0 0 28px rgba(255,255,255,.10))
 .blogo{height:58px;width:auto;margin:-4px 0}
 @media (max-width:640px){.blogo{height:50px}}
 .soc a{display:inline-flex;align-items:center;gap:7px}
+#s-kids h2{display:inline-block;background:#BFE6FA;color:#10142E;padding:6px 18px 8px;border-radius:18px;text-shadow:none;box-shadow:0 4px 0 #10142E}

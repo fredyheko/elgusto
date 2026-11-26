@@ -56,6 +56,12 @@ window.CATEGORIES = [
   "ru": "Бургеры"
  },
  {
+  "id": "kids",
+  "icon": "🧸",
+  "ro": "Meniu Kids",
+  "ru": "Детское меню"
+ },
+ {
   "id": "gustari",
   "icon": "🍟",
   "ro": "Gustări",
@@ -248,6 +254,56 @@ window.MENU = [
   "g": "300",
   "price": 75,
   "img": "img/crispy-burger.webp?v=3"
+ },
+ {
+  "id": "kids-hamburger",
+  "cat": "kids",
+  "name": "Hamburger Kids",
+  "ro": "chiflă, pârjoală vită/porc, castraveți marinați, sos burger, ketchup",
+  "ru": "булочка, котлета говядина/свинина, маринованные огурцы, бургерный соус, кетчуп",
+  "g": "120",
+  "price": 30,
+  "img": "img/kids-hamburger.webp?v=1"
+ },
+ {
+  "id": "kids-crispy",
+  "cat": "kids",
+  "name": "Crispy Burger Kids",
+  "ro": "chiflă, pârjoală de pui în panko, salată iceberg, frunză de salată, sos burger",
+  "ru": "булочка, куриная котлета в панко, салат айсберг, листья салата, бургерный соус",
+  "g": "150",
+  "price": 35,
+  "img": "img/kids-crispy.webp?v=1"
+ },
+ {
+  "id": "kids-cheeseburger",
+  "cat": "kids",
+  "name": "Cheeseburger Kids",
+  "ro": "chiflă, pârjoală vită/porc, cașcaval cheddar, castraveți marinați, roșii, frunză de salată, sos burger, ketchup",
+  "ru": "булочка, котлета говядина/свинина, сыр чеддер, маринованные огурцы, помидоры, листья салата, бургерный соус, кетчуп",
+  "g": "150",
+  "price": 35,
+  "img": "img/kids-cheeseburger.webp?v=1"
+ },
+ {
+  "id": "kids-burger-classic",
+  "cat": "kids",
+  "name": "Burger Classic Kids",
+  "ro": "chiflă, pârjoală vită/porc, castraveți marinați, roșii, salată iceberg, frunză de salată, sos burger, ketchup",
+  "ru": "булочка, котлета говядина/свинина, маринованные огурцы, помидоры, салат айсберг, листья салата, бургерный соус, кетчуп",
+  "g": "150",
+  "price": 30,
+  "img": "img/kids-burger-classic.webp?v=1"
+ },
+ {
+  "id": "kids-nuggets",
+  "cat": "kids",
+  "name": "Chicken Nuggets Kids",
+  "ro": "file de pui în pesmet, sos de usturoi",
+  "ru": "куриное филе в панировке, чесночный соус",
+  "g": "150/50",
+  "price": 60,
+  "img": "img/kids-nuggets.webp?v=1"
  },
  {
   "id": "creveti-tempura",
@@ -1471,7 +1527,7 @@ window.ADDONS = {
   sauces: ["sos-usturoi", "sos-lgusto", "sos-cheddar", "sos-bbq", "sos-asiatic", "sos-sweet-chili", "ketchup"],
   kebabExtras: ["adaos-pui", "adaos-porc-vita", "adaos-cascaval", "adaos-sos"],
   // какой раздел меню → что предлагать
-  offer: { kebab: ["sauces", "kebabExtras"], aripi: ["sauces"], burger: ["sauces"], gustari: ["sauces"] }
+  offer: { kebab: ["sauces", "kebabExtras"], aripi: ["sauces"], burger: ["sauces"], kids: ["sauces"], gustari: ["sauces"] }
 };
 
 // 5) «Рекомендуем» по умолчанию. Оператор может поменять список в своём приложении (вкладка «Рекомендуем»).

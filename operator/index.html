@@ -236,7 +236,7 @@ function updateTitle() {
 if (!S.LIVE) $("testnote").classList.remove("hide");
 $("lform").onsubmit = async (e) => {
   e.preventDefault(); $("lerr").textContent = ""; unlockSound();
-  try { await S.login($("em").value.trim(), $("pw").value); } catch (err) { $("lerr").textContent = t("badLogin"); }
+  try { await S.login($("em").value.trim(), $("pw").value); } catch (err) { $("lerr").textContent = t(err && err.code === "login_wait" ? "lkWait" : "badLogin"); }
 };
 $("outBtn").onclick = () => S.logout();
 $("langBtn").onclick = () => { L = L === "ru" ? "ro" : "ru"; try { localStorage.setItem("lg-op-lang", L); } catch (e) {} applyLang(); };

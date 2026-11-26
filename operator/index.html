@@ -104,6 +104,10 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 /* modal */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.7);display:grid;place-items:center;z-index:50;padding:20px}
 .md{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;max-width:360px;width:100%}
+.rdy{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 4px}
+.rdy button{width:64px;height:64px;border-radius:50%;border:1px solid var(--line);background:#111;color:var(--tx);font-size:22px;font-weight:800}
+.rdy b{font-size:44px;min-width:110px;text-align:center;line-height:1}.rdy b small{display:block;font-size:14px;color:var(--mu);font-weight:600;margin-top:4px}
+.rdyAt{text-align:center;color:var(--yl);font-weight:700;margin-bottom:14px}
 .md h3{margin-bottom:8px}.md p{color:var(--mu);font-size:14px;margin-bottom:16px}
 .md .act .btn{min-width:0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#222;border:1px solid var(--line);padding:12px 18px;border-radius:12px;font-size:14px;z-index:60}
@@ -148,7 +152,7 @@ main{padding:12px 14px;max-width:1200px;margin:auto;display:grid;grid-template-c
 
 <script src="../js/config.js?v=53deb30d"></script>
 <script type="module">
-import * as S from "../js/store.js?v=f33407d0";
+import * as S from "../js/store.js?v=50b2dd7d";
 
 const T = {
  ru:{opTitle:"Приложение оператора",enter:"Войти",email:"Логин",pass:"Пароль",badLogin:"Неверный логин или пароль",
@@ -158,7 +162,7 @@ const T = {
   t_new:"Новые",t_work:"В работе",t_done:"Готовые",t_stop:"Стоп-лист",t_rec:"⭐ Рекомендуем",t_price:"💰 Цены",prHint:"Измените цену и нажмите Enter или нажмите в другое место — на сайте цена обновится сразу. Изменённые цены выделены жёлтым, ↺ возвращает цену из меню.",prSearch:"Поиск блюда…",prWas:"в меню:",prSaved:"Цена сохранена — на сайте обновится сразу",prBad:"Введите цену от 1 до 10000",prResetAll:"Вернуть все цены из меню",prResetQ:"Вернуть все цены из меню?",prResetP:"Все изменённые цены вернутся к ценам из меню.",prChanged:"Изменено цен:",lkTitle:"🔒 Цены защищены паролем",lkHint:"Введите пароль для цен. Доступ откроется на 15 минут или пока вы не уйдёте с этой вкладки.",lkPh:"Пароль для цен",lkBtn:"Открыть",lkBad:"Неверный пароль",lkWait:"Слишком много попыток — подождите 15 минут",lkUnset:"Пароль для цен ещё не задан. Добавьте его в файл api/config.php на хостинге (см. инструкцию), потом обновите страницу.",lkLock:"🔒 Закрыть",lkLeft:"Открыто ещё",lkMin:"мин",lkExp:"Доступ к ценам закрыт — введите пароль снова",prOk:"Вернуть",recHint:"Эти блюда показываются на сайте в блоке «Рекомендуем», в этом порядке. Лучше 4–8 блюд. Нажмите ☆ у блюда, чтобы добавить или убрать.",recNow:"Сейчас на сайте",recAll:"Все блюда",recEmpty:"Блок «Рекомендуем» скрыт — выберите блюда ниже.",recReset:"Вернуть как было",recUp:"Выше",recDown:"Ниже",recDel:"Убрать",recSaved:"Сохранено — на сайте обновится сразу",
   s_new:"Новый",s_accepted:"Принят",s_cooking:"Готовится",s_delivery:"В пути",s_done:"Выполнен",s_cancelled:"Отменён",
   delivery:"🛵 Доставка",pickup:"🏃 Самовывоз",min:"мин назад",now:"только что",
-  a_accept:"✓ Принять",a_cook:"🍳 Готовится",a_deliv:"🛵 Отправить",a_ready:"✓ Выдан",a_done:"✓ Доставлен",a_cancel:"Отменить",
+  a_accept:"✓ Принять",a_cook:"🍳 Готовится",rdQ:"Через сколько заказ #{n} будет готов?",rdP:"Время уйдёт курьерам в Telegram, чтобы курьер подъехал вовремя.",rdMin:"мин",rdAt:"Будет готов к",rdGo:"🍳 Готовится · отправить",rdBack:"Отмена",rdCard:"⏱ Готов к",a_deliv:"🛵 Отправить",a_ready:"✓ Выдан",a_done:"✓ Доставлен",a_cancel:"Отменить",
   cancelQ:"Отменить заказ #{n}?",cancelP:"Позвоните клиенту и предупредите об отмене.",yes:"Да, отменить",no:"Нет",
   closeQ:"Остановить приём заказов?",closeP:"Клиенты увидят на сайте, что заказы временно не принимаются.",stopBtn:"Остановить",
   emptyNew:"Новых заказов нет. Когда клиент оформит заказ, он появится здесь со звуком.",emptyWork:"Нет заказов в работе",emptyDone:"Сегодня ещё нет выполненных заказов",
@@ -171,7 +175,7 @@ const T = {
   t_new:"Noi",t_work:"În lucru",t_done:"Finalizate",t_stop:"Stop-listă",t_rec:"⭐ Recomandăm",t_price:"💰 Prețuri",prHint:"Schimbați prețul și apăsați Enter sau atingeți în altă parte — pe site prețul se actualizează imediat. Prețurile schimbate sunt evidențiate cu galben, ↺ revine la prețul din meniu.",prSearch:"Căutare preparat…",prWas:"în meniu:",prSaved:"Preț salvat — pe site se actualizează imediat",prBad:"Introduceți un preț între 1 și 10000",prResetAll:"Revino la prețurile din meniu",prResetQ:"Reveniți la toate prețurile din meniu?",prResetP:"Toate prețurile schimbate vor reveni la cele din meniu.",prChanged:"Prețuri schimbate:",lkTitle:"🔒 Prețurile sunt protejate cu parolă",lkHint:"Introduceți parola pentru prețuri. Accesul se deschide pentru 15 minute sau până ieșiți din această filă.",lkPh:"Parola pentru prețuri",lkBtn:"Deschide",lkBad:"Parolă greșită",lkWait:"Prea multe încercări — așteptați 15 minute",lkUnset:"Parola pentru prețuri nu este setată încă. Adăugați-o în fișierul api/config.php pe hosting, apoi reîncărcați pagina.",lkLock:"🔒 Închide",lkLeft:"Deschis încă",lkMin:"min",lkExp:"Accesul la prețuri s-a închis — introduceți parola din nou",prOk:"Revino",recHint:"Aceste preparate apar pe site în blocul «Recomandăm», în această ordine. Ideal 4–8 preparate. Apăsați ☆ ca să adăugați sau să scoateți.",recNow:"Acum pe site",recAll:"Toate preparatele",recEmpty:"Blocul «Recomandăm» e ascuns — alegeți preparate mai jos.",recReset:"Revino la implicit",recUp:"Mai sus",recDown:"Mai jos",recDel:"Scoate",recSaved:"Salvat — pe site se actualizează imediat",
   s_new:"Nouă",s_accepted:"Acceptată",s_cooking:"Se gătește",s_delivery:"În livrare",s_done:"Finalizată",s_cancelled:"Anulată",
   delivery:"🛵 Livrare",pickup:"🏃 Ridicare",min:"min în urmă",now:"chiar acum",
-  a_accept:"✓ Acceptă",a_cook:"🍳 Se gătește",a_deliv:"🛵 Trimite",a_ready:"✓ Ridicată",a_done:"✓ Livrată",a_cancel:"Anulează",
+  a_accept:"✓ Acceptă",a_cook:"🍳 Se gătește",rdQ:"În cât timp va fi gata comanda #{n}?",rdP:"Ora ajunge la curieri în Telegram, ca să vină la timp.",rdMin:"min",rdAt:"Gata la",rdGo:"🍳 Se gătește · trimite",rdBack:"Anulează",rdCard:"⏱ Gata la",a_deliv:"🛵 Trimite",a_ready:"✓ Ridicată",a_done:"✓ Livrată",a_cancel:"Anulează",
   cancelQ:"Anulați comanda #{n}?",cancelP:"Sunați clientul și anunțați-l despre anulare.",yes:"Da, anulează",no:"Nu",
   closeQ:"Opriți primirea comenzilor?",closeP:"Clienții vor vedea pe site că momentan nu se primesc comenzi.",stopBtn:"Oprește",
   emptyNew:"Nu sunt comenzi noi. Când un client comandă, comanda apare aici cu sunet.",emptyWork:"Nu sunt comenzi în lucru",emptyDone:"Azi încă nu sunt comenzi finalizate",
@@ -307,6 +311,7 @@ function card(o) {
    <div class="tags">${clientTag(o)}</div>
    <div class="pay">${t("pays")[o.pay || "cash"] || o.pay}</div>
    ${o.courier ? `<div class="pay" style="background:#1d5b34">🛵 ${t("courier")}: ${esc(o.courier.name)}${o.courier.username ? " (@" + esc(o.courier.username) + ")" : ""}${o.courier.doneAt ? " · 📦 " + t("delivered") + " " + new Date(o.courier.doneAt).toLocaleTimeString("ro-MD", { hour: "2-digit", minute: "2-digit" }) : ""}</div>` : ""}
+   ${o.readyAt && ["cooking", "delivery"].includes(o.status) ? `<div class="pay" style="background:#5b4a12">${t("rdCard")} ${hm(o.readyAt)}</div>` : ""}
    ${o.comment ? `<div class="com">💬 ${esc(o.comment)}</div>` : ""}
    <div class="its">${(o.items || []).map((i) => `<div class="it"><span class="q">${i.q}×</span><span>${esc(i.n)}</span><span class="p">${i.p * i.q}</span></div>`).join("")}</div>
    ${o.zone === "other" && !o.deliveryFee && !o.loc ? `<div class="com">⚠️ ${t("feeConfirm")}</div>` : ""}${o.mode === "delivery" && o.zone === "city" && o.subtotal < ((window.RESTAURANT.delivery.city||{}).freeFrom||0) && !o.deliveryFee ? `<div class="com">⚠️ ${t("feeSmall")}</div>` : ""}${o.deliveryFee ? `<div class="sub"><span>${t("subtotal")}</span><span>${o.subtotal} ${t("lei")}</span></div><div class="sub"><span>${t("fee")}${o.zone === "other" && !o.loc ? " (" + t("from") + ")" : ""}</span><span>${o.deliveryFee} ${t("lei")}</span></div>` : ""}
@@ -410,10 +415,35 @@ function confirmBox(title, text, okLabel, onOk) {
   ov.onclick = (e) => { if (e.target === ov || e.target.dataset.no !== undefined) ov.remove(); if (e.target.dataset.ok !== undefined) { ov.remove(); onOk(); } };
   document.body.appendChild(ov);
 }
+// выбор времени готовности перед отправкой курьерам
+function readyPicker(o) {
+  let min = 15;
+  const ov = document.createElement("div"); ov.className = "ov";
+  const at = () => new Date(Date.now() + min * 60000).toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" });
+  const draw = () => { ov.querySelector("[data-v]").innerHTML = `${min}<small>${t("rdMin")}</small>`; ov.querySelector(".rdyAt").textContent = `${t("rdAt")} ${at()}`;
+    ov.querySelector("[data-d='-5']").disabled = min <= 5; ov.querySelector("[data-d='5']").disabled = min >= 180; };
+  ov.innerHTML = `<div class="md"><h3>${esc(t("rdQ").replace("{n}", o.num))}</h3><p>${t("rdP")}</p>
+    <div class="rdy"><button data-d="-5" aria-label="-5">−5</button><b data-v></b><button data-d="5" aria-label="+5">+5</button></div>
+    <div class="rdyAt"></div>
+    <div class="act"><button class="btn x" data-no>${t("rdBack")}</button><button class="btn y" data-ok>${t("rdGo")}</button></div></div>`;
+  draw();
+  ov.onclick = async (e) => {
+    const bt = e.target.closest("button");
+    if (e.target === ov || (bt && bt.dataset.no !== undefined)) { ov.remove(); return; }
+    if (bt && bt.dataset.d) { min = Math.max(5, Math.min(180, min + +bt.dataset.d)); draw(); return; }
+    if (bt && bt.dataset.ok !== undefined) {
+      bt.disabled = true;
+      try { const r = await S.setStatus(o.id, "cooking", { readyIn: min }); ov.remove(); if (r && r.telegram === true) toast(t("tgSent")); else if (r && r.telegram === false) toast(t("tgFail")); }
+      catch (err) { bt.disabled = false; toast("Error: " + err.message); }
+    }
+  };
+  document.body.appendChild(ov);
+}
 document.addEventListener("click", async (e) => {
   const b = e.target.closest("button"); if (!b) return;
   if (b.dataset.lock) { admLeave(); renderAll(); return; }
   if (b.dataset.tab) { if (tab === "price" && b.dataset.tab !== "price") admLeave(); tab = b.dataset.tab; renderAll(); scrollTo(0, 0); return; }
+  if (b.dataset.s === "cooking" && !b.dataset.rd) { const o = orders.find((x) => x.id === b.dataset.id); if (o && o.mode === "delivery") { readyPicker(o); return; } }
   if (b.dataset.s) { b.disabled = true; try { const r = await S.setStatus(b.dataset.id, b.dataset.s); if (r && r.telegram === true) toast(t("tgSent")); else if (r && r.telegram === false) toast(t("tgFail")); } catch (err) { toast("Error: " + err.message); b.disabled = false; } return; }
   if (b.dataset.cancel) { confirmBox(t("cancelQ").replace("{n}", b.dataset.cancel), t("cancelP"), t("yes"), () => S.setStatus(b.dataset.id, "cancelled")); return; }
   if (b.dataset.rec) { const r = recList(); const i = r.indexOf(b.dataset.rec); if (i > -1) r.splice(i, 1); else r.push(b.dataset.rec); setRec(r); return; }

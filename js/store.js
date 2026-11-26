@@ -89,7 +89,7 @@ const api = {
   create: (order) => call("create", { method: "POST", body: order }),
   watchOrder: (id, cb) => poll(() => call("order", { q: "&id=" + encodeURIComponent(id) }), 5000, cb, () => {}),
   watchOrders: (since, cb, onErr) => poll(() => call("orders", { q: "&since=" + since }), 4000, cb, onErr),
-  setStatus: (id, status) => call("status", { method: "POST", body: { id, status } }).then((r) => { refreshAll(); return r; }),
+  setStatus: (id, status, extra) => call("status", { method: "POST", body: { ...(extra || {}), id, status } }).then((r) => { refreshAll(); return r; }),
   watchBlocked: (cb) => poll(() => call("blocked"), 15000, cb, () => cb([])),
   setBlocked: (phone, on_, name) => call("blocked", { method: "POST", body: { phone, on: on_, name } }).then((r) => { refreshAll(); return r; }),
   phoneStats: (phone) => call("stats", { q: "&phone=" + encodeURIComponent(phone) }),
@@ -178,15 +178,16 @@ export function watchOrders(sinceMs, cb, onErr) {
   return () => off();
 }
 
-export async function setStatus(id, status) {
-  if (API) return api.setStatus(id, status);
+export async function setStatus(id, status, extra) {
+  const rd = extra && extra.readyIn ? { readyIn: extra.readyIn, readyAt: Date.now() + extra.readyIn * 60000 } : {};
+  if (API) return api.setStatus(id, status, extra);
   if (!LIVE) {
     const all = LS.get("lg_orders", {});
-    if (all[id]) { all[id].status = status; all[id].updatedAt = Date.now(); LS.set("lg_orders", all); }
+    if (all[id]) { Object.assign(all[id], rd, { status, updatedAt: Date.now() }); LS.set("lg_orders", all); }
     return;
   }
   const { db, m } = await loadFirebase();
-  await m.updateDoc(m.doc(db, "orders", id), { status, updatedAt: m.serverTimestamp() });
+  await m.updateDoc(m.doc(db, "orders", id), { ...rd, status, updatedAt: m.serverTimestamp() });
 }
 
 // ---------- оператор: блокировка номеров и история клиента ----------

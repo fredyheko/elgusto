@@ -68,6 +68,8 @@ async function call(a, { method = "GET", body, q = "" } = {}) {
   if (!r.ok) { const code = (j && j.error) || "net"; if (["phone", "blocked", "limit", "closed"].includes(code)) throw new OrderRefused(code); const e = new Error(code); e.code = code; throw e; }
   return j;
 }
+const refreshers = new Set();
+const refreshAll = () => refreshers.forEach((f) => f());
 function poll(fn, ms, cb, onErr) {
   let stop = false, t = null, last = "";
   const tick = async () => {
@@ -77,20 +79,22 @@ function poll(fn, ms, cb, onErr) {
     if (!stop) t = setTimeout(tick, document.hidden ? ms * 3 : ms);
   };
   tick();
-  const vis = () => { if (!document.hidden && !stop) { clearTimeout(t); tick(); } };
+  const now = () => { if (!stop) { clearTimeout(t); tick(); } };
+  const vis = () => { if (!document.hidden) now(); };
+  refreshers.add(now);
   document.addEventListener("visibilitychange", vis);
-  return () => { stop = true; clearTimeout(t); document.removeEventListener("visibilitychange", vis); };
+  return () => { stop = true; clearTimeout(t); refreshers.delete(now); document.removeEventListener("visibilitychange", vis); };
 }
 const api = {
   create: (order) => call("create", { method: "POST", body: order }),
   watchOrder: (id, cb) => poll(() => call("order", { q: "&id=" + encodeURIComponent(id) }), 5000, cb, () => {}),
   watchOrders: (since, cb, onErr) => poll(() => call("orders", { q: "&since=" + since }), 4000, cb, onErr),
-  setStatus: (id, status) => call("status", { method: "POST", body: { id, status } }),
+  setStatus: (id, status) => call("status", { method: "POST", body: { id, status } }).then((r) => { refreshAll(); return r; }),
   watchBlocked: (cb) => poll(() => call("blocked"), 15000, cb, () => cb([])),
-  setBlocked: (phone, on_, name) => call("blocked", { method: "POST", body: { phone, on: on_, name } }),
+  setBlocked: (phone, on_, name) => call("blocked", { method: "POST", body: { phone, on: on_, name } }).then((r) => { refreshAll(); return r; }),
   phoneStats: (phone) => call("stats", { q: "&phone=" + encodeURIComponent(phone) }),
   watchSettings: (cb) => poll(() => call("settings"), 20000, (v) => cb({ ...DEF, ...(v || {}) }), () => {}),
-  setSettings: (patch) => call("settings", { method: "POST", body: patch }),
+  setSettings: (patch) => call("settings", { method: "POST", body: patch }).then((r) => { refreshAll(); return r; }),
 };
 const authL = [];
 const authEmit = (u) => authL.forEach((f) => f(u));
